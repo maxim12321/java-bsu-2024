@@ -1,7 +1,7 @@
 package by.v10k13.quizer;
 
 public interface Task {
-    public static enum Result {
+    enum Result {
         OK, // Получен правильный ответ
         WRONG, // Получен неправильный ответ
         INCORRECT_INPUT // Некорректный ввод. Например, текст, когда ожидалось число

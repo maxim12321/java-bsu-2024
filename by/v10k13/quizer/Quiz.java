@@ -1,18 +1,16 @@
 package by.v10k13.quizer;
 
-import java.util.*;
-
 /**
  * Class, который описывает один тест
  */
 public class Quiz {
-    private int TotalTasksCount_;
+    private final int TotalTasksCount_;
     private int RemainingTasks_;
     private int CorrectAnswers_      = 0;
     private int InputMistakes_       = 0;
     private boolean InputMistakeFlag_= false;
 
-    private TaskGenerator Generator_;
+    private final TaskGenerator Generator_;
     private Task LastTask_           = null;
 
     private void GenerateNextTask_() {
