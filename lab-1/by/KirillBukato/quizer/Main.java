@@ -152,7 +152,6 @@ public class Main {
 //                        EnumSet.of(MathTask.Operation.ADD)
 //                ), 10
 //        ));
-        // test
 
         return map;
     }
