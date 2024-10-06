@@ -7,8 +7,10 @@ import java.util.Scanner;
 
 import by.KirillBukato.quizer.generators.GroupTaskGenerator;
 import by.KirillBukato.quizer.generators.PoolTaskGenerator;
+import by.KirillBukato.quizer.generators.TextVariantTaskGenerator;
 import by.KirillBukato.quizer.generators.math.ExpressionTaskGenerator;
 import by.KirillBukato.quizer.generators.math.EquationTaskGenerator;
+import by.KirillBukato.quizer.generators.math.ExpressionVariantTaskGenerator;
 import by.KirillBukato.quizer.tasks.TextTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
@@ -108,8 +110,25 @@ public class Main {
                                 MathTask.Operation.DIVIDE)
                 ), 10
         ));
+        map.put("Variants", new Quiz(
+                new TextVariantTaskGenerator(
+                        "Как зовут Олега?",
+                        "Олег",
+                        "Виктор",
+                        "Родион"
+                ), 5
+        ));
+        map.put("Expression Variants", new Quiz(
+                new ExpressionVariantTaskGenerator(0, 10,
+                        EnumSet.of(
+                                MathTask.Operation.ADD,
+                                MathTask.Operation.SUBTRACT,
+                                MathTask.Operation.MULTIPLY)
+                ), 5
+        ));
 
         //Падает на созданных исключениях, если раскомментировать.
+        //Причина: нельзя создавать генераторы, которые создают только неправильные задания
 
 //        map.put("Zero division exception, expressions", new Quiz(
 //                new ExpressionTaskGenerator(

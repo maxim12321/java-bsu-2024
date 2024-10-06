@@ -35,6 +35,6 @@ public class TextTask implements Task {
         }
     }
 
-    private final String text;
-    private final String answer;
+    protected final String text;
+    protected final String answer;
 }

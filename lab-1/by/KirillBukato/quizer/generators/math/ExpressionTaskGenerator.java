@@ -1,12 +1,13 @@
 package by.KirillBukato.quizer.generators.math;
 
+import by.KirillBukato.quizer.generators.VariantTaskGenerator;
 import by.KirillBukato.quizer.tasks.math.ExpressionTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
 import java.util.*;
 
 
-public class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
+public class ExpressionTaskGenerator extends AbstractMathTaskGenerator implements VariantTaskGenerator {
 
     @Override
     public RuntimeException validateGenerator() {
@@ -15,7 +16,7 @@ public class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
             return exception;
         }
         if (operationsIsDivision() && getMinNumber() == 0 && getMaxNumber() == 0) {
-            return new IllegalArgumentException("Test will always have zero division");
+            return new IllegalArgumentException("Task will always have zero division");
         } else return null;
     }
 

@@ -11,7 +11,7 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator {
     @Override
     public RuntimeException validateGenerator() {
         if (operationsIsDivisionAndMultiplication() && getMinNumber() == 0 && getMaxNumber() == 0) {
-            return new IllegalArgumentException("Test will always have zero division");
+            return new IllegalArgumentException("Task will always have zero division");
         } else return null;
     }
 
