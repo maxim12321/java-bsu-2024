@@ -5,7 +5,7 @@ import by.KirillBukato.quizer.TaskGenerator;
 
 import java.util.*;
 
-public class PoolTaskGenerator implements TaskGenerator {
+public class PoolTaskGenerator implements TaskGenerator<Task> {
     /**
      * Конструктор с переменным числом аргументов
      *

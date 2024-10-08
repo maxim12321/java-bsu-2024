@@ -118,6 +118,7 @@ public class Main {
                         "Родион"
                 ), 5
         ));
+
         map.put("Expression Variants", new Quiz(
                 new ExpressionVariantTaskGenerator(0, 10,
                         EnumSet.of(

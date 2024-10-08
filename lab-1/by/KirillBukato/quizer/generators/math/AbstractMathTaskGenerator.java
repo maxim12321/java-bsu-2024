@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Random;
 
-public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
+public abstract class AbstractMathTaskGenerator<T extends MathTask> implements MathTaskGenerator<T> {
 
     public AbstractMathTaskGenerator(int minNumber,
                                      int maxNumber,
@@ -37,6 +37,15 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
     @Override
     public int getMaxNumber() {
         return maxNumber;
+    }
+
+    @Override
+    public T generate() {
+        T task;
+        do {
+            task = generateUnvalidated();
+        } while (!task.isValid());
+        return task;
     }
 
     protected int getRandomNumber() {

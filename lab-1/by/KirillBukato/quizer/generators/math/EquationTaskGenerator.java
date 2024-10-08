@@ -6,7 +6,7 @@ import by.KirillBukato.quizer.tasks.math.MathTask;
 import java.util.EnumSet;
 import java.util.Random;
 
-public class EquationTaskGenerator extends AbstractMathTaskGenerator {
+public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTask> {
 
     @Override
     public RuntimeException validateGenerator() {
@@ -24,17 +24,10 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator {
         super(minNumber, maxNumber, enumSet);
     }
 
-    /**
-     * return задание типа {@link EquationTask}
-     */
     @Override
-    public EquationTask generate() {
+    public EquationTask generateUnvalidated() {
         Random random = new Random();
-        EquationTask task;
-        do {
-            task = new EquationTask(getRandomNumber(), getRandomOperation(), getRandomNumber(),
-                    random.nextInt(2) == 0);
-        } while (!task.isValid());
-        return task;
+        return new EquationTask(getRandomNumber(), getRandomOperation(), getRandomNumber(),
+                random.nextInt(2) == 0);
     }
 }

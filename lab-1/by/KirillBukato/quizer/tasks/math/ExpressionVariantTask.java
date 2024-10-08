@@ -4,7 +4,7 @@ import by.KirillBukato.quizer.Result;
 import by.KirillBukato.quizer.tasks.VariantTask;
 
 
-public class ExpressionVariantTask extends ExpressionTask implements VariantTask {
+public class ExpressionVariantTask extends AbstractExpressionTask implements VariantTask {
 
     public ExpressionVariantTask(int left, Operation operator, int right, double w1, double w2, VariantTask.Variants variant) {
         super(left, operator, right);
@@ -57,11 +57,6 @@ public class ExpressionVariantTask extends ExpressionTask implements VariantTask
     @Override
     public String getC() {
         return (Double.valueOf(c)).toString();
-    }
-
-    @Override
-    public String getQuestion() {
-        return super.getText();
     }
 
     @Override

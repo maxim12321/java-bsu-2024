@@ -8,13 +8,13 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
 
-public class GroupTaskGenerator implements TaskGenerator {
+public class GroupTaskGenerator implements TaskGenerator<Task> {
     /**
      * Конструктор с переменным числом аргументов
      *
      * @param generators генераторы, которые в конструктор передаются через запятую
      */
-    public GroupTaskGenerator(TaskGenerator... generators) {
+    public GroupTaskGenerator(TaskGenerator<? extends Task>... generators) {
         this.generators = new ArrayList<>(Arrays.asList(generators));
     }
 
@@ -23,7 +23,7 @@ public class GroupTaskGenerator implements TaskGenerator {
      *
      * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
      */
-    public GroupTaskGenerator(Collection<TaskGenerator> generators) {
+    public GroupTaskGenerator(Collection<TaskGenerator<? extends Task>> generators) {
         this.generators = generators;
     }
 
@@ -40,7 +40,7 @@ public class GroupTaskGenerator implements TaskGenerator {
         while (!generators.isEmpty()) {
             var iterator = generators.iterator();
             for (int index = random.nextInt(generators.size()); iterator.hasNext(); index--){
-                TaskGenerator generator = iterator.next();
+                TaskGenerator<? extends Task> generator = iterator.next();
                 if (index == 0) {
                     try {
                         return generator.generate();
@@ -58,6 +58,6 @@ public class GroupTaskGenerator implements TaskGenerator {
         throw new RuntimeException();
     }
 
-    private final Collection<TaskGenerator> generators;
-    private final Collection<TaskGenerator> removedGenerators = new ArrayList<>();
+    private final Collection<TaskGenerator<? extends Task>> generators;
+    private final Collection<TaskGenerator<? extends Task>> removedGenerators = new ArrayList<>();
 }

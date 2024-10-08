@@ -8,7 +8,7 @@ import by.KirillBukato.quizer.tasks.math.MathTask;
 import java.util.EnumSet;
 import java.util.Random;
 
-public class ExpressionVariantTaskGenerator extends ExpressionTaskGenerator implements VariantTaskGenerator {
+public class ExpressionVariantTaskGenerator extends AbstractExpressionTaskGenerator<ExpressionVariantTask> implements VariantTaskGenerator<ExpressionVariantTask> {
     /**
      * @param minNumber минимальное число
      * @param maxNumber максимальное число
@@ -27,11 +27,9 @@ public class ExpressionVariantTaskGenerator extends ExpressionTaskGenerator impl
     }
 
     @Override
-    public ExpressionVariantTask generate() {
-        ExpressionVariantTask task;
+    public ExpressionVariantTask generateUnvalidated() {
         Random random = new Random();
-        do {
-            task = new ExpressionVariantTask(
+        return new ExpressionVariantTask(
                     getRandomNumber(),
                     getRandomOperation(),
                     getRandomNumber(),
@@ -42,7 +40,5 @@ public class ExpressionVariantTaskGenerator extends ExpressionTaskGenerator impl
                         case 1 -> VariantTask.Variants.B;
                         default -> VariantTask.Variants.C;
                     });
-        } while (!task.isValid());
-        return task;
     }
 }

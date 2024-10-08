@@ -1,12 +1,11 @@
 package by.KirillBukato.quizer.generators;
 
-import by.KirillBukato.quizer.Task;
 import by.KirillBukato.quizer.tasks.TextVariantTask;
 import by.KirillBukato.quizer.tasks.VariantTask;
 
 import java.util.Random;
 
-public class TextVariantTaskGenerator implements VariantTaskGenerator {
+public class TextVariantTaskGenerator implements VariantTaskGenerator<TextVariantTask> {
 
     public TextVariantTaskGenerator(String text, String correct, String wrong1, String wrong2) {
         this.text = text;
@@ -16,7 +15,7 @@ public class TextVariantTaskGenerator implements VariantTaskGenerator {
     }
 
     @Override
-    public Task generate() {
+    public TextVariantTask generate() {
         Random random = new Random();
         return switch (random.nextInt(6)) {
             case 0 -> new TextVariantTask(text, correct, wrong1, wrong2, VariantTask.Variants.A);
