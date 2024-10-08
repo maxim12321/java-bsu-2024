@@ -21,7 +21,6 @@ class Quiz {
      */
     Task nextTask() {
         if(isLastAnswerValid && taskLeft != 0) {
-            taskLeft--;
             currentTask = generator.generate();
         }
         return currentTask;
@@ -37,6 +36,7 @@ class Quiz {
             isLastAnswerValid = false;
             incorrectInputNumber++;
         } else {
+            taskLeft--;
             isLastAnswerValid = true;
             if (result == Result.OK) correctAnswerNumber++;
             else if (result == Result.WRONG) wrongAnswerNumber++;
