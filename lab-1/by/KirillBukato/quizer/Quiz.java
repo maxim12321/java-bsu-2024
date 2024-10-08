@@ -10,7 +10,7 @@ class Quiz {
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
      */
-    Quiz(TaskGenerator generator, int taskCount) {
+    Quiz(TaskGenerator<? extends Task> generator, int taskCount) {
         this.generator = generator;
         this.taskLeft = taskCount;
     }
@@ -80,8 +80,8 @@ class Quiz {
         if(!isFinished()) {
             throw new QuizNotFinishedException("Quiz is not finished, you can't get the result yet.");
         }
-        if (correctAnswerNumber + wrongAnswerNumber == 0) return 1;
-        return ((double) correctAnswerNumber) / (correctAnswerNumber + wrongAnswerNumber);
+        if (getCorrectAnswerNumber() + getWrongAnswerNumber() == 0) return 1;
+        return ((double) getCorrectAnswerNumber()) / (getCorrectAnswerNumber() + getWrongAnswerNumber());
     }
 
     private int correctAnswerNumber = 0;
@@ -90,5 +90,5 @@ class Quiz {
     private int taskLeft;
     private Task currentTask;
     private boolean isLastAnswerValid = true;
-    private final TaskGenerator generator;
+    private final TaskGenerator<? extends Task> generator;
 }
