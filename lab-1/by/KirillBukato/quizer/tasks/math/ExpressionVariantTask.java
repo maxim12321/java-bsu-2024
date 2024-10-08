@@ -10,24 +10,27 @@ public class ExpressionVariantTask extends AbstractExpressionTask implements Var
         super(left, operator, right);
         switch (variant) {
             case A -> {
-                a = super.ComputeAnswer();
+                a = super.computeAnswer();
                 b = w1;
                 c = w2;
             }
             case B -> {
                 a = w1;
-                b = super.ComputeAnswer();
+                b = super.computeAnswer();
                 c = w2;
             }
             default -> {
                 a = w1;
                 b = w2;
-                c = super.ComputeAnswer();
+                c = super.computeAnswer();
             }
         }
         this.variant = variant;
     }
 
+    /**
+     * Проверка на то, что варианты ответа разные
+     */
     @Override
     public boolean isValid() {
         if (Math.abs(a - b) < 0.001 || Math.abs(a - c) < 0.001 || Math.abs(b - c) < 0.001) return false;

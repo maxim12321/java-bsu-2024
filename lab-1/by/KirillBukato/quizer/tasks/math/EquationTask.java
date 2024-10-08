@@ -16,6 +16,9 @@ public class EquationTask extends AbstractMathTask {
         }
     }
 
+    /**
+     * Проверка на невалидные уравнение вида 0*x = b, 0/x = b, x/0 = b, a/x = 0
+     */
     @Override
     public boolean isValid() {
         if (operator == Operation.DIVIDE) {
@@ -28,7 +31,7 @@ public class EquationTask extends AbstractMathTask {
     }
 
     @Override
-    public double ComputeAnswer() {
+    public double computeAnswer() {
         if (isXLeft) {
             return switch (operator) {
                 case ADD -> right - left; //x + a = b

@@ -8,13 +8,16 @@ public abstract class AbstractExpressionTask extends AbstractMathTask{
         super(left, operator, right);
     }
 
+    /**
+     * Проверка на деление на ноль
+     */
     @Override
     public boolean isValid() {
         return operator != Operation.DIVIDE || right != 0;
     }
 
     @Override
-    public double ComputeAnswer() {
+    public double computeAnswer() {
         return switch (operator) {
             case ADD -> left + right;
             case SUBTRACT -> left - right;

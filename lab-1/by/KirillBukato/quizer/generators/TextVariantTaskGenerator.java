@@ -5,8 +5,16 @@ import by.KirillBukato.quizer.tasks.VariantTask;
 
 import java.util.Random;
 
+/**
+ * Текстовая задача с вариантами ответа
+ */
 public class TextVariantTaskGenerator implements VariantTaskGenerator<TextVariantTask> {
-
+    /**
+     * @param text      Текст задачи
+     * @param correct   Правильный ответ
+     * @param wrong1    Первый неправильный ответ
+     * @param wrong2    Второй неправильный ответ
+     */
     public TextVariantTaskGenerator(String text, String correct, String wrong1, String wrong2) {
         this.text = text;
         this.correct = correct;
@@ -27,8 +35,8 @@ public class TextVariantTaskGenerator implements VariantTaskGenerator<TextVarian
         };
     }
 
-    String text;
-    String correct;
-    String wrong1;
-    String wrong2;
+    private final String text;
+    private final String correct;
+    private final String wrong1;
+    private final String wrong2;
 }

@@ -21,5 +21,5 @@ public interface MathTask extends Task {
 
     boolean isValid();
 
-    double ComputeAnswer();
+    double computeAnswer();
 }

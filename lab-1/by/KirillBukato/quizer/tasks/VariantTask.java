@@ -4,12 +4,18 @@ import by.KirillBukato.quizer.Result;
 import by.KirillBukato.quizer.Task;
 
 public interface VariantTask extends Task {
+    /**
+     * Enum, который описывает возможные варианты ответа.
+     */
     enum Variants {
         A,
         B,
         C
     }
 
+    /**
+     * Общий метод для валидации по варианту, который вызывается в метод validate() у классов, реализующих этот интерфейс
+     */
     default Result validateVariant(String answer) {
         switch (answer) {
             case "A" -> {
@@ -27,6 +33,9 @@ public interface VariantTask extends Task {
         }
     }
 
+    /**
+     * Общий метод получения текста для заданий с вариантами ответа.
+     */
     default String getTextVariant() {
         return getQuestion() +
                 " Варианты ответа: \nA) " + getA() + "\nB) " + getB() + "\nC) " + getC();

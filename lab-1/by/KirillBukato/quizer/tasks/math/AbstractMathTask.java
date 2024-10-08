@@ -2,6 +2,9 @@ package by.KirillBukato.quizer.tasks.math;
 
 import by.KirillBukato.quizer.Result;
 
+/**
+ * Абстрактный класс для всех математических задач
+ */
 public abstract class AbstractMathTask implements MathTask {
 
     public AbstractMathTask(int left, MathTask.Operation operator, int right) {
@@ -10,9 +13,13 @@ public abstract class AbstractMathTask implements MathTask {
         this.right = right;
     }
 
+    /**
+     * Проверка ответа использует метод computeAnswer() который вычисляет правильный ответ.
+     * Далее ответ пользователя сравнивается с правильным.
+     */
     @Override
     public Result validate(String answer) {
-        double correctAnswer = ComputeAnswer();
+        double correctAnswer = computeAnswer();
         double userAnswer;
         try {
             userAnswer = Double.parseDouble(answer);

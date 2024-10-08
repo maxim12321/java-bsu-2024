@@ -16,6 +16,11 @@ public abstract class AbstractExpressionTaskGenerator<T extends AbstractExpressi
         super(minNumber, maxNumber, enumSet);
     }
 
+    /**
+     * Расширенная валидация генератора.
+     * Если генерируются примеры с числами на отрезке [0,0] и операцией деления, то они всегда будут невалидны.
+     * Иначе есть шанс, что сгенерируется валидный.
+     */
     @Override
     public RuntimeException validateGenerator() {
         RuntimeException exception = super.validateGenerator();

@@ -6,8 +6,17 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Random;
 
+/**
+ * Абстрактный генератор математических задач
+ * @param <T>   Тип задач
+ */
 public abstract class AbstractMathTaskGenerator<T extends MathTask> implements MathTaskGenerator<T> {
 
+    /**
+     * @param minNumber минимальное число
+     * @param maxNumber максимальное число
+     * @param enumSet   множество разрешённых операций
+     */
     public AbstractMathTaskGenerator(int minNumber,
                                      int maxNumber,
                                      EnumSet<MathTask.Operation> enumSet) {
@@ -21,6 +30,10 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
         }
     }
 
+    /**
+     * Для всех валидаторов у математических задач есть общее условие:
+     * минимальное число должно быть меньше максимального.
+     */
     @Override
     public RuntimeException validateGenerator() {
         if (getMinNumber() > getMaxNumber()) {
@@ -39,6 +52,11 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
         return maxNumber;
     }
 
+    /**
+     * При генерации происходит валидация задачи. Если задача невалидна, она генерируется заново.
+     * Этот процесс не может продолжаться бесконечно, поскольку если генератор создаёт только невалидные примеры,
+     * это будет засечено валидатором генератора.
+     */
     @Override
     public T generate() {
         T task;
@@ -58,11 +76,19 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
         return operators.get(random.nextInt(operators.size()));
     }
 
+    /**
+     * Метод, необходимых для валидации генератора
+     * @return  true если единственная операция это деление
+     */
     protected boolean operationsIsDivision() {
         return EnumSet.copyOf(operators).equals(EnumSet.of(
                 MathTask.Operation.DIVIDE));
     }
 
+    /**
+     * Метод, необходимых для валидации генератора
+     * @return  true если единственные операции это деление или умножение
+     */
     protected boolean operationsIsDivisionAndMultiplication() {
         EnumSet<MathTask.Operation> set = EnumSet.copyOf(operators);
         set.removeAll(EnumSet.of(MathTask.Operation.DIVIDE, MathTask.Operation.MULTIPLY));

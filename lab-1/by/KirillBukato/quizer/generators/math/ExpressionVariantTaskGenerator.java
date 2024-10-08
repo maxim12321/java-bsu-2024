@@ -1,12 +1,10 @@
 package by.KirillBukato.quizer.generators.math;
 
 import by.KirillBukato.quizer.generators.VariantTaskGenerator;
-import by.KirillBukato.quizer.tasks.VariantTask;
 import by.KirillBukato.quizer.tasks.math.ExpressionVariantTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
 import java.util.EnumSet;
-import java.util.Random;
 
 public class ExpressionVariantTaskGenerator extends AbstractExpressionTaskGenerator<ExpressionVariantTask> implements VariantTaskGenerator<ExpressionVariantTask> {
     /**
@@ -18,6 +16,10 @@ public class ExpressionVariantTaskGenerator extends AbstractExpressionTaskGenera
         super(minNumber, maxNumber, enumSet);
     }
 
+    /**
+     * Расширенная валидация генератора.
+     * Если доступно меньше трёх чисел для генерации, то будет несколько одинаковых вариантов ответа, мы такого не хотим
+     */
     @Override
     public RuntimeException validateGenerator() {
         RuntimeException e = super.validateGenerator();
@@ -28,17 +30,12 @@ public class ExpressionVariantTaskGenerator extends AbstractExpressionTaskGenera
 
     @Override
     public ExpressionVariantTask generateUnvalidated() {
-        Random random = new Random();
         return new ExpressionVariantTask(
                     getRandomNumber(),
                     getRandomOperation(),
                     getRandomNumber(),
                     getRandomNumber(),
                     getRandomNumber(),
-                    switch (random.nextInt(3)) {
-                        case 0 -> VariantTask.Variants.A;
-                        case 1 -> VariantTask.Variants.B;
-                        default -> VariantTask.Variants.C;
-                    });
+                    getRandomVariant());
     }
 }
