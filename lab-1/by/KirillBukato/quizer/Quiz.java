@@ -1,5 +1,6 @@
 package by.KirillBukato.quizer;
 
+import by.KirillBukato.quizer.exceptions.QuizFinishedException;
 import by.KirillBukato.quizer.exceptions.QuizNotFinishedException;
 
 /**
@@ -16,11 +17,14 @@ class Quiz {
     }
 
     /**
-     * @return задание, повторный вызов вернет слелующее
+     * @return задание, повторный вызов вернет следующее
      * @see Task
      */
     Task nextTask() {
-        if(isLastAnswerValid && taskLeft != 0) {
+        if (isFinished()) {
+            throw new QuizFinishedException("Quiz finished. You can't ask for next task.");
+        }
+        if(isLastAnswerValid) {
             currentTask = generator.generate();
         }
         return currentTask;
@@ -31,6 +35,9 @@ class Quiz {
      * ответов не увеличивается, а {@link #nextTask()} в следующий раз вернет тот же самый объект {@link Task}.
      */
     Result provideAnswer(String answer) {
+        if (isFinished()) {
+            throw new QuizFinishedException("Quiz finished. You can't provide answer.");
+        }
         Result result = currentTask.validate(answer);
         if (result == Result.INCORRECT_INPUT) {
             isLastAnswerValid = false;

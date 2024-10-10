@@ -17,8 +17,7 @@ import by.KirillBukato.quizer.tasks.math.MathTask;
 public class Main {
     /**
      * @return тесты в {@link Map}, где
-     * ключ     - название теста {@link String}
-     * значение - сам тест       {@link Quiz}
+     * ключ - название теста {@link String}, значение - сам тест {@link Quiz}
      */
     static Map<String, Quiz> getQuizMap() {
         HashMap<String, Quiz> map = new HashMap<>();
@@ -159,19 +158,19 @@ public class Main {
 
     public static void main(String[] args) {
         Map<String, Quiz> quizMap = getQuizMap();
-
         System.out.println("Список тестов:");
-        for(var quiz : quizMap.entrySet()) {
-            System.out.println(quiz.getKey());
-        }
-        String testName;
+        quizMap.keySet().forEach(System.out::println);
+
         Scanner scanner = new Scanner(System.in);
-        do {
-            System.out.println("Введите название теста...");
+        System.out.println("Введите название теста...");
+        String testName = scanner.nextLine();
+        while (!quizMap.containsKey(testName)) {
+            System.out.println("Такого теста не существует. Введите название теста...");
             testName = scanner.nextLine();
-        } while (!quizMap.containsKey(testName));
+        }
         Quiz quiz = quizMap.get(testName);
 
+        System.out.println("Начинаем тест. Отвечайте на вопросы, пожалуйста.");
         while (!quiz.isFinished()) {
             System.out.println(quiz.nextTask().getText());
             String answer = scanner.nextLine();
@@ -182,7 +181,7 @@ public class Main {
                 case INCORRECT_INPUT -> "Ввод некорректный. Перечитайте задание внимательно и попробуйте ещё раз!";
             });
         }
-
+        scanner.close();
         System.out.println("Поздравляем с успешным прохождением теста! Ваша оценка: " + quiz.getMark());
     }
 }

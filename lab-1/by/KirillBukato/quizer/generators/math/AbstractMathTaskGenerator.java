@@ -1,5 +1,6 @@
 package by.KirillBukato.quizer.generators.math;
 
+import by.KirillBukato.quizer.tasks.math.AbstractMathTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
 import java.util.ArrayList;
@@ -31,10 +32,12 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
     }
 
     /**
+     * В математических задачах могут генерироваться невалидные примеры (например, деление на ноль).
+     * Интерфейс требует реализацию валидатора, который используется в конструкторе {@link AbstractMathTask}
      * Для всех валидаторов у математических задач есть общее условие:
      * минимальное число должно быть меньше максимального.
+     * @return  Исключение при невалидном генераторе (или null при валидном)
      */
-    @Override
     public RuntimeException validateGenerator() {
         if (getMinNumber() > getMaxNumber()) {
             return new IllegalArgumentException("Min value is greater than Max value");
