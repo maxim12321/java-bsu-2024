@@ -68,17 +68,17 @@ public class Quiz {
      *
      * @throws RuntimeException если тест уже завершен
      */
-public Task nextTask() {
-    if (isFinished())
-        throw new RuntimeException("No tasks left on this quiz.");
+    public Task nextTask() {
+        if (isFinished())
+            throw new RuntimeException("No tasks left on this quiz.");
 
-    if (InputMistakeOccurred_())
-        MarkMistakeAsPassed_();
-    else
-        GenerateNextTask_();
+        if (InputMistakeOccurred_())
+            MarkMistakeAsPassed_();
+        else
+            GenerateNextTask_();
 
-    return LastTask_;
-}
+        return LastTask_;
+    }
 
     /**
      * Предоставить ответ ученика. Если результат {@link Task.Result#INCORRECT_INPUT}, то счетчик неправильных
