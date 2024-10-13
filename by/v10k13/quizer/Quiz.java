@@ -8,10 +8,10 @@ public class Quiz {
     private int RemainingTasks_;
     private int CorrectAnswers_      = 0;
     private int InputMistakes_       = 0;
-    private boolean InputMistakeFlag_= false;
 
     private final TaskGenerator Generator_;
     private Task LastTask_           = null;
+
 
     private void GenerateNextTask_() {
         LastTask_ = Generator_.generate();
@@ -29,24 +29,14 @@ public class Quiz {
     }
 
     private boolean InputMistakeOccurred_() {
-        return InputMistakeFlag_;
+        return LastTask_ != null;
     }
-
-    private void MarkMistakeAsPassed_() {
-        InputMistakeFlag_ = false;
-    }
-
-    private void MarkMistake_() {
-        InputMistakes_++;
-        InputMistakeFlag_ = true;
-    }
-
 
     private Task.Result UpdateTaskForResultOf_(Task.Result result) {
-        if (result == Task.Result.INCORRECT_INPUT)
-            MarkMistake_();
-        else
+        if (result != Task.Result.INCORRECT_INPUT)
             MarkTaskAsPassed_(result);
+        else
+            InputMistakes_++;
         return result;
     }
 
@@ -72,9 +62,7 @@ public class Quiz {
         if (isFinished())
             throw new RuntimeException("No tasks left on this quiz.");
 
-        if (InputMistakeOccurred_())
-            MarkMistakeAsPassed_();
-        else
+        if (!InputMistakeOccurred_())
             GenerateNextTask_();
 
         return LastTask_;
@@ -97,7 +85,7 @@ public class Quiz {
      * @return завершен ли тест
      */
     public boolean isFinished() {
-        return RemainingTasks_ == 0;
+        return RemainingTasks_ == 0 && LastTask_ == null;
     }
 
     /**

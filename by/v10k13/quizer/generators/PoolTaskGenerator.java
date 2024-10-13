@@ -2,14 +2,17 @@ package by.v10k13.quizer.generators;
 
 import by.v10k13.quizer.Task;
 import by.v10k13.quizer.TaskGenerator;
+import by.v10k13.quizer.exceptions.RunOutOfTasksException;
 
 import java.util.*;
 
-public class PoolTaskGenerator implements TaskGenerator {
+public class PoolTaskGenerator implements TaskGenerator<Task> {
 
     private Iterator<Task> Iterator_;
 
-    private void InitDuplicated_(Collection<Task>)
+    private void InitDuplicated_(Collection<Task> src) {
+
+    }
 
     /**
      * Конструктор с переменным числом аргументов
@@ -53,6 +56,8 @@ public class PoolTaskGenerator implements TaskGenerator {
      * @return случайная задача из списка
      */
     public Task generate() {
+        if(!Iterator_.hasNext())
+            throw new RunOutOfTasksException();
         return Iterator_.next();
     }
 }
