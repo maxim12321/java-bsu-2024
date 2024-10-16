@@ -15,6 +15,7 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
      *
      * @param generators генераторы, которые в конструктор передаются через запятую
      */
+    @SafeVarargs
     public GroupTaskGenerator(TaskGenerator<? extends Task>... generators) {
         this.generators = new ArrayList<>(Arrays.asList(generators));
     }
