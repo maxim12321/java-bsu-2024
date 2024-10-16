@@ -1,5 +1,6 @@
 package by.KirillBukato.quizer.generators.math;
 
+import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 import by.KirillBukato.quizer.tasks.math.EquationTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
@@ -14,9 +15,9 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTas
      * Иначе есть шанс, что сгенерируется валидный.
      */
     @Override
-    public RuntimeException validateGenerator() {
+    public InvalidGeneratorException validateGenerator() {
         if (operationsIsDivisionAndMultiplication() && getMinNumber() == 0 && getMaxNumber() == 0) {
-            return new IllegalArgumentException("Task will always have zero division");
+            return new InvalidGeneratorException("Task will always have zero division");
         } else return null;
     }
 

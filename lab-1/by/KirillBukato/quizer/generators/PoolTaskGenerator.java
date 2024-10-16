@@ -39,24 +39,19 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
      */
     @Override
     public Task generate() {
-        try {
-            Random random = new Random();
-            var iterator = tasks.iterator();
-            for (int index = random.nextInt(tasks.size()); iterator.hasNext(); index--) {
-                Task task = iterator.next();
-                if (index == 0) {
-                    if (!allowDuplicate) {
-                        iterator.remove();
-                    }
-                    return task;
-                }
-            }
-            throw new RuntimeException();
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException("Duplicates are not allowed, ran out of tasks.");
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+        if (tasks.isEmpty()) {
+            throw new IllegalArgumentException("Pool Task Generator has no tasks left.");
         }
+        Random random = new Random();
+        var iterator = tasks.iterator();
+        for (int index = random.nextInt(tasks.size()); index > 0; index--) {
+            iterator.next();
+        }
+        Task task = iterator.next();
+        if (!allowDuplicate) {
+            iterator.remove();
+        }
+        return task;
     }
 
     private final boolean allowDuplicate;

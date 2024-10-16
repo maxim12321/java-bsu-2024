@@ -1,5 +1,6 @@
 package by.KirillBukato.quizer.generators.math;
 
+import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 import by.KirillBukato.quizer.tasks.math.AbstractExpressionTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
@@ -22,13 +23,13 @@ public abstract class AbstractExpressionTaskGenerator<T extends AbstractExpressi
      * Иначе есть шанс, что сгенерируется валидный.
      */
     @Override
-    public RuntimeException validateGenerator() {
-        RuntimeException exception = super.validateGenerator();
+    public InvalidGeneratorException validateGenerator() {
+        InvalidGeneratorException exception = super.validateGenerator();
         if (exception != null) {
             return exception;
         }
         if (operationsIsDivision() && getMinNumber() == 0 && getMaxNumber() == 0) {
-            return new IllegalArgumentException("Task will always have zero division");
+            return new InvalidGeneratorException("Task will always have zero division");
         } else return null;
     }
 }

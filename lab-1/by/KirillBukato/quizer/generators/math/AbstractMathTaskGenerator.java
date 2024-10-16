@@ -1,5 +1,6 @@
 package by.KirillBukato.quizer.generators.math;
 
+import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 import by.KirillBukato.quizer.tasks.math.AbstractMathTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
@@ -40,9 +41,9 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
      *
      * @return Исключение при невалидном генераторе (или null при валидном)
      */
-    public RuntimeException validateGenerator() {
+    public InvalidGeneratorException validateGenerator() {
         if (getMinNumber() > getMaxNumber()) {
-            return new IllegalArgumentException("Min value is greater than Max value");
+            return new InvalidGeneratorException("Min value is greater than Max value");
         }
         return null;
     }

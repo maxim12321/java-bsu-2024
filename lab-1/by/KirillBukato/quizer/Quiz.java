@@ -36,18 +36,12 @@ class Quiz {
      */
     Result provideAnswer(String answer) {
         if (isFinished()) {
-            throw new QuizFinishedException("Quiz finished. You can't provide answer.");
+            throw new QuizFinishedException("Quiz is finished. You can't provide answer.");
         }
         Result result = currentTask.validate(answer);
-        if (result == Result.INCORRECT_INPUT) {
-            isLastAnswerValid = false;
-            incorrectInputNumber++;
-        } else {
-            taskLeft--;
-            isLastAnswerValid = true;
-            if (result == Result.OK) correctAnswerNumber++;
-            else if (result == Result.WRONG) wrongAnswerNumber++;
-        }
+        isLastAnswerValid = (result == Result.INCORRECT_INPUT);
+        taskLeft -= isLastAnswerValid ? 1 : 0;
+        answersCounters[result.ordinal()]++;
         return result;
     }
 
@@ -62,21 +56,21 @@ class Quiz {
      * @return количество правильных ответов
      */
     int getCorrectAnswerNumber() {
-        return correctAnswerNumber;
+        return answersCounters[0];
     }
 
     /**
      * @return количество неправильных ответов
      */
     int getWrongAnswerNumber() {
-        return wrongAnswerNumber;
+        return answersCounters[1];
     }
 
     /**
      * @return количество раз, когда был предоставлен неправильный ввод
      */
     int getIncorrectInputNumber() {
-        return incorrectInputNumber;
+        return answersCounters[2];
     }
 
     /**
@@ -91,9 +85,7 @@ class Quiz {
         return ((double) getCorrectAnswerNumber()) / (getCorrectAnswerNumber() + getWrongAnswerNumber());
     }
 
-    private int correctAnswerNumber = 0;
-    private int wrongAnswerNumber = 0;
-    private int incorrectInputNumber = 0;
+    private final int[] answersCounters = {0, 0, 0};
     private int taskLeft;
     private Task currentTask;
     private boolean isLastAnswerValid = true;

@@ -117,7 +117,6 @@ public class Main {
                         "Родион"
                 ), 5
         ));
-
         map.put("Expression Variants", new Quiz(
                 new ExpressionVariantTaskGenerator(0, 10,
                         EnumSet.of(
@@ -126,33 +125,6 @@ public class Main {
                                 MathTask.Operation.MULTIPLY)
                 ), 5
         ));
-
-        //Падает на созданных исключениях, если раскомментировать.
-        //Причина: нельзя создавать генераторы, которые создают только неправильные задания
-
-//        map.put("Zero division exception, expressions", new Quiz(
-//                new ExpressionTaskGenerator(
-//                        0,
-//                        0,
-//                        EnumSet.of(MathTask.Operation.DIVIDE)
-//                ), 10
-//        ));
-//        map.put("Zero division exception, equations", new Quiz(
-//                new EquationTaskGenerator(
-//                        0,
-//                        0,
-//                        EnumSet.of(MathTask.Operation.MULTIPLY,
-//                                MathTask.Operation.DIVIDE)
-//                ), 10
-//        ));
-//        map.put("Bounds exception, expressions", new Quiz(
-//                new ExpressionTaskGenerator(
-//                        0,
-//                        -4,
-//                        EnumSet.of(MathTask.Operation.ADD)
-//                ), 10
-//        ));
-
         return map;
     }
 

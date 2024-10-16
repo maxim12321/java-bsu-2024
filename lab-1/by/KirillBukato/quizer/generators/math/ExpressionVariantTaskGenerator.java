@@ -1,5 +1,6 @@
 package by.KirillBukato.quizer.generators.math;
 
+import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 import by.KirillBukato.quizer.generators.VariantTaskGenerator;
 import by.KirillBukato.quizer.tasks.math.ExpressionVariantTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
@@ -21,10 +22,10 @@ public class ExpressionVariantTaskGenerator extends AbstractExpressionTaskGenera
      * Если доступно меньше трёх чисел для генерации, то будет несколько одинаковых вариантов ответа, мы такого не хотим
      */
     @Override
-    public RuntimeException validateGenerator() {
-        RuntimeException e = super.validateGenerator();
+    public InvalidGeneratorException validateGenerator() {
+        InvalidGeneratorException e = super.validateGenerator();
         if (e != null) return e;
-        if (getDiffNumber() < 3) return new IllegalArgumentException("Task will always have repeating variants");
+        if (getDiffNumber() < 3) return new InvalidGeneratorException("Task will always have repeating variants");
         return null;
     }
 

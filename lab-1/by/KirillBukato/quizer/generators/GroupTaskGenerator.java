@@ -2,6 +2,7 @@ package by.KirillBukato.quizer.generators;
 
 import by.KirillBukato.quizer.Task;
 import by.KirillBukato.quizer.TaskGenerator;
+import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,23 +40,22 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
         Random random = new Random();
         while (!generators.isEmpty()) {
             var iterator = generators.iterator();
-            for (int index = random.nextInt(generators.size()); iterator.hasNext(); index--) {
-                TaskGenerator<? extends Task> generator = iterator.next();
-                if (index == 0) {
-                    try {
-                        return generator.generate();
-                    } catch (RuntimeException e) {
-                        removedGenerators.add(generator);
-                        iterator.remove();
-                        if (generators.isEmpty()) {
-                            throw new RuntimeException(e);
-                        }
-                        break;
-                    }
+            for (int index = random.nextInt(generators.size()); index > 0; index--) {
+                iterator.next();
+            }
+
+            var generator = iterator.next();
+            try {
+                return generator.generate();
+            } catch (RuntimeException e) {
+                removedGenerators.add(generator);
+                iterator.remove();
+                if (generators.isEmpty()) {
+                    throw new RuntimeException(e);
                 }
             }
         }
-        throw new RuntimeException();
+        throw new InvalidGeneratorException("Group Task Generator has empty list of generators");
     }
 
     private final Collection<TaskGenerator<? extends Task>> generators;
