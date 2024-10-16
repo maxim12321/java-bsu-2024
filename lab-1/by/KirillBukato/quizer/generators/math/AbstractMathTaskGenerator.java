@@ -9,7 +9,8 @@ import java.util.Random;
 
 /**
  * Абстрактный генератор математических задач
- * @param <T>   Тип задач
+ *
+ * @param <T> Тип задач
  */
 public abstract class AbstractMathTaskGenerator<T extends MathTask> implements MathTaskGenerator<T> {
 
@@ -36,7 +37,8 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
      * Интерфейс требует реализацию валидатора, который используется в конструкторе {@link AbstractMathTask}
      * Для всех валидаторов у математических задач есть общее условие:
      * минимальное число должно быть меньше максимального.
-     * @return  Исключение при невалидном генераторе (или null при валидном)
+     *
+     * @return Исключение при невалидном генераторе (или null при валидном)
      */
     public RuntimeException validateGenerator() {
         if (getMinNumber() > getMaxNumber()) {
@@ -81,7 +83,8 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
 
     /**
      * Метод, необходимых для валидации генератора
-     * @return  true если единственная операция это деление
+     *
+     * @return true если единственная операция это деление
      */
     protected boolean operationsIsDivision() {
         return EnumSet.copyOf(operators).equals(EnumSet.of(
@@ -90,7 +93,8 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
 
     /**
      * Метод, необходимых для валидации генератора
-     * @return  true если единственные операции это деление или умножение
+     *
+     * @return true если единственные операции это деление или умножение
      */
     protected boolean operationsIsDivisionAndMultiplication() {
         EnumSet<MathTask.Operation> set = EnumSet.copyOf(operators);

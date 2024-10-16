@@ -54,8 +54,7 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
             throw new RuntimeException();
         } catch (IllegalArgumentException e) {
             throw new RuntimeException("Duplicates are not allowed, ran out of tasks.");
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
     }

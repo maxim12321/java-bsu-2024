@@ -31,11 +31,11 @@ public class ExpressionVariantTaskGenerator extends AbstractExpressionTaskGenera
     @Override
     public ExpressionVariantTask generateUnvalidated() {
         return new ExpressionVariantTask(
-                    getRandomNumber(),
-                    getRandomOperation(),
-                    getRandomNumber(),
-                    getRandomNumber(),
-                    getRandomNumber(),
-                    getRandomVariant());
+                getRandomNumber(),
+                getRandomOperation(),
+                getRandomNumber(),
+                getRandomNumber(),
+                getRandomNumber(),
+                getRandomVariant());
     }
 }

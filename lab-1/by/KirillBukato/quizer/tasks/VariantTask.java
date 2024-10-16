@@ -19,13 +19,16 @@ public interface VariantTask extends Task {
     default Result validateVariant(String answer) {
         switch (answer) {
             case "A" -> {
-                if (getVariant() == VariantTask.Variants.A) return Result.OK; else return Result.WRONG;
+                if (getVariant() == VariantTask.Variants.A) return Result.OK;
+                else return Result.WRONG;
             }
             case "B" -> {
-                if (getVariant() == VariantTask.Variants.B) return Result.OK; else return Result.WRONG;
+                if (getVariant() == VariantTask.Variants.B) return Result.OK;
+                else return Result.WRONG;
             }
             case "C" -> {
-                if (getVariant() == VariantTask.Variants.C) return Result.OK; else return Result.WRONG;
+                if (getVariant() == VariantTask.Variants.C) return Result.OK;
+                else return Result.WRONG;
             }
             default -> {
                 return Result.INCORRECT_INPUT;
@@ -42,7 +45,9 @@ public interface VariantTask extends Task {
     }
 
     String getA();
+
     String getB();
+
     String getC();
 
     String getQuestion();

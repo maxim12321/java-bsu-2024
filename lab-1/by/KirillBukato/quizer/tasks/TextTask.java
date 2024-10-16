@@ -28,7 +28,7 @@ public class TextTask implements Task {
 
     @Override
     public Result validate(String answer) {
-        if(answer.equals(this.answer)) {
+        if (answer.equals(this.answer)) {
             return Result.OK;
         } else {
             return Result.WRONG;

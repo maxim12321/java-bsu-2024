@@ -24,7 +24,7 @@ class Quiz {
         if (isFinished()) {
             throw new QuizFinishedException("Quiz finished. You can't ask for next task.");
         }
-        if(isLastAnswerValid) {
+        if (isLastAnswerValid) {
             currentTask = generator.generate();
         }
         return currentTask;
@@ -81,10 +81,10 @@ class Quiz {
 
     /**
      * @return оценка, которая является отношением количества правильных ответов к количеству всех вопросов.
-     *         Оценка выставляется только в конце!
+     * Оценка выставляется только в конце!
      */
     double getMark() {
-        if(!isFinished()) {
+        if (!isFinished()) {
             throw new QuizNotFinishedException("Quiz is not finished, you can't get the result yet.");
         }
         if (getCorrectAnswerNumber() + getWrongAnswerNumber() == 0) return 1;

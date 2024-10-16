@@ -7,7 +7,8 @@ import java.util.Random;
 
 /**
  * Общий интерфейс для задач с вариантом ответа
- * @param <T>       Тип задачи с вариантом
+ *
+ * @param <T> Тип задачи с вариантом
  */
 public interface VariantTaskGenerator<T extends VariantTask> extends TaskGenerator<T> {
 

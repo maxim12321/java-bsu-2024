@@ -29,8 +29,8 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
 
     /**
      * @return результат метода generate() случайного генератора из списка.
-     *         Если этот генератор выбросил исключение в методе generate(), выбирается другой.
-     *         Если все генераторы выбрасывают исключение, то и тут выбрасывается исключение.
+     * Если этот генератор выбросил исключение в методе generate(), выбирается другой.
+     * Если все генераторы выбрасывают исключение, то и тут выбрасывается исключение.
      */
     @Override
     public Task generate() {
@@ -39,7 +39,7 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
         Random random = new Random();
         while (!generators.isEmpty()) {
             var iterator = generators.iterator();
-            for (int index = random.nextInt(generators.size()); iterator.hasNext(); index--){
+            for (int index = random.nextInt(generators.size()); iterator.hasNext(); index--) {
                 TaskGenerator<? extends Task> generator = iterator.next();
                 if (index == 0) {
                     try {

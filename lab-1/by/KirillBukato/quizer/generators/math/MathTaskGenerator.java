@@ -5,12 +5,13 @@ import by.KirillBukato.quizer.tasks.math.MathTask;
 
 /**
  * Общий интерфейс для математических задач
- * @param <T>   Тип задачи
+ *
+ * @param <T> Тип задачи
  */
 public interface MathTaskGenerator<T extends MathTask> extends TaskGenerator<T> {
-    
+
     int getMinNumber();
-    
+
     int getMaxNumber();
 
     /**

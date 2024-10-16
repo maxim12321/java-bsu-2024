@@ -1,18 +1,18 @@
 package by.KirillBukato.quizer;
 
+import by.KirillBukato.quizer.generators.GroupTaskGenerator;
+import by.KirillBukato.quizer.generators.PoolTaskGenerator;
+import by.KirillBukato.quizer.generators.TextVariantTaskGenerator;
+import by.KirillBukato.quizer.generators.math.EquationTaskGenerator;
+import by.KirillBukato.quizer.generators.math.ExpressionTaskGenerator;
+import by.KirillBukato.quizer.generators.math.ExpressionVariantTaskGenerator;
+import by.KirillBukato.quizer.tasks.TextTask;
+import by.KirillBukato.quizer.tasks.math.MathTask;
+
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
-import by.KirillBukato.quizer.generators.GroupTaskGenerator;
-import by.KirillBukato.quizer.generators.PoolTaskGenerator;
-import by.KirillBukato.quizer.generators.TextVariantTaskGenerator;
-import by.KirillBukato.quizer.generators.math.ExpressionTaskGenerator;
-import by.KirillBukato.quizer.generators.math.EquationTaskGenerator;
-import by.KirillBukato.quizer.generators.math.ExpressionVariantTaskGenerator;
-import by.KirillBukato.quizer.tasks.TextTask;
-import by.KirillBukato.quizer.tasks.math.MathTask;
 
 public class Main {
     /**
@@ -79,7 +79,7 @@ public class Main {
                                 false,
                                 new TextTask("Как зовут Диму?", "Дима"),
                                 new TextTask("Как зовут Вадима?", "Вадим"))
-                        ), 5
+                ), 5
         ));
         map.put("Group, no fail", new Quiz(
                 new GroupTaskGenerator(
