@@ -8,23 +8,11 @@ public class ExpressionVariantTask extends AbstractExpressionTask implements Var
 
     public ExpressionVariantTask(int left, Operation operator, int right, double w1, double w2, VariantTask.Variants variant) {
         super(left, operator, right);
-        switch (variant) {
-            case A -> {
-                a = super.computeAnswer();
-                b = w1;
-                c = w2;
-            }
-            case B -> {
-                a = w1;
-                b = super.computeAnswer();
-                c = w2;
-            }
-            default -> {
-                a = w1;
-                b = w2;
-                c = super.computeAnswer();
-            }
-        }
+        variants = switch (variant) {
+            case A -> new Double[]{computeAnswer(), w1, w2};
+            case B -> new Double[]{w1, computeAnswer(), w2};
+            case C -> new Double[]{w1, w2, computeAnswer()};
+        };
         this.variant = variant;
     }
 
@@ -33,7 +21,8 @@ public class ExpressionVariantTask extends AbstractExpressionTask implements Var
      */
     @Override
     public boolean isValid() {
-        if (Math.abs(a - b) < 0.001 || Math.abs(a - c) < 0.001 || Math.abs(b - c) < 0.001) return false;
+        if (Math.abs(variants[0] - variants[1]) < 0.001 || Math.abs(variants[0] - variants[2]) < 0.001 || Math.abs(variants[1] - variants[2]) < 0.001)
+            return false;
         return super.isValid();
     }
 
@@ -48,27 +37,14 @@ public class ExpressionVariantTask extends AbstractExpressionTask implements Var
     }
 
     @Override
-    public String getA() {
-        return (Double.valueOf(a)).toString();
-    }
-
-    @Override
-    public String getB() {
-        return (Double.valueOf(b)).toString();
-    }
-
-    @Override
-    public String getC() {
-        return (Double.valueOf(c)).toString();
-    }
-
-    @Override
     public Variants getVariant() {
         return variant;
     }
 
+    @Override public String[] getVariants() {
+        return new String[]{variants[0].toString(), variants[1].toString(), variants[2].toString()};
+    }
+
     private final Variants variant;
-    private final double a;
-    private final double b;
-    private final double c;
+    private final Double[] variants;
 }

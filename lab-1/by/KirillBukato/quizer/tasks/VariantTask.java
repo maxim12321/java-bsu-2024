@@ -41,14 +41,13 @@ public interface VariantTask extends Task {
      */
     default String getTextVariant() {
         return getQuestion() +
-                " Варианты ответа: \nA) " + getA() + "\nB) " + getB() + "\nC) " + getC();
+                " Варианты ответа: \nA) " +
+                getVariants()[0] + "\nB) " +
+                getVariants()[1] + "\nC) " +
+                getVariants()[2];
     }
 
-    String getA();
-
-    String getB();
-
-    String getC();
+    String[] getVariants();
 
     String getQuestion();
 

@@ -10,9 +10,7 @@ public class TextVariantTask extends TextTask implements VariantTask {
             case B -> b;
             case C -> c;
         });
-        this.a = a;
-        this.b = b;
-        this.c = c;
+        this.variants = new String[]{a, b, c};
         this.variant = variant;
     }
 
@@ -36,23 +34,10 @@ public class TextVariantTask extends TextTask implements VariantTask {
         return variant;
     }
 
-    @Override
-    public String getA() {
-        return a;
+    public String[] getVariants() {
+        return variants;
     }
 
-    @Override
-    public String getB() {
-        return b;
-    }
-
-    @Override
-    public String getC() {
-        return c;
-    }
-
-    private final String a;
-    private final String b;
-    private final String c;
+    private final String[] variants;
     private final VariantTask.Variants variant;
 }
