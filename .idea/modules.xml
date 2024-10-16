@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/lab-1/by.Vladimir_Kondr.quizer/by.Vladimir_Kondr.quizer.iml" filepath="$PROJECT_DIR$/lab-1/by.Vladimir_Kondr.quizer/by.Vladimir_Kondr.quizer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/java-bsu-2024.iml" filepath="$PROJECT_DIR$/.idea/java-bsu-2024.iml" />
+    </modules>
+  </component>
+</project>
