@@ -41,7 +41,8 @@ public class VariantExpressionTask extends AbstractExpressionTask implements Var
         return variant;
     }
 
-    @Override public String[] getVariants() {
+    @Override
+    public String[] getVariants() {
         return new String[]{variants[0].toString(), variants[1].toString(), variants[2].toString()};
     }
 

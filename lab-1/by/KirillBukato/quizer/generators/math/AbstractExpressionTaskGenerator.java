@@ -9,9 +9,9 @@ import java.util.EnumSet;
 public abstract class AbstractExpressionTaskGenerator<T extends AbstractExpressionTask> extends AbstractMathTaskGenerator<T> {
 
     /**
-     * @param minNumber              минимальное число
-     * @param maxNumber              максимальное число
-     * @param operationSet                множество разрешённых операций
+     * @param minNumber    минимальное число
+     * @param maxNumber    максимальное число
+     * @param operationSet множество разрешённых операций
      */
     public AbstractExpressionTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> operationSet) {
         super(minNumber, maxNumber, operationSet);

@@ -2,16 +2,16 @@ package by.KirillBukato.quizer.generators.math;
 
 import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 import by.KirillBukato.quizer.generators.VariantTaskGenerator;
-import by.KirillBukato.quizer.tasks.math.VariantExpressionTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
+import by.KirillBukato.quizer.tasks.math.VariantExpressionTask;
 
 import java.util.EnumSet;
 
 public class VariantExpressionTaskGenerator extends AbstractExpressionTaskGenerator<VariantExpressionTask> implements VariantTaskGenerator<VariantExpressionTask> {
     /**
-     * @param minNumber минимальное число
-     * @param maxNumber максимальное число
-     * @param operationSet   множество разрешённых операций
+     * @param minNumber    минимальное число
+     * @param maxNumber    максимальное число
+     * @param operationSet множество разрешённых операций
      */
     public VariantExpressionTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> operationSet) {
         super(minNumber, maxNumber, operationSet);

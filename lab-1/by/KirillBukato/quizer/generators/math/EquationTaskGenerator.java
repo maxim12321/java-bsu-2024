@@ -22,9 +22,9 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTas
     }
 
     /**
-     * @param minNumber минимальное число
-     * @param maxNumber максимальное число
-     * @param operationSet   множество разрешённых операций
+     * @param minNumber    минимальное число
+     * @param maxNumber    максимальное число
+     * @param operationSet множество разрешённых операций
      */
     public EquationTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> operationSet) {
         super(minNumber, maxNumber, operationSet);

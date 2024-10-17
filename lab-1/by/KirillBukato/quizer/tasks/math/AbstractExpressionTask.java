@@ -2,7 +2,7 @@ package by.KirillBukato.quizer.tasks.math;
 
 import java.util.Objects;
 
-public abstract class AbstractExpressionTask extends AbstractMathTask{
+public abstract class AbstractExpressionTask extends AbstractMathTask {
 
     public AbstractExpressionTask(int left, MathTask.Operation operator, int right) {
         super(left, operator, right);

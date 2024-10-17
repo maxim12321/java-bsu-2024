@@ -15,9 +15,9 @@ import java.util.Random;
 public abstract class AbstractMathTaskGenerator<T extends MathTask> implements MathTaskGenerator<T> {
 
     /**
-     * @param minNumber минимальное число
-     * @param maxNumber максимальное число
-     * @param operationSet   множество разрешённых операций
+     * @param minNumber    минимальное число
+     * @param maxNumber    максимальное число
+     * @param operationSet множество разрешённых операций
      */
     public AbstractMathTaskGenerator(int minNumber,
                                      int maxNumber,
