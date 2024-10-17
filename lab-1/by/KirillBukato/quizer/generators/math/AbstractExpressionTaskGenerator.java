@@ -11,10 +11,10 @@ public abstract class AbstractExpressionTaskGenerator<T extends AbstractExpressi
     /**
      * @param minNumber              минимальное число
      * @param maxNumber              максимальное число
-     * @param enumSet                множество разрешённых операций
+     * @param operationSet                множество разрешённых операций
      */
-    public AbstractExpressionTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> enumSet) {
-        super(minNumber, maxNumber, enumSet);
+    public AbstractExpressionTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> operationSet) {
+        super(minNumber, maxNumber, operationSet);
     }
 
     /**

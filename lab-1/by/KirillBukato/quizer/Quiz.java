@@ -39,7 +39,7 @@ class Quiz {
             throw new QuizFinishedException("Quiz is finished. You can't provide answer.");
         }
         Result result = currentTask.validate(answer);
-        isLastAnswerValid = (result == Result.INCORRECT_INPUT);
+        isLastAnswerValid = (result != Result.INCORRECT_INPUT);
         taskLeft -= isLastAnswerValid ? 1 : 0;
         answersCounters[result.ordinal()]++;
         return result;

@@ -2,19 +2,19 @@ package by.KirillBukato.quizer.generators.math;
 
 import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 import by.KirillBukato.quizer.generators.VariantTaskGenerator;
-import by.KirillBukato.quizer.tasks.math.ExpressionVariantTask;
+import by.KirillBukato.quizer.tasks.math.VariantExpressionTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
 import java.util.EnumSet;
 
-public class ExpressionVariantTaskGenerator extends AbstractExpressionTaskGenerator<ExpressionVariantTask> implements VariantTaskGenerator<ExpressionVariantTask> {
+public class VariantExpressionTaskGenerator extends AbstractExpressionTaskGenerator<VariantExpressionTask> implements VariantTaskGenerator<VariantExpressionTask> {
     /**
      * @param minNumber минимальное число
      * @param maxNumber максимальное число
-     * @param enumSet   множество разрешённых операций
+     * @param operationSet   множество разрешённых операций
      */
-    public ExpressionVariantTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> enumSet) {
-        super(minNumber, maxNumber, enumSet);
+    public VariantExpressionTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> operationSet) {
+        super(minNumber, maxNumber, operationSet);
     }
 
     /**
@@ -30,8 +30,8 @@ public class ExpressionVariantTaskGenerator extends AbstractExpressionTaskGenera
     }
 
     @Override
-    public ExpressionVariantTask generateUnvalidated() {
-        return new ExpressionVariantTask(
+    public VariantExpressionTask generateUnvalidated() {
+        return new VariantExpressionTask(
                 getRandomNumber(),
                 getRandomOperation(),
                 getRandomNumber(),

@@ -4,7 +4,6 @@ import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 import by.KirillBukato.quizer.tasks.math.AbstractMathTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Random;
 
@@ -18,15 +17,14 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
     /**
      * @param minNumber минимальное число
      * @param maxNumber максимальное число
-     * @param enumSet   множество разрешённых операций
+     * @param operationSet   множество разрешённых операций
      */
     public AbstractMathTaskGenerator(int minNumber,
                                      int maxNumber,
-                                     EnumSet<MathTask.Operation> enumSet) {
+                                     EnumSet<MathTask.Operation> operationSet) {
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;
-        operators = new ArrayList<>();
-        operators.addAll(enumSet);
+        this.operationSet = operationSet;
         RuntimeException e = validateGenerator();
         if (e != null) {
             throw e;
@@ -79,7 +77,12 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
 
     protected MathTask.Operation getRandomOperation() {
         Random random = new Random();
-        return operators.get(random.nextInt(operators.size()));
+        int index = random.nextInt(operationSet.size());
+        var iter = operationSet.iterator();
+        for (int i = 0; i < index; i++) {
+            iter.next();
+        }
+        return iter.next();
     }
 
     /**
@@ -88,7 +91,7 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
      * @return true если единственная операция это деление
      */
     protected boolean operationsIsDivision() {
-        return EnumSet.copyOf(operators).equals(EnumSet.of(
+        return EnumSet.copyOf(operationSet).equals(EnumSet.of(
                 MathTask.Operation.DIVIDE));
     }
 
@@ -98,12 +101,12 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
      * @return true если единственные операции это деление или умножение
      */
     protected boolean operationsIsDivisionAndMultiplication() {
-        EnumSet<MathTask.Operation> set = EnumSet.copyOf(operators);
+        EnumSet<MathTask.Operation> set = EnumSet.copyOf(operationSet);
         set.removeAll(EnumSet.of(MathTask.Operation.DIVIDE, MathTask.Operation.MULTIPLY));
         return set.isEmpty();
     }
 
     private final int minNumber;
     private final int maxNumber;
-    private final ArrayList<MathTask.Operation> operators;
+    private final EnumSet<MathTask.Operation> operationSet;
 }

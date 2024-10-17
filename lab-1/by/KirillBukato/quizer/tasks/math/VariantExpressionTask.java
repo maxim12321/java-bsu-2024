@@ -4,9 +4,9 @@ import by.KirillBukato.quizer.Result;
 import by.KirillBukato.quizer.tasks.VariantTask;
 
 
-public class ExpressionVariantTask extends AbstractExpressionTask implements VariantTask {
+public class VariantExpressionTask extends AbstractExpressionTask implements VariantTask {
 
-    public ExpressionVariantTask(int left, Operation operator, int right, double w1, double w2, VariantTask.Variants variant) {
+    public VariantExpressionTask(int left, Operation operator, int right, double w1, double w2, VariantTask.Variants variant) {
         super(left, operator, right);
         variants = switch (variant) {
             case A -> new Double[]{computeAnswer(), w1, w2};
