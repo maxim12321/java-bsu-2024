@@ -1,7 +1,8 @@
 package by.mmaxemm.quizer.generators;
 
-import by.mmaxemm.quizer.tasks.Task;
+import by.mmaxemm.quizer.Task;
 import java.util.Collection;
+import by.mmaxemm.quizer.TaskGenerator;
 
 public class GroupTaskGenerator implements TaskGenerator {
     /**

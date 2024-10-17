@@ -1,7 +1,8 @@
 package by.mmaxemm.quizer.tasks;
-import by.mmaxemm.quizer.Result;
 
-public class ExpressionTask implements Task {
+import by.mmaxemm.quizer.Result;
+import by.mmaxemm.quizer.Task;
+public class TextTask implements Task {
     @Override
     public String getText() {
         return "";

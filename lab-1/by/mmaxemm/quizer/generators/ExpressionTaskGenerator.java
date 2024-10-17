@@ -1,6 +1,7 @@
 package by.mmaxemm.quizer.generators;
 
 import by.mmaxemm.quizer.tasks.ExpressionTask;
+import by.mmaxemm.quizer.TaskGenerator;
 
 public class ExpressionTaskGenerator implements TaskGenerator {
     /**

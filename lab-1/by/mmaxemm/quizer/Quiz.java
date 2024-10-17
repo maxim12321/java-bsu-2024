@@ -1,8 +1,5 @@
 package by.mmaxemm.quizer;
 
-import by.mmaxemm.quizer.generators.TaskGenerator;
-import by.mmaxemm.quizer.tasks.Task;
-
 import java.util.Map;
 
 public class Quiz {

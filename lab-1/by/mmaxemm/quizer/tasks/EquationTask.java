@@ -1,8 +1,9 @@
 package by.mmaxemm.quizer.tasks;
 
 import by.mmaxemm.quizer.Result;
+import by.mmaxemm.quizer.Task;
 
-public class TextTask implements Task {
+public class EquationTask implements Task {
     @Override
     public String getText() {
         return "";
@@ -12,4 +13,5 @@ public class TextTask implements Task {
     public Result validate(String answer) {
         return null;
     }
+
 }

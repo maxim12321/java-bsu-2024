@@ -1,6 +1,7 @@
 package by.mmaxemm.quizer.generators;
 
-import by.mmaxemm.quizer.tasks.Task;
+import by.mmaxemm.quizer.Task;
+import by.mmaxemm.quizer.TaskGenerator;
 import java.util.Collection;
 
 public class PoolTaskGenerator implements TaskGenerator {

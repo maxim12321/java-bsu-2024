@@ -1,6 +1,6 @@
 package by.mmaxemm.quizer.generators;
 import by.mmaxemm.quizer.tasks.EquationTask;
-
+import by.mmaxemm.quizer.TaskGenerator;
 public class EquationTaskGenerator implements TaskGenerator {
     /**
      * @param minNumber              минимальное число

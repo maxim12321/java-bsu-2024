@@ -1,6 +1,4 @@
-package by.mmaxemm.quizer.generators;
-
-import by.mmaxemm.quizer.tasks.Task;
+package by.mmaxemm.quizer;
 
 public interface TaskGenerator {
     /**

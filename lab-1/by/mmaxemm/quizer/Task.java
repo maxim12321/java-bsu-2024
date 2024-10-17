@@ -1,4 +1,4 @@
-package by.mmaxemm.quizer.tasks;
+package by.mmaxemm.quizer;
 
 import by.mmaxemm.quizer.Result;
 
