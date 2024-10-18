@@ -25,12 +25,15 @@ public class Quiz {
     Result provideAnswer(String answer) {
         Result currentResult = currentTask.validate(answer);
         if (currentResult == Result.OK) {
+            System.out.println("Верно");
             counterOK++;
             counter--;
         } else if (currentResult == Result.WRONG) {
+            System.out.println("Неверно");
             counterWrong++;
             counter--;
         } else {
+            System.out.println("Неверный ввод");
             counterIncInput++;
         }
         return currentResult;
@@ -58,23 +61,18 @@ public class Quiz {
 
     double getMark() {
         if (isFinished()) {
-            return (double) counterOK / (counterOK + counterWrong);
+            return (double) counterOK /(counterOK + counterWrong);
         }
-        return 1;
         //QuizNotFinishedException;
+        return 1;
     }
 
     void execute() {
         Scanner console = new Scanner(System.in);
         while (!isFinished()) {
-            System.out.println(currentTask.getText());
+            System.out.print(currentTask.getText());
             String answer = console.next();
             Result res = provideAnswer(answer);
-            switch (res) {
-                case Result.OK -> System.out.println("Ваш ответ верен");
-                case Result.WRONG -> System.out.println("Ваш ответ неверен");
-                case Result.INCORRECT_INPUT -> System.out.println("Некорректные данные ввода");
-            }
             if (res != Result.INCORRECT_INPUT) {
                 currentTask = nextTask();
             }
