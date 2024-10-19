@@ -2,12 +2,7 @@ package by.KirillBukato.quizer.tasks.math;
 
 public class StoryExpressionTask extends AbstractExpressionTask {
 
-    public enum Story {
-        APPLES,
-        ORANGES
-    }
-
-    public StoryExpressionTask(int left, MathTask.Operation operator, int right, Story story) {
+    public StoryExpressionTask(int left, MathOperation operator, int right, MathStory story) {
         super(left, operator, right);
         this.story = story;
     }
@@ -44,11 +39,11 @@ public class StoryExpressionTask extends AbstractExpressionTask {
             case APPLES -> "Сколько теперь яблок у Олега? ";
             case ORANGES -> "Сколько теперь апельсинов у Олега? ";
         };
-        if (operator == Operation.DIVIDE) {
+        if (operator == MathOperation.DIVIDE) {
             text += "(Ответ дайте в виде десятичной дроби)";
         }
         return text;
     }
 
-    private final Story story;
+    private final MathStory story;
 }

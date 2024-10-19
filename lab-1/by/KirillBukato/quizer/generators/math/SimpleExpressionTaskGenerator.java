@@ -1,11 +1,10 @@
 package by.KirillBukato.quizer.generators.math;
 
 import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
-import by.KirillBukato.quizer.tasks.math.MathTask;
+import by.KirillBukato.quizer.tasks.math.MathOperation;
 import by.KirillBukato.quizer.tasks.math.SimpleExpressionTask;
 
 import java.util.EnumSet;
-
 
 public class SimpleExpressionTaskGenerator extends AbstractExpressionTaskGenerator<SimpleExpressionTask> {
 
@@ -14,7 +13,7 @@ public class SimpleExpressionTaskGenerator extends AbstractExpressionTaskGenerat
      * @param maxNumber    максимальное число
      * @param operationSet множество разрешённых операций
      */
-    public SimpleExpressionTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> operationSet) throws InvalidGeneratorException {
+    public SimpleExpressionTaskGenerator(int minNumber, int maxNumber, EnumSet<MathOperation> operationSet) throws InvalidGeneratorException {
         super(minNumber, maxNumber, operationSet);
     }
 

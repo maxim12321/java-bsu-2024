@@ -4,10 +4,7 @@ import by.KirillBukato.quizer.Task;
 import by.KirillBukato.quizer.TaskGenerator;
 import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Random;
+import java.util.*;
 
 public class GroupTaskGenerator implements TaskGenerator<Task> {
     /**
@@ -16,8 +13,11 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
      * @param generators генераторы, которые в конструктор передаются через запятую
      */
     @SafeVarargs
-    public GroupTaskGenerator(TaskGenerator<? extends Task>... generators) {
+    public GroupTaskGenerator(TaskGenerator<? extends Task>... generators) throws InvalidGeneratorException {
         this.generators = new ArrayList<>(Arrays.asList(generators));
+        if (this.generators.isEmpty()) {
+            throw new InvalidGeneratorException("GroupTaskGenerator must have at least one generator");
+        }
     }
 
     /**
@@ -26,7 +26,7 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
      * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
      */
     public GroupTaskGenerator(Collection<TaskGenerator<? extends Task>> generators) {
-        this.generators = generators;
+        this.generators = new ArrayList<>(generators);
     }
 
     /**
@@ -36,29 +36,17 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
      */
     @Override
     public Task generate() throws RuntimeException {
-        generators.addAll(removedGenerators);
-        removedGenerators.clear();
-        Random random = new Random();
-        while (!generators.isEmpty()) {
-            var iterator = generators.iterator();
-            for (int index = random.nextInt(generators.size()); index > 0; index--) {
-                iterator.next();
-            }
-
-            var generator = iterator.next();
+        Collections.shuffle(generators);
+        RuntimeException exception = new RuntimeException();
+        for (TaskGenerator<? extends Task> generator : generators) {
             try {
                 return generator.generate();
             } catch (RuntimeException e) {
-                removedGenerators.add(generator);
-                iterator.remove();
-                if (generators.isEmpty()) {
-                    throw new RuntimeException(e);
-                }
+                exception = e;
             }
         }
-        throw new InvalidGeneratorException("Group Task Generator has empty list of generators");
+        throw exception;
     }
 
-    private final Collection<TaskGenerator<? extends Task>> generators;
-    private final Collection<TaskGenerator<? extends Task>> removedGenerators = new ArrayList<>();
+    private final ArrayList<TaskGenerator<? extends Task>> generators;
 }

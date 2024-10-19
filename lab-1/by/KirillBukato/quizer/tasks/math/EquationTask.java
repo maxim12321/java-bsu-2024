@@ -2,7 +2,7 @@ package by.KirillBukato.quizer.tasks.math;
 
 public class EquationTask extends AbstractMathTask {
 
-    public EquationTask(int left, MathTask.Operation operator, int right, boolean isXLeft) {
+    public EquationTask(int left, MathOperation operator, int right, boolean isXLeft) {
         super(left, operator, right);
         this.isXLeft = isXLeft;
     }
@@ -10,9 +10,9 @@ public class EquationTask extends AbstractMathTask {
     @Override
     public String getText() {
         if (isXLeft) {
-            return "x" + " " + stringOperator(operator) + " " + left + " = " + right;
+            return "x" + " " + operator.getSymbol() + " " + left + " = " + right;
         } else {
-            return left + " " + stringOperator(operator) + " " + "x" + " = " + right;
+            return left + " " + operator.getSymbol() + " " + "x" + " = " + right;
         }
     }
 
@@ -21,10 +21,10 @@ public class EquationTask extends AbstractMathTask {
      */
     @Override
     public boolean isValid() {
-        if (operator == Operation.DIVIDE) {
+        if (operator == MathOperation.DIVIDE) {
             return left != 0 && (isXLeft || right != 0);
         }
-        if (operator == Operation.MULTIPLY) {
+        if (operator == MathOperation.MULTIPLY) {
             return left != 0;
         }
         return true;

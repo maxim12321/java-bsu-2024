@@ -32,7 +32,7 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
             Collection<Task> tasks
     ) {
         this.allowDuplicate = allowDuplicate;
-        this.tasks = tasks;
+        this.tasks = new ArrayList<>(tasks);
     }
 
     /**
@@ -44,17 +44,14 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
             throw new PoolGeneratorRanOutException("Pool Task Generator has no tasks left.");
         }
         Random random = new Random();
-        var iterator = tasks.iterator();
-        for (int index = random.nextInt(tasks.size()); index > 0; index--) {
-            iterator.next();
-        }
-        Task task = iterator.next();
+        int index = random.nextInt(tasks.size());
+        Task task = tasks.get(index);
         if (!allowDuplicate) {
-            iterator.remove();
+            tasks.remove(index);
         }
         return task;
     }
 
     private final boolean allowDuplicate;
-    private final Collection<Task> tasks;
+    private final ArrayList<Task> tasks;
 }

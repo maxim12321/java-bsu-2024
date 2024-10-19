@@ -8,8 +8,8 @@ import by.KirillBukato.quizer.generators.math.SimpleExpressionTaskGenerator;
 import by.KirillBukato.quizer.generators.math.StoryExpressionTaskGenerator;
 import by.KirillBukato.quizer.generators.math.VariantExpressionTaskGenerator;
 import by.KirillBukato.quizer.tasks.TextTask;
-import by.KirillBukato.quizer.tasks.math.MathTask;
-import by.KirillBukato.quizer.tasks.math.StoryExpressionTask;
+import by.KirillBukato.quizer.tasks.math.MathOperation;
+import by.KirillBukato.quizer.tasks.math.MathStory;
 
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -27,24 +27,24 @@ public class Main {
                 new SimpleExpressionTaskGenerator(
                         0,
                         10,
-                        EnumSet.of(MathTask.Operation.ADD)
+                        EnumSet.of(MathOperation.ADD)
                 ), 5)
         );
         map.put("Basic Expressions", new Quiz(
                 new SimpleExpressionTaskGenerator(
                         0,
                         20,
-                        EnumSet.of(MathTask.Operation.ADD,
-                                MathTask.Operation.SUBTRACT,
-                                MathTask.Operation.MULTIPLY)
+                        EnumSet.of(MathOperation.ADD,
+                                MathOperation.SUBTRACT,
+                                MathOperation.MULTIPLY)
                 ), 10
         ));
         map.put("Basic Equations", new Quiz(
                 new EquationTaskGenerator(
                         0,
                         10,
-                        EnumSet.of(MathTask.Operation.ADD,
-                                MathTask.Operation.SUBTRACT)
+                        EnumSet.of(MathOperation.ADD,
+                                MathOperation.SUBTRACT)
                 ), 5
         ));
         map.put("Pool with duplicates", new Quiz(
@@ -92,7 +92,7 @@ public class Main {
                         new SimpleExpressionTaskGenerator(
                                 0,
                                 10,
-                                EnumSet.of(MathTask.Operation.ADD)
+                                EnumSet.of(MathOperation.ADD)
                         )
                 ), 10
         ));
@@ -100,18 +100,18 @@ public class Main {
                 new SimpleExpressionTaskGenerator(
                         0,
                         1,
-                        EnumSet.of(MathTask.Operation.DIVIDE)
+                        EnumSet.of(MathOperation.DIVIDE)
                 ), 10
         ));
         map.put("Zero division avoided, equations", new Quiz(
                 new EquationTaskGenerator(
                         0,
                         1,
-                        EnumSet.of(MathTask.Operation.MULTIPLY,
-                                MathTask.Operation.DIVIDE)
+                        EnumSet.of(MathOperation.MULTIPLY,
+                                MathOperation.DIVIDE)
                 ), 10
         ));
-        map.put("Variants", new Quiz(
+        map.put("TaskVariant", new Quiz(
                 new TextVariantTaskGenerator(
                         "Как зовут Олега?",
                         "Олег",
@@ -119,32 +119,32 @@ public class Main {
                         "Родион"
                 ), 5
         ));
-        map.put("Expression Variants", new Quiz(
+        map.put("Expression TaskVariant", new Quiz(
                 new VariantExpressionTaskGenerator(0, 10,
                         EnumSet.of(
-                                MathTask.Operation.ADD,
-                                MathTask.Operation.SUBTRACT,
-                                MathTask.Operation.MULTIPLY)
+                                MathOperation.ADD,
+                                MathOperation.SUBTRACT,
+                                MathOperation.MULTIPLY)
                 ), 5
         ));
         map.put("Stories", new Quiz(
                 new StoryExpressionTaskGenerator(
                         0,
                         20,
-                        EnumSet.of(MathTask.Operation.ADD,
-                                MathTask.Operation.SUBTRACT,
-                                MathTask.Operation.MULTIPLY)
+                        EnumSet.of(MathOperation.ADD,
+                                MathOperation.SUBTRACT,
+                                MathOperation.MULTIPLY)
                 ), 10
         ));
         map.put("Stories about apples", new Quiz(
                 new StoryExpressionTaskGenerator(
                         0,
                         20,
-                        EnumSet.of(MathTask.Operation.ADD,
-                                MathTask.Operation.SUBTRACT,
-                                MathTask.Operation.MULTIPLY,
-                                MathTask.Operation.DIVIDE),
-                        EnumSet.of(StoryExpressionTask.Story.APPLES)
+                        EnumSet.of(MathOperation.ADD,
+                                MathOperation.SUBTRACT,
+                                MathOperation.MULTIPLY,
+                                MathOperation.DIVIDE),
+                        EnumSet.of(MathStory.APPLES)
                 ), 10
         ));
         return map;

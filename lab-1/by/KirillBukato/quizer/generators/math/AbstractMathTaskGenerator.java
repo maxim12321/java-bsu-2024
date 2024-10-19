@@ -2,6 +2,7 @@ package by.KirillBukato.quizer.generators.math;
 
 import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 import by.KirillBukato.quizer.tasks.math.AbstractMathTask;
+import by.KirillBukato.quizer.tasks.math.MathOperation;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
 import java.util.*;
@@ -16,18 +17,15 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
     /**
      * @param minNumber    минимальное число
      * @param maxNumber    максимальное число
-     * @param operationSet множество разрешённых операций
+     * @param operationArray множество разрешённых операций
      */
     public AbstractMathTaskGenerator(int minNumber,
                                      int maxNumber,
-                                     EnumSet<MathTask.Operation> operationSet) throws InvalidGeneratorException {
+                                     EnumSet<MathOperation> operationArray) throws InvalidGeneratorException {
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;
-        this.operationSet = operationSet;
-        Optional<InvalidGeneratorException> e = validateGenerator();
-        if (e.isPresent()) {
-            throw e.get();
-        }
+        this.operationArray = new ArrayList<>(operationArray);
+        validateGenerator();
     }
 
     /**
@@ -35,14 +33,11 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
      * Интерфейс требует реализацию валидатора, который используется в конструкторе {@link AbstractMathTask}
      * Для всех валидаторов у математических задач есть общее условие:
      * минимальное число должно быть меньше максимального.
-     *
-     * @return Исключение при невалидном генераторе (или null при валидном)
      */
-    public Optional<InvalidGeneratorException> validateGenerator() {
+    public void validateGenerator() throws InvalidGeneratorException {
         if (getMinNumber() > getMaxNumber()) {
-            return Optional.of(new InvalidGeneratorException("Min value is greater than Max value"));
+            throw new InvalidGeneratorException("Min value is greater than Max value");
         }
-        return Optional.empty();
     }
 
     @Override
@@ -74,14 +69,9 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
         return random.nextInt(getDiffNumber() + 1) + getMinNumber();
     }
 
-    protected MathTask.Operation getRandomOperation() {
+    protected MathOperation getRandomOperation() {
         Random random = new Random();
-        int index = random.nextInt(operationSet.size());
-        var iter = operationSet.iterator();
-        for (int i = 0; i < index; i++) {
-            iter.next();
-        }
-        return iter.next();
+        return operationArray.get(random.nextInt(operationArray.size()));
     }
 
     /**
@@ -90,8 +80,8 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
      * @return true если единственная операция это деление
      */
     protected boolean operationsIsDivision() {
-        return EnumSet.copyOf(operationSet).equals(EnumSet.of(
-                MathTask.Operation.DIVIDE));
+        return EnumSet.copyOf(operationArray).equals(EnumSet.of(
+                MathOperation.DIVIDE));
     }
 
     /**
@@ -100,12 +90,12 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
      * @return true если единственные операции это деление или умножение
      */
     protected boolean operationsIsDivisionAndMultiplication() {
-        EnumSet<MathTask.Operation> set = EnumSet.copyOf(operationSet);
-        set.removeAll(EnumSet.of(MathTask.Operation.DIVIDE, MathTask.Operation.MULTIPLY));
+        EnumSet<MathOperation> set = EnumSet.copyOf(operationArray);
+        set.removeAll(EnumSet.of(MathOperation.DIVIDE, MathOperation.MULTIPLY));
         return set.isEmpty();
     }
 
     private final int minNumber;
     private final int maxNumber;
-    private final EnumSet<MathTask.Operation> operationSet;
+    private final ArrayList<MathOperation> operationArray;
 }

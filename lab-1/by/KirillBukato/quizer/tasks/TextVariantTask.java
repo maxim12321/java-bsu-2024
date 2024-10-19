@@ -4,13 +4,9 @@ import by.KirillBukato.quizer.Result;
 
 public class TextVariantTask extends TextTask implements VariantTask {
 
-    public TextVariantTask(String text, String a, String b, String c, VariantTask.Variants variant) {
-        super(text, switch (variant) {
-            case A -> a;
-            case B -> b;
-            case C -> c;
-        });
-        this.variants = new String[]{a, b, c};
+    public TextVariantTask(String text, String[] answersVariants, TaskVariant variant) {
+        super(text, answersVariants[variant.ordinal()]);
+        this.answerVariants = answersVariants;
         this.variant = variant;
     }
 
@@ -30,14 +26,14 @@ public class TextVariantTask extends TextTask implements VariantTask {
     }
 
     @Override
-    public Variants getVariant() {
+    public TaskVariant getCorrectVariant() {
         return variant;
     }
 
-    public String[] getVariants() {
-        return variants;
+    public String[] getAnswerVariants() {
+        return answerVariants;
     }
 
-    private final String[] variants;
-    private final VariantTask.Variants variant;
+    private final String[] answerVariants;
+    private final TaskVariant variant;
 }

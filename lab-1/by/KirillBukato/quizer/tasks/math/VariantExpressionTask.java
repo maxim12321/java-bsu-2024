@@ -1,12 +1,13 @@
 package by.KirillBukato.quizer.tasks.math;
 
 import by.KirillBukato.quizer.Result;
+import by.KirillBukato.quizer.tasks.TaskVariant;
 import by.KirillBukato.quizer.tasks.VariantTask;
 
 
 public class VariantExpressionTask extends AbstractExpressionTask implements VariantTask {
 
-    public VariantExpressionTask(int left, Operation operator, int right, double w1, double w2, VariantTask.Variants variant) {
+    public VariantExpressionTask(int left, MathOperation operator, int right, double w1, double w2, TaskVariant variant) {
         super(left, operator, right);
         variants = switch (variant) {
             case A -> new Double[]{computeAnswer(), w1, w2};
@@ -37,15 +38,15 @@ public class VariantExpressionTask extends AbstractExpressionTask implements Var
     }
 
     @Override
-    public Variants getVariant() {
+    public TaskVariant getCorrectVariant() {
         return variant;
     }
 
     @Override
-    public String[] getVariants() {
+    public String[] getAnswerVariants() {
         return new String[]{variants[0].toString(), variants[1].toString(), variants[2].toString()};
     }
 
-    private final Variants variant;
+    private final TaskVariant variant;
     private final Double[] variants;
 }

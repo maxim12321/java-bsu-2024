@@ -7,7 +7,7 @@ import by.KirillBukato.quizer.Result;
  */
 public abstract class AbstractMathTask implements MathTask {
 
-    public AbstractMathTask(int left, MathTask.Operation operator, int right) {
+    public AbstractMathTask(int left, MathOperation operator, int right) {
         this.left = left;
         this.operator = operator;
         this.right = right;
@@ -34,6 +34,6 @@ public abstract class AbstractMathTask implements MathTask {
     }
 
     protected final int left;
-    protected final MathTask.Operation operator;
+    protected final MathOperation operator;
     protected final int right;
 }
