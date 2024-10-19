@@ -25,6 +25,7 @@ class Quiz {
             throw new QuizFinishedException("Quiz finished. You can't ask for next task.");
         }
         if (isLastAnswerValid) {
+            isLastAnswerValid = false;
             currentTask = generator.generate();
         }
         return currentTask;
