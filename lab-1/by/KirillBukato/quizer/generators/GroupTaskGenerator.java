@@ -35,7 +35,7 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
      * Если все генераторы выбрасывают исключение, то и тут выбрасывается исключение.
      */
     @Override
-    public Task generate() {
+    public Task generate() throws RuntimeException {
         generators.addAll(removedGenerators);
         removedGenerators.clear();
         Random random = new Random();

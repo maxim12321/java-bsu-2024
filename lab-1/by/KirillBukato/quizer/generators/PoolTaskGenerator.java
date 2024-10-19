@@ -2,6 +2,7 @@ package by.KirillBukato.quizer.generators;
 
 import by.KirillBukato.quizer.Task;
 import by.KirillBukato.quizer.TaskGenerator;
+import by.KirillBukato.quizer.exceptions.PoolGeneratorRanOutException;
 
 import java.util.*;
 
@@ -38,9 +39,9 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
      * @return случайная задача из списка
      */
     @Override
-    public Task generate() {
+    public Task generate() throws PoolGeneratorRanOutException {
         if (tasks.isEmpty()) {
-            throw new IllegalArgumentException("Pool Task Generator has no tasks left.");
+            throw new PoolGeneratorRanOutException("Pool Task Generator has no tasks left.");
         }
         Random random = new Random();
         var iterator = tasks.iterator();

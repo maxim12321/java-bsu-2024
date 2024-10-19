@@ -27,6 +27,6 @@ public abstract class AbstractExpressionTask extends AbstractMathTask {
     }
 
     public String getQuestion() {
-        return Objects.toString(left) + stringOperator(operator) + Objects.toString(right) + "=?";
+        return Objects.toString(left) + " " + stringOperator(operator) + " " + Objects.toString(right) + " = ?";
     }
 }

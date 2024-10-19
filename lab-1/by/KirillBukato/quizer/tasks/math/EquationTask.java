@@ -10,9 +10,9 @@ public class EquationTask extends AbstractMathTask {
     @Override
     public String getText() {
         if (isXLeft) {
-            return "x" + stringOperator(operator) + left + "=" + right;
+            return "x" + " " + stringOperator(operator) + " " + left + " = " + right;
         } else {
-            return left + stringOperator(operator) + "x" + "=" + right;
+            return left + " " + stringOperator(operator) + " " + "x" + " = " + right;
         }
     }
 

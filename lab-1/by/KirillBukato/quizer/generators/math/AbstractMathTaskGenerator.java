@@ -4,8 +4,7 @@ import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 import by.KirillBukato.quizer.tasks.math.AbstractMathTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
-import java.util.EnumSet;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Абстрактный генератор математических задач
@@ -21,13 +20,13 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
      */
     public AbstractMathTaskGenerator(int minNumber,
                                      int maxNumber,
-                                     EnumSet<MathTask.Operation> operationSet) {
+                                     EnumSet<MathTask.Operation> operationSet) throws InvalidGeneratorException {
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;
         this.operationSet = operationSet;
-        RuntimeException e = validateGenerator();
-        if (e != null) {
-            throw e;
+        Optional<InvalidGeneratorException> e = validateGenerator();
+        if (e.isPresent()) {
+            throw e.get();
         }
     }
 
@@ -39,11 +38,11 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
      *
      * @return Исключение при невалидном генераторе (или null при валидном)
      */
-    public InvalidGeneratorException validateGenerator() {
+    public Optional<InvalidGeneratorException> validateGenerator() {
         if (getMinNumber() > getMaxNumber()) {
-            return new InvalidGeneratorException("Min value is greater than Max value");
+            return Optional.of(new InvalidGeneratorException("Min value is greater than Max value"));
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override

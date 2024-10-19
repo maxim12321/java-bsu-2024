@@ -5,6 +5,7 @@ import by.KirillBukato.quizer.tasks.math.AbstractExpressionTask;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
 import java.util.EnumSet;
+import java.util.Optional;
 
 public abstract class AbstractExpressionTaskGenerator<T extends AbstractExpressionTask> extends AbstractMathTaskGenerator<T> {
 
@@ -13,7 +14,7 @@ public abstract class AbstractExpressionTaskGenerator<T extends AbstractExpressi
      * @param maxNumber    максимальное число
      * @param operationSet множество разрешённых операций
      */
-    public AbstractExpressionTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> operationSet) {
+    public AbstractExpressionTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> operationSet) throws InvalidGeneratorException {
         super(minNumber, maxNumber, operationSet);
     }
 
@@ -23,13 +24,12 @@ public abstract class AbstractExpressionTaskGenerator<T extends AbstractExpressi
      * Иначе есть шанс, что сгенерируется валидный.
      */
     @Override
-    public InvalidGeneratorException validateGenerator() {
-        InvalidGeneratorException exception = super.validateGenerator();
-        if (exception != null) {
-            return exception;
-        }
-        if (operationsIsDivision() && getMinNumber() == 0 && getMaxNumber() == 0) {
-            return new InvalidGeneratorException("Task will always have zero division");
-        } else return null;
+    public Optional<InvalidGeneratorException> validateGenerator() {
+        return super.validateGenerator().or(() -> {
+            if (operationsIsDivision() && getMinNumber() == 0 && getMaxNumber() == 0) {
+                return Optional.of(new InvalidGeneratorException("Task will always have zero division"));
+            }
+            return Optional.empty();
+        });
     }
 }
