@@ -1,6 +1,5 @@
 package by.mmaxemm.quizer.generators;
 
-import by.mmaxemm.quizer.Task;
 import by.mmaxemm.quizer.tasks.ExpressionTask;
 import by.mmaxemm.quizer.TaskGenerator;
 
@@ -9,7 +8,7 @@ import java.util.Random;
 public class ExpressionTaskGenerator implements TaskGenerator {
     int minNumber;
     int maxNumber;
-    ArrayList<String> operators;
+    ArrayList<String> availableOperators;
 
     ExpressionTaskGenerator(
             int minNumber,
@@ -31,18 +30,18 @@ public class ExpressionTaskGenerator implements TaskGenerator {
 
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;
-        operators = new ArrayList<String>();
+        availableOperators = new ArrayList<String>();
         if(generateSum) {
-            operators.add("+");
+            availableOperators.add("+");
         }
         if(generateDifference) {
-            operators.add("-");
+            availableOperators.add("-");
         }
         if(generateMultiplication) {
-            operators.add("*");
+            availableOperators.add("*");
         }
         if(generateDivision) {
-            operators.add("/");
+            availableOperators.add("/");
         }
     }
 
@@ -51,8 +50,8 @@ public class ExpressionTaskGenerator implements TaskGenerator {
         Random randomizer = new Random();
         int num1 = randomizer.nextInt(maxNumber - minNumber + 1) + minNumber;
         int num2 = randomizer.nextInt(maxNumber - minNumber + 1) + minNumber;
-        int operatorIndex = randomizer.nextInt(operators.size());
-        String operator = operators.get(operatorIndex);
+        int operatorIndex = randomizer.nextInt(availableOperators.size());
+        String operator = availableOperators.get(operatorIndex);
         return new ExpressionTask(num1, num2, operator);
     }
 }

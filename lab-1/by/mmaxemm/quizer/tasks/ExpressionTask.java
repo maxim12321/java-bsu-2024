@@ -33,8 +33,7 @@ public class ExpressionTask implements Task {
                 case "*" -> num1 * num2 == Integer.parseInt(answer) ? Result.OK : Result.WRONG;
                 case "/" -> num1 / num2 == Integer.parseInt(answer) ? Result.OK : Result.WRONG;
                 default -> throw new IllegalArgumentException("Operator must be +, -, * or /");
-            };
-        } catch(NumberFormatException e) {
+            }; } catch(NumberFormatException e) {
             return Result.INCORRECT_INPUT;
         }
     }

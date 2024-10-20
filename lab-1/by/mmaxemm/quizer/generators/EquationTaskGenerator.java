@@ -1,15 +1,14 @@
 package by.mmaxemm.quizer.generators;
 import by.mmaxemm.quizer.tasks.EquationTask;
 import by.mmaxemm.quizer.TaskGenerator;
+
+import java.util.ArrayList;
+import java.util.Random;
+
 public class EquationTaskGenerator implements TaskGenerator {
-    /**
-     * @param minNumber              минимальное число
-     * @param maxNumber              максимальное число
-     * @param generateSum            разрешить генерацию с оператором +
-     * @param generateDifference     разрешить генерацию с оператором -
-     * @param generateMultiplication разрешить генерацию с оператором *
-     * @param generateDivision       разрешить генерацию с оператором /
-     */
+    int minNumber;
+    int maxNumber;
+    ArrayList<String> availableOperators;
     EquationTaskGenerator(
             int minNumber,
             int maxNumber,
@@ -18,13 +17,39 @@ public class EquationTaskGenerator implements TaskGenerator {
             boolean generateMultiplication,
             boolean generateDivision
     ) {
-        // ...
+        if(minNumber > maxNumber) {
+            throw new IllegalArgumentException("minNumber must be less or equal to maxNumber");
+        }
+        if(!(generateSum
+                || generateDifference
+                || generateMultiplication
+                || generateDivision)) {
+            throw new IllegalArgumentException("At least one operation must be enabled");
+        }
+
+        this.minNumber = minNumber;
+        this.maxNumber = maxNumber;
+        availableOperators = new ArrayList<String>();
+        if(generateSum) {
+            availableOperators.add("+");
+        }
+        if(generateDifference) {
+            availableOperators.add("-");
+        }
+        if(generateMultiplication) {
+            availableOperators.add("*");
+        }
+        if(generateDivision) {
+            availableOperators.add("/");
+        }
     }
 
-    /**
-     * return задание типа {@link EquationTask}
-     */
     public EquationTask generate() {
-        return null;
+        Random randomizer = new Random();
+        int num1 = randomizer.nextInt(maxNumber - minNumber + 1) + minNumber;
+        int num2 = randomizer.nextInt(maxNumber - minNumber + 1) + minNumber;
+        int operatorIndex = randomizer.nextInt(availableOperators.size());
+        String operator = availableOperators.get(operatorIndex);
+        return new EquationTask(num1, num2, operator);
     }
 }
