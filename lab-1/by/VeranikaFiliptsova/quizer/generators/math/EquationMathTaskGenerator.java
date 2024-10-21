@@ -1,6 +1,6 @@
 package by.VeranikaFiliptsova.quizer.generators.math;
 
-import by.VeranikaFiliptsova.quizer.Operation;
+import by.VeranikaFiliptsova.quizer.tasks.math.MathTask.Operation;
 import by.VeranikaFiliptsova.quizer.TaskGenerator;
 import by.VeranikaFiliptsova.quizer.tasks.math.EquationMathTask;
 
@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class EquationMathTaskGenerator implements TaskGenerator {
+public class EquationMathTaskGenerator extends AbstractMathTaskGenerator{
     /**
      * @param minNumber              минимальное число
      * @param maxNumber              максимальное число

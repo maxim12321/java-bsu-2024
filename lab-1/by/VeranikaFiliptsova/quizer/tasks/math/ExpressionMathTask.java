@@ -1,10 +1,10 @@
 package by.VeranikaFiliptsova.quizer.tasks.math;
 
-import by.VeranikaFiliptsova.quizer.Operation;
+//import by.VeranikaFiliptsova.quizer.Operation;
 import by.VeranikaFiliptsova.quizer.Result;
 import by.VeranikaFiliptsova.quizer.Task;
 
-public class ExpressionMathTask implements Task {
+public class ExpressionMathTask implements MathTask {
     int num1;
     int num2;
     Operation operation;
@@ -51,5 +51,10 @@ public class ExpressionMathTask implements Task {
             return Result.OK;
         }
         return Result.WRONG;
+    }
+
+    @Override
+    public int calculate() {
+        return 0;
     }
 }

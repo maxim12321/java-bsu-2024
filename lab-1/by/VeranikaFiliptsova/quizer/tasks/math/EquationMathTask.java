@@ -4,7 +4,7 @@ import by.VeranikaFiliptsova.quizer.Operation;
 import by.VeranikaFiliptsova.quizer.Result;
 import by.VeranikaFiliptsova.quizer.Task;
 
-public class EquationMathTask implements Task {
+public class EquationMathTask implements MathTask {
     int num1;
     int num2;
     Operation operation;
@@ -45,6 +45,11 @@ public class EquationMathTask implements Task {
             return Result.OK;
         }
         return Result.WRONG;
+    }
+
+    @Override
+    public int calculate() {
+        return 0;
     }
 }
 //ТЫ ЗАКОНЧИЛА ЗДЕСЬ
