@@ -4,11 +4,13 @@ import by.mmaxemm.quizer.tasks.ExpressionTask;
 import by.mmaxemm.quizer.TaskGenerator;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 public class ExpressionTaskGenerator implements TaskGenerator {
     int minNumber;
     int maxNumber;
-    ArrayList<String> availableOperators;
+    Random random;
+    List<String> availableOperators;
 
     ExpressionTaskGenerator(
             int minNumber,
@@ -31,6 +33,7 @@ public class ExpressionTaskGenerator implements TaskGenerator {
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;
         availableOperators = new ArrayList<String>();
+        random = new Random();
         if(generateSum) {
             availableOperators.add("+");
         }
@@ -47,10 +50,9 @@ public class ExpressionTaskGenerator implements TaskGenerator {
 
     @Override
     public ExpressionTask generate() {
-        Random randomizer = new Random();
-        int num1 = randomizer.nextInt(maxNumber - minNumber + 1) + minNumber;
-        int num2 = randomizer.nextInt(maxNumber - minNumber + 1) + minNumber;
-        int operatorIndex = randomizer.nextInt(availableOperators.size());
+        int num1 = random.nextInt(maxNumber - minNumber + 1) + minNumber;
+        int num2 = random.nextInt(maxNumber - minNumber + 1) + minNumber;
+        int operatorIndex = random.nextInt(availableOperators.size());
         String operator = availableOperators.get(operatorIndex);
         return new ExpressionTask(num1, num2, operator);
     }

@@ -1,26 +1,27 @@
 package by.mmaxemm.quizer.generators;
 
 import by.mmaxemm.quizer.Task;
-import java.util.Collection;
 import by.mmaxemm.quizer.TaskGenerator;
+import by.mmaxemm.quizer.exceptions.IncorrectGenerationException;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
+import java.util.ArrayList;
 
 public class GroupTaskGenerator implements TaskGenerator {
-    /**
-     * Конструктор с переменным числом аргументов
-     *
-     * @param generators генераторы, которые в конструктор передаются через запятую
-     */
+    TaskGenerator[] generators;
+    Random random;
+
     GroupTaskGenerator(TaskGenerator... generators) {
-        // ...
+      this.generators = generators;
+      random = new Random();
     }
 
-    /**
-     * Конструктор, который принимает коллекцию генераторов
-     *
-     * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
-     */
     GroupTaskGenerator(Collection<TaskGenerator> generators) {
-        // ...
+        this.generators = generators.toArray(new TaskGenerator[0]);
+        random = new Random();
     }
 
     /**
@@ -28,7 +29,15 @@ public class GroupTaskGenerator implements TaskGenerator {
      *         Если этот генератор выбросил исключение в методе generate(), выбирается другой.
      *         Если все генераторы выбрасывают исключение, то и тут выбрасывается исключение.
      */
-    public Task generate() {
-        return null;
+    public Task generate() throws IncorrectGenerationException {
+        List<TaskGenerator> genList = new ArrayList<>(Arrays.asList(generators));
+        while(!genList.isEmpty()) {
+            try {
+                return generators[random.nextInt(generators.length)].generate();
+            } catch (Exception e) {
+                continue;
+            }
+        }
+        throw new IncorrectGenerationException("All generators failed to generate a task");
     }
 }

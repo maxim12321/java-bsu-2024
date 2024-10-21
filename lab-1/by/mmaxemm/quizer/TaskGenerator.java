@@ -1,5 +1,7 @@
 package by.mmaxemm.quizer;
 
+import by.mmaxemm.quizer.exceptions.IncorrectGenerationException;
+
 public interface TaskGenerator {
     /**
      * Возвращает задание. При этом новый объект может не создаваться, если класс задания иммутабельный
@@ -7,5 +9,5 @@ public interface TaskGenerator {
      * @return задание
      * @see    Task
      */
-    Task generate();
+    Task generate() throws IncorrectGenerationException;
 }
