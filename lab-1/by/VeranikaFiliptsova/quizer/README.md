@@ -31,7 +31,7 @@ interface Task {
      @return текст задания
      */
     String getText();
-
+    
     /**
      * Проверяет ответ на задание и возвращает результат
      *
@@ -70,10 +70,10 @@ class Quiz {
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
      */
-    Quiz(TaskGenerator generator, int taskCount) {
+    Quiz(TaskGenerator generator, int taskCount) { 
         // ...
     }
-
+    
     /**
      * @return задание, повторный вызов вернет слелующее
      * @see Task
@@ -81,7 +81,7 @@ class Quiz {
     Task nextTask() {
         // ...
     }
-
+    
     /**
      * Предоставить ответ ученика. Если результат {@link Result#INCORRECT_INPUT}, то счетчик неправильных 
      * ответов не увеличивается, а {@link #nextTask()} в следующий раз вернет тот же самый объект {@link Task}.
@@ -89,35 +89,35 @@ class Quiz {
     Result provideAnswer(String answer) {
         // ...
     }
-
+    
     /**
      * @return завершен ли тест
      */
     boolean isFinished() {
         // ...
     }
-
+    
     /**
      * @return количество правильных ответов
      */
     int getCorrectAnswerNumber() {
         // ...
     }
-
+    
     /**
      * @return количество неправильных ответов
      */
     int getWrongAnswerNumber() {
         // ...
     }
-
+    
     /**
      * @return количество раз, когда был предоставлен неправильный ввод
      */
     int getIncorrectInputNumber() {
         // ...
     }
-
+    
     /**
      * @return оценка, которая является отношением количества правильных ответов к количеству всех вопросов. 
      *         Оценка выставляется только в конце!
@@ -153,8 +153,8 @@ public static void main() {
 ```
 
 >`public static void main()` - входная точка вашего приложения.
-
-#### Описание
+	
+#### Описание 
 
 Для начала, получите список всех тестов с помощью статической функции `getQuizMap()` и выведите пользователю сообщение _“Введите название теста...”_. Затем получите объект `Quiz` по этому названию, если он есть, иначе попросите повторить попытку.
 
@@ -162,12 +162,12 @@ public static void main() {
 
 ## Реализация Task и TaskGenerator
 >Реализации `Task` следует расположить в пакете `tasks`, а реализации `TaskGenerator` в пакете `generators`.
-
+	
 `Task` и `TaskGenerator` - интерфейсы, теперь нужно сделать их реализации.
 Все классы `*Task` реализуют интерфейс `Task`, а `*TaskGenerator` - интерфейс `TaskGenerator`.
 
 
-### ExpressionTaskGenerator
+### ExpressionTaskGenerator 
 Генерирует примеры вида `<num1><operator><num2>=<answer>`. Например, `2*5=?`.
 
 ```java
@@ -181,16 +181,16 @@ class ExpressionTaskGenerator implements TaskGenerator {
      * @param generateDivision       разрешить генерацию с оператором /
      */
     ExpressionTaskGenerator(
-            int minNumber,
-            int maxNumber,
-            boolean generateSum,
-            boolean generateDifference,
-            boolean generateMultiplication,
-            boolean generateDivision
+        int minNumber,
+        int maxNumber,
+        boolean generateSum,
+        boolean generateDifference,
+        boolean generateMultiplication,
+        boolean generateDivision
     ) {
         // ...
     }
-
+    
     /**
      * return задание типа {@link ExpressionTask}
      */
@@ -200,7 +200,7 @@ class ExpressionTaskGenerator implements TaskGenerator {
 }
 ```
 
-### EquationTaskGenerator
+### EquationTaskGenerator 
 Генерирует уравнения вида `<num1><operator>x=<answer>` и `x<operator><num2>=<answer>`. Например, `x/2=6`.
 
 ```java
@@ -214,16 +214,16 @@ class EquationTaskGenerator implements TaskGenerator {
      * @param generateDivision       разрешить генерацию с оператором /
      */
     EquationTaskGenerator(
-            int minNumber,
-            int maxNumber,
-            boolean generateSum,
-            boolean generateDifference,
-            boolean generateMultiplication,
-            boolean generateDivision
+        int minNumber,
+        int maxNumber,
+        boolean generateSum,
+        boolean generateDifference,
+        boolean generateMultiplication,
+        boolean generateDivision
     ) {
         // ...
     }
-
+    
     /**
      * return задание типа {@link EquationTask}
      */
@@ -233,7 +233,7 @@ class EquationTaskGenerator implements TaskGenerator {
 }
 ```
 
-### GroupTaskGenerator
+### GroupTaskGenerator 
 `TaskGenerator`, который позволяет объединить несколько других `TaskGenerator`.
 
 ```java
@@ -267,7 +267,7 @@ class GroupTaskGenerator implements TaskGenerator {
 }
 ```
 
-### PoolTaskGenerator
+### PoolTaskGenerator 
 `TaskGenerator`, который отдает задания из заранее заготовленного набора.
 
 ```java
@@ -279,8 +279,8 @@ class PoolTaskGenerator implements TaskGenerator {
      * @param tasks          задания, которые в конструктор передаются через запятую
      */
     PoolTaskGenerator(
-            boolean allowDuplicate,
-            Task... tasks
+        boolean allowDuplicate,
+        Task... tasks
     ) {
         // ...
     }
@@ -292,8 +292,8 @@ class PoolTaskGenerator implements TaskGenerator {
      * @param tasks          задания, которые передаются в конструктор в Collection (например, {@link LinkedList})
      */
     PoolTaskGenerator(
-            boolean allowDuplicate,
-            Collection<Task> tasks
+        boolean allowDuplicate,
+        Collection<Task> tasks
     ) {
         // ...
     }
@@ -320,12 +320,12 @@ class TextTask implements Task {
      * @param answer ответ на задание
      */
     TextTask(
-            String text,
-            String answer
+        String text,
+        String answer
     ) {
         // ...
     }
-
+    
     // ...
 }
 ```
@@ -361,7 +361,7 @@ default int getDiffNumber();
 
 ## ★★ Generic Task Generators
 
-Добавьте параметризацию в интерфейс `TaskGenerator` таким образом, чтобы он генерировал определенный тип задач. Метод `generate` теперь должен возвращать не просто `Task`, а параметр `T`, который этот интерфейс реализует. Понятно, что при этом классы `ExpressionTaskGenerator` и `EquationTaskGenerator` не должны быть дженериками, они всегда возвращают `ExpressionTask` и `EquationTask`, соответственно. А вот над тем, добавлять ли параметризацию в `GroupTaskGenerator` и `PoolTaskGenerator`, предлагается подумать самостоятельно.
+Добавьте параметризацию в интерфейс `TaskGenerator` таким образом, чтобы он генерировал определенный тип задач. Метод `generate` теперь должен возвращать не просто `Task`, а параметр `T`, который этот интерфейс реализует. Понятно, что при этом классы `ExpressionTaskGenerator` и `EquationTaskGenerator` не должны быть дженериками, они всегда возвращают `ExpressionTask` и `EquationTask`, соответственно. А вот над тем, добавлять ли параметризацию в `GroupTaskGenerator` и `PoolTaskGenerator`, предлагается подумать самостоятельно. 
 
 ## ★ UML
 В каком-нибудь онлайн UML-редакторе (если очень хочется, можно и в пеинте) сделайте схему с участием всех интерфейсов и классов. Это схему нужно приложить в AnyTask к ссылке на github.
