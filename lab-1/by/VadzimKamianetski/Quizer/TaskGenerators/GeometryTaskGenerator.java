@@ -10,7 +10,6 @@ public class GeometryTaskGenerator implements TaskGenerator<GeometryTask> {
     /**
      * @param minNumber              минимальное число
      * @param maxNumber              максимальное число
-     * @param availableOperations    разрешённые операции
      */
     public GeometryTaskGenerator(int minNumber, int maxNumber) {
         if (minNumber >= maxNumber || minNumber <= 0) {

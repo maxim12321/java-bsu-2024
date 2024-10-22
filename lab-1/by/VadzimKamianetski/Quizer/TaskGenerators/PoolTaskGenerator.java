@@ -1,6 +1,7 @@
 package by.VadzimKamianetski.Quizer.TaskGenerators;
 
 import by.VadzimKamianetski.Quizer.Tasks.Task;
+import by.VadzimKamianetski.Quizer.exceptions.PoolGeneratorSamplesException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,11 +46,12 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
 
     /**
      * @return случайная задача из списка
+     * @throws PoolGeneratorSamplesException 
      */
-    public Task generate() {
+    public Task generate() throws PoolGeneratorSamplesException {
         if (!allowDuplicate) {
             if (index == tasks.size()) {
-                throw new RuntimeException("There is no samples in PoolTaskGenerator");
+                throw new PoolGeneratorSamplesException("There is no samples in PoolTaskGenerator");
             }
             index++;
             return tasks.get(index-1);

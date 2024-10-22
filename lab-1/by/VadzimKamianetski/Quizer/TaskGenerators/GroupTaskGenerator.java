@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import by.VadzimKamianetski.Quizer.Tasks.Task;
+import by.VadzimKamianetski.Quizer.exceptions.PoolGeneratorSamplesException;
 
 public class GroupTaskGenerator implements TaskGenerator<Task> {
     private ArrayList<TaskGenerator<? extends Task>> generators = new ArrayList<>();
@@ -34,9 +35,10 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
      * @return результат метода generate() случайного генератора из списка.
      *         Если этот генератор выбросил исключение в методе generate(), выбирается другой.
      *         Если все генераторы выбрасывают исключение, то и тут выбрасывается исключение.
+     * @throws PoolGeneratorSamplesException 
      */
     @Override
-    public Task generate() {
+    public Task generate() throws PoolGeneratorSamplesException {
         Task task;
         int index = (int) (Math.random()*generators.size());
         try {

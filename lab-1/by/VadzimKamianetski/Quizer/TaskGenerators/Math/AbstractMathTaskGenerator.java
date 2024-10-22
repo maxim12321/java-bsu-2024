@@ -3,13 +3,30 @@ package by.VadzimKamianetski.Quizer.TaskGenerators.Math;
 import java.util.EnumSet;
 import java.util.Random;
 
+import by.VadzimKamianetski.Quizer.Operation;
 import by.VadzimKamianetski.Quizer.Tasks.Math.MathTask;
 
 public abstract class AbstractMathTaskGenerator<T extends MathTask> implements MathTaskGenerator<T> {
 
+    @Override
+    public Integer divisionRandom(Random rand, Integer num) {
+        if (num > 0) {
+            return num * rand.nextInt(maxNumber/num + 1);
+        }
+        return num * rand.nextInt(minNumber/num + 1);
+    }
+
+    @Override
+    public String Brackets(Integer num) {
+        if (num < 0) {
+            return "("+ num.toString() + ")";
+        }
+        return num.toString();
+    }
+
     protected int minNumber;
     protected int maxNumber;
-    private EnumSet<MathTaskGenerator.Operation> availableOperations;
+    private EnumSet<Operation> availableOperations;
 
     /**
      * @param minNumber              минимальное число
@@ -35,7 +52,7 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
         }
         int randomIndex = new Random().nextInt(availableOperations.size());
         int i = 0;
-        for (MathTaskGenerator.Operation element : availableOperations) {
+        for (Operation element : availableOperations) {
             if (i == randomIndex) {
                 return element;
             }

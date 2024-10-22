@@ -5,9 +5,9 @@ import by.VadzimKamianetski.Quizer.TaskGenerators.GroupTaskGenerator;
 import by.VadzimKamianetski.Quizer.TaskGenerators.PoolTaskGenerator;
 import by.VadzimKamianetski.Quizer.TaskGenerators.Math.EquationTaskGenerator;
 import by.VadzimKamianetski.Quizer.TaskGenerators.Math.ExpressionTaskGenerator;
-import by.VadzimKamianetski.Quizer.TaskGenerators.Math.MathTaskGenerator;
 import by.VadzimKamianetski.Quizer.Tasks.TextTask;
 import by.VadzimKamianetski.Quizer.Tasks.Math.EquationTask;
+import by.VadzimKamianetski.Quizer.exceptions.PoolGeneratorSamplesException;
 import by.VadzimKamianetski.Quizer.exceptions.QuizNotFinishedException;
 
 import java.util.EnumSet;
@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class Main {
     
-        public static void main(String[] args) throws QuizNotFinishedException {
+        public static void main(String[] args) throws QuizNotFinishedException, PoolGeneratorSamplesException {
             Map<String, Quiz> quizMap = getQuizMap();
             System.out.println("Список тестов:");
             quizMap.keySet().forEach(System.out::println);
@@ -58,30 +58,25 @@ public class Main {
             HashMap<String, Quiz> mapchikMap = new HashMap<>();
         
              // Simple Expression Test
-            EnumSet<MathTaskGenerator.Operation> av1 = EnumSet.of(
-                MathTaskGenerator.Operation.GENERATESUM,
-                MathTaskGenerator.Operation.GENERATEDIFFERENCE,
-                MathTaskGenerator.Operation.GENERATEDIVISION,
-                MathTaskGenerator.Operation.GENERATEMULTIPLICATION
-            );
-                ExpressionTaskGenerator generator1 = new ExpressionTaskGenerator(0, 5, av1);
+            EnumSet<Operation> av1 = EnumSet.allOf(Operation.class);
+                ExpressionTaskGenerator generator1 = new ExpressionTaskGenerator(-5, 5, av1);
                 Quiz quiz1 = new Quiz(generator1, 5);
                 mapchikMap.put("Simple Expression Test", quiz1);
             
         
              // Simple Equation Test
-                EquationTaskGenerator generator2 = new EquationTaskGenerator(0, 5, av1);
+                EquationTaskGenerator generator2 = new EquationTaskGenerator(-5, 5, av1);
                 Quiz quiz2 = new Quiz(generator2, 5);
                 mapchikMap.put("Simple Equation Test", quiz2);
             
         
              // Division By 0 Test
-                EnumSet<MathTaskGenerator.Operation> av2 = EnumSet.of(
-                    MathTaskGenerator.Operation.GENERATEDIVISION,
-                    MathTaskGenerator.Operation.GENERATEMULTIPLICATION
+                EnumSet<Operation> av2 = EnumSet.of(
+                    Operation.GENERATEDIVISION,
+                    Operation.GENERATEMULTIPLICATION
                 );
-                EnumSet<MathTaskGenerator.Operation> av3 = EnumSet.of(
-                MathTaskGenerator.Operation.GENERATEDIVISION
+                EnumSet<Operation> av3 = EnumSet.of(
+                Operation.GENERATEDIVISION
                 );
                 ExpressionTaskGenerator generator31 = new ExpressionTaskGenerator(0, 1, av3);
                 EquationTaskGenerator generator32 = new EquationTaskGenerator(0, 1, av2);

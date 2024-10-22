@@ -1,7 +1,9 @@
 package by.VadzimKamianetski.Quizer.TaskGenerators.Math;
 
 import java.util.EnumSet;
+import java.util.Random;
 
+import by.VadzimKamianetski.Quizer.Operation;
 import by.VadzimKamianetski.Quizer.Tasks.Math.ExpressionTask;
 
 public class ExpressionTaskGenerator extends AbstractMathTaskGenerator<ExpressionTask> {
@@ -12,33 +14,31 @@ public class ExpressionTaskGenerator extends AbstractMathTaskGenerator<Expressio
 
     @Override
     public ExpressionTask generate() {
-        Integer firstNumber = (int) (Math.random() * (maxNumber - minNumber + 1) + minNumber);
-        Integer secondNumber = (int) (Math.random() * (maxNumber - minNumber + 1) + minNumber);
-        MathTaskGenerator.Operation operation = getByRandomOperation();
+        Random rand = new Random();
+        Integer firstNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
+        Integer secondNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
+        Operation operation = getByRandomOperation();
         Integer answer = 42;
-        String text = "Something went wrong";
         switch (operation) {
-            case MathTaskGenerator.Operation.GENERATESUM: 
+            case Operation.GENERATESUM: 
                 answer = (firstNumber + secondNumber);
-                text = firstNumber.toString() + '+' + secondNumber.toString() + "=?";
                 break;
-            case MathTaskGenerator.Operation.GENERATEDIFFERENCE: 
+            case Operation.GENERATEDIFFERENCE: 
                 answer = (firstNumber - secondNumber);
-                text = firstNumber.toString() + '-' + secondNumber.toString() + "=?";
                 break;
-            case MathTaskGenerator.Operation.GENERATEMULTIPLICATION: 
+            case Operation.GENERATEMULTIPLICATION: 
                 answer = (firstNumber * secondNumber);
-                text = firstNumber.toString() + '*' + secondNumber.toString() + "=?";
                 break;
-            case MathTaskGenerator.Operation.GENERATEDIVISION: 
-            while (secondNumber == 0) {
-                secondNumber = (int) (Math.random() * (maxNumber - minNumber + 1) + minNumber);
-            }
+            case Operation.GENERATEDIVISION: 
+                while (secondNumber == 0) {
+                    secondNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
+                }
+                firstNumber = divisionRandom(rand, secondNumber);
                 answer = (firstNumber / secondNumber);
-                text = firstNumber.toString() + '/' + secondNumber.toString() + "=?";
                 break;          
             default:
         }
+        String text = firstNumber.toString() + operation.getSymbol() + Brackets(secondNumber) + "=?";
         return new ExpressionTask(text, answer.toString());
     }
 }

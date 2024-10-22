@@ -2,6 +2,7 @@ package by.VadzimKamianetski.Quizer;
 
 import by.VadzimKamianetski.Quizer.TaskGenerators.TaskGenerator;
 import by.VadzimKamianetski.Quizer.Tasks.Task;
+import by.VadzimKamianetski.Quizer.exceptions.PoolGeneratorSamplesException;
 import by.VadzimKamianetski.Quizer.exceptions.QuizNotFinishedException;
 
 /**
@@ -29,9 +30,10 @@ public class Quiz {
     
     /**
      * @return задание, повторный вызов вернет слелующее
+     * @throws PoolGeneratorSamplesException 
      * @see Task
      */
-    Task nextTask() {
+    Task nextTask() throws PoolGeneratorSamplesException {
         if (lastInput) {
             task = generator.generate();
             taskCount--;
