@@ -1,8 +1,13 @@
 package by.VeranikaFiliptsova.quizer.generators.math;
 
+import by.VeranikaFiliptsova.quizer.Task;
 import by.VeranikaFiliptsova.quizer.TaskGenerator;
+import by.VeranikaFiliptsova.quizer.tasks.math.MathTask;
 
-public interface MathTaskGenerator extends TaskGenerator {
+
+public interface MathTaskGenerator<T extends MathTask> extends TaskGenerator<T> {
+
+    boolean isNotValid();
     int getMinNumber(); // получить минимальное число
     int getMaxNumber();
 
@@ -11,7 +16,11 @@ public interface MathTaskGenerator extends TaskGenerator {
      */
     default int getDiffNumber()// получить максимальное число
     {
-        return 0;
+        return getMaxNumber() - getMinNumber();
     }
 
+    int randUsual();
+
 }
+//добавить record pair и вынести из генераторов
+

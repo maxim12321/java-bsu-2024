@@ -10,8 +10,8 @@ public class Quiz {
     Task currentTask;
     TaskGenerator currentGenerator;
 
-    //TO ASK мы должны в коллекции вопросы хранить или можно в hasnext просто просить генератор сгенерировать новый
     Quiz(TaskGenerator generator, int taskCount) {
+        currentTask = generator.generate();
         currentGenerator = generator;
         counter = taskCount;
     }
@@ -61,7 +61,7 @@ public class Quiz {
 
     double getMark() {
         if (isFinished()) {
-            return (double) counterOK /(counterOK + counterWrong);
+            return 10 * (double) counterOK /(counterOK + counterWrong);
         }
         //QuizNotFinishedException;
         return 1;
@@ -70,7 +70,7 @@ public class Quiz {
     void execute() {
         Scanner console = new Scanner(System.in);
         while (!isFinished()) {
-            System.out.print(currentTask.getText());
+            System.out.println(currentTask.getText());
             String answer = console.next();
             Result res = provideAnswer(answer);
             if (res != Result.INCORRECT_INPUT) {

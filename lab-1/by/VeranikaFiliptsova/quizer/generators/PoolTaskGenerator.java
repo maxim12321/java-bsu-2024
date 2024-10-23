@@ -5,7 +5,7 @@ import by.VeranikaFiliptsova.quizer.TaskGenerator;
 
 import java.util.*;
 
-public class PoolTaskGenerator implements TaskGenerator {
+public class PoolTaskGenerator implements TaskGenerator<Task> {
     ArrayList<Task> list = new ArrayList<>();
     boolean duplicate;
     /**
@@ -14,7 +14,7 @@ public class PoolTaskGenerator implements TaskGenerator {
      * @param allowDuplicate разрешить повторения
      * @param tasks          задания, которые в конструктор передаются через запятую
      */
-    PoolTaskGenerator(
+    public PoolTaskGenerator(
             boolean allowDuplicate,
             Task... tasks
     ) {
@@ -28,7 +28,7 @@ public class PoolTaskGenerator implements TaskGenerator {
      * @param allowDuplicate разрешить повторения
      * @param tasks          задания, которые передаются в конструктор в Collection (например, {@link LinkedList})
      */
-    PoolTaskGenerator(
+    public PoolTaskGenerator(
             boolean allowDuplicate,
             Collection<Task> tasks
     ) {
@@ -41,6 +41,9 @@ public class PoolTaskGenerator implements TaskGenerator {
      */
     public Task generate() {
         Random rand = new Random();
+        if (list.isEmpty()) {
+            throw new RuntimeException("задания закончились");
+        }
         int steps = rand.nextInt(list.size());
         var iter = list.iterator();
         while (steps > 0) {

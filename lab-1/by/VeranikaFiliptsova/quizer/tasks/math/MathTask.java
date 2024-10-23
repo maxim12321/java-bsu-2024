@@ -1,6 +1,5 @@
 package by.VeranikaFiliptsova.quizer.tasks.math;
 
-import by.VeranikaFiliptsova.quizer.Operation;
 import by.VeranikaFiliptsova.quizer.Task;
 
 public interface MathTask extends Task {
@@ -18,17 +17,8 @@ public interface MathTask extends Task {
                 case DIV->"/";
             };
         }
-
-        public Operation oppositeOperation() {
-            return switch (this) {
-                case SUM->DIFF;
-                case DIFF->SUM;
-                case MUL->DIV;
-                case DIV->MUL;
-            };
-        }
     }
-
+    public String myValueOf(int a);
     /**
      @return правильный ответ
      */

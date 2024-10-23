@@ -6,15 +6,17 @@ import by.VeranikaFiliptsova.quizer.TaskGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Random;
 
-public class GroupTaskGenerator implements TaskGenerator {
-    ArrayList<TaskGenerator> list = new ArrayList<>();
+public class GroupTaskGenerator implements TaskGenerator<Task> {
+    ArrayList<TaskGenerator<? extends Task>> list = new ArrayList<>();
     /**
      * Конструктор с переменным числом аргументов
      *
      * @param generators генераторы, которые в конструктор передаются через запятую
      */
-    GroupTaskGenerator(TaskGenerator... generators) {
+    @SafeVarargs
+    public GroupTaskGenerator(TaskGenerator<? extends Task>... generators) {
         list = new ArrayList<>(Arrays.asList(generators));
     }
 
@@ -23,7 +25,7 @@ public class GroupTaskGenerator implements TaskGenerator {
      *
      * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
      */
-    GroupTaskGenerator(Collection<TaskGenerator> generators) {
+    public GroupTaskGenerator(Collection<TaskGenerator<? extends Task>> generators) {
         list.addAll(generators);
     }
 
@@ -33,15 +35,19 @@ public class GroupTaskGenerator implements TaskGenerator {
      *         Если все генераторы выбрасывают исключение, то и тут выбрасывается исключение.
      */
     public Task generate() {
-        for (TaskGenerator gen : list) {
+        while (!list.isEmpty()) {
+            Random rand = new Random();
+            int i = rand.nextInt(list.size());
+            TaskGenerator<? extends Task> gen = list.get(i);
             Task task;
             try {
                 task = gen.generate();
             } catch (RuntimeException ex) {
+                list.remove(i);
                 continue;
             }
             return task;
         }
-        throw new RuntimeException();
+        throw new RuntimeException("impossible to generate valid task for all generators");
     }
 }

@@ -1,18 +1,38 @@
 package by.VeranikaFiliptsova.quizer;
 
+import by.VeranikaFiliptsova.quizer.generators.GroupTaskGenerator;
+import by.VeranikaFiliptsova.quizer.generators.PoolTaskGenerator;
 import by.VeranikaFiliptsova.quizer.generators.math.EquationMathTaskGenerator;
 import by.VeranikaFiliptsova.quizer.generators.math.ExpressionMathTaskGenerator;
+import by.VeranikaFiliptsova.quizer.tasks.TextTask;
 import by.VeranikaFiliptsova.quizer.tasks.math.EquationMathTask;
 import by.VeranikaFiliptsova.quizer.tasks.math.ExpressionMathTask;
+import by.VeranikaFiliptsova.quizer.tasks.math.MathTask;
 
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
-    /*
+
     static Map<String, Quiz> getQuizMap() {
-        //TODO генераторами нагенерить
-        return Map.of();
+        HashMap<String, Quiz> myQuizMap = new HashMap<String, Quiz>();
+        //test1
+        EnumSet<MathTask.Operation> operationAllowed = EnumSet.allOf(MathTask.Operation.class);
+        //EnumSet<MathTask.Operation> operationAllowed = EnumSet.of(MathTask.Operation.DIV);
+        ExpressionMathTaskGenerator taskgen = new ExpressionMathTaskGenerator(-10, 10, operationAllowed);
+        Quiz test1  =  new Quiz(taskgen, 10);
+        myQuizMap.put("Test1", test1);
+        //test2
+        TextTask text1 = new TextTask("aaa? ", "aaa");
+        TextTask text2 = new TextTask("bbb? ", "bbb");
+        TextTask text3 = new TextTask("ccc? ", "ccc");
+        PoolTaskGenerator pool1 = new PoolTaskGenerator(false, text1, text2, text3);
+        ExpressionMathTaskGenerator exprGen = new ExpressionMathTaskGenerator(-15, 15, operationAllowed);
+        EquationMathTaskGenerator eqvGen = new EquationMathTaskGenerator(-10, 10, operationAllowed);
+        GroupTaskGenerator groupGen = new GroupTaskGenerator(eqvGen, exprGen, pool1);
+        Quiz test2 = new Quiz(groupGen, 10);
+        myQuizMap.put("Test2", test2);
+        return myQuizMap;
+
     }
 
     public static void main(String[] args) {
@@ -25,40 +45,7 @@ public class Main {
         } while (!quizzes.containsKey(name));
         Quiz currentQuiz = quizzes.get(name);
         currentQuiz.execute();
-        System.out.println(currentQuiz.getMark()); //вывести результат
+        System.out.println("Ваша оценка - "+currentQuiz.getMark()+"/10.0"); //вывести результат
 
-    }
-    */
-    public static void main(String[] args) {
-        Scanner console = new Scanner(System.in);
-        ExpressionMathTaskGenerator taskgen = new ExpressionMathTaskGenerator(2, 20, false, true, true, true);
-        for (int i = 0; i < 3; i ++) {
-            ExpressionMathTask task = taskgen.generate();
-            System.out.println(task.getText());
-            String answer = console.next();
-            Result currentResult = task.validate(answer);
-            if (currentResult == Result.OK) {
-                System.out.println("Верно");
-            } else if (currentResult == Result.WRONG) {
-                System.out.println("Неверно");
-            } else {
-                System.out.println("Неверный ввод");
-            }
-        }
-
-        EquationMathTaskGenerator taskgen2 = new EquationMathTaskGenerator(-2, 2, false, true, true, true);
-        for (int i = 0; i < 10; i ++) {
-            EquationMathTask task = taskgen2.generate();
-            System.out.println(task.getText());
-            String answer = console.next();
-            Result currentResult = task.validate(answer);
-            if (currentResult == Result.OK) {
-                System.out.println("Верно");
-            } else if (currentResult == Result.WRONG) {
-                System.out.println("Неверно");
-            } else {
-                System.out.println("Неверный ввод");
-            }
-        }
     }
 }

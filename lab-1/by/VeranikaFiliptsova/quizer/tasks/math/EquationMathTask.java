@@ -1,23 +1,37 @@
 package by.VeranikaFiliptsova.quizer.tasks.math;
 
-import by.VeranikaFiliptsova.quizer.Operation;
 import by.VeranikaFiliptsova.quizer.Result;
-import by.VeranikaFiliptsova.quizer.Task;
 
-public class EquationMathTask implements MathTask {
-    int num1;
-    int num2;
-    Operation operation;
-    int rightAnswer;
+public class EquationMathTask extends AbstractMathTask {
     boolean xStart;
 
 
     public EquationMathTask(int n1, Operation op, int n2, boolean xSt) {
-        num1 = n1;
-        num2 = n2;
-        operation = op;
+        super(n1, op, n2);
         xStart = xSt;
-        rightAnswer = switch(op) {
+    }
+
+    public int calculate() {
+//        switch (operation) {
+//            case SUM : {
+//                return num2 - num1;
+//            }
+//            case DIFF : {
+//                System.out.println("xStart = " +xStart);
+//                System.out.println("xStart ? num2 + num1 : num1 - num2");
+//                return xStart ? num2 + num1 : num1 - num2;
+//            }
+//            case MUL : {
+//                return num2 / num1;
+//            }
+//            case DIV : {
+//                System.out.println("xStart = " +xStart);
+//                System.out.println("xStart ? num1 * num2 : num1 / num2;");
+//                return xStart ? num1 * num2 : num1 / num2;
+//            }
+//        }
+//        return num1;
+        return switch(operation) {
             case SUM -> num2 - num1;
             case DIFF -> xStart ? num2 + num1 : num1 - num2;
             case MUL -> num2 / num1;
@@ -25,32 +39,15 @@ public class EquationMathTask implements MathTask {
         };
     }
 
-
     @Override
     public String getText() {
-        if (xStart) return "x"+Operation.myValueOf(operation)+num1+"="+num2;
-        return num1+Operation.myValueOf(operation)+"x"+"="+num2;
+        if (xStart) return "x"+Operation.myValueOf(operation)+myValueOf(num1)+"="+num2;
+        return myValueOf(num1)+Operation.myValueOf(operation)+"x"+"="+num2;
     }
 
     @Override
     public Result validate(String answer) {
-        int answerInt;
-        try {
-            answerInt = Integer.parseInt(answer);
-        } catch (NumberFormatException ex) {
-            System.out.println("Incorrect format of input");
-            return Result.INCORRECT_INPUT;
-        }
-        if (answerInt == rightAnswer) {
-            return Result.OK;
-        }
-        return Result.WRONG;
+        return super.validate(answer);
     }
 
-    @Override
-    public int calculate() {
-        return 0;
-    }
 }
-//ТЫ ЗАКОНЧИЛА ЗДЕСЬ
-//Генерирует уравнения вида <num1><operator>x=<answer> и x<operator><num2>=<answer>. Например, x/2=6.
