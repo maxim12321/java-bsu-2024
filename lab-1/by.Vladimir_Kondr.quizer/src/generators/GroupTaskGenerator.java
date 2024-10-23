@@ -1,27 +1,41 @@
 package generators;
 
+import core.GeneratorCreator;
+import core.Pair;
 import core.Task;
 import core.TaskGenerator;
 import exceptions.NoSufficientGeneratorsException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Random;
+import java.util.*;
 
-public class GroupTaskGenerator implements TaskGenerator<Task> {
+public class GroupTaskGenerator extends GeneratorCreator implements TaskGenerator<Task> {
     private final Collection<TaskGenerator<? extends Task>> generators;
+    private final List<Pair<Class<? extends TaskGenerator<? extends Task>>, Map<String, Object>>> generatorArgsList;
 
+
+    @SafeVarargs
     public GroupTaskGenerator(TaskGenerator<? extends Task>... generators) {
         this.generators = new ArrayList<>(Arrays.asList(generators));
+        this.generatorArgsList = null;
     }
 
     public GroupTaskGenerator(Collection<TaskGenerator<? extends Task>> generators) {
         this.generators = generators;
+        this.generatorArgsList = null;
+    }
+
+    public GroupTaskGenerator(List<Pair<Class<? extends TaskGenerator<? extends Task>>, Map<String, Object>>> generatorArgsList) {
+        this.generators = new ArrayList<>();
+        this.generatorArgsList = generatorArgsList;
     }
 
     @Override
     public Task generate() {
+        if (generators.isEmpty() && generatorArgsList != null) {
+            for (Pair<Class<? extends TaskGenerator<? extends Task>>, Map<String, Object>> pair : generatorArgsList) {
+                generators.add(createGenerator(pair.key(), pair.value()));
+            }
+        }
         Collection<TaskGenerator<? extends Task>> removed = new ArrayList<>();
         Random random = new Random();
         while (!generators.isEmpty()) {

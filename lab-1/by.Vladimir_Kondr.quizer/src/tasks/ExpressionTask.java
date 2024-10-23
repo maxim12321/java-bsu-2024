@@ -1,6 +1,7 @@
 package tasks;
 
 import tasks.math.AbstractMathTask;
+import tasks.math.MathTask;
 
 public class ExpressionTask extends AbstractMathTask {
 
@@ -10,7 +11,11 @@ public class ExpressionTask extends AbstractMathTask {
 
     @Override
     protected int computeAnswer() {
-        return op.perform(left, right);
+        try {
+            return op.perform(left, right);
+        } catch (ArithmeticException e) {
+            throw new IllegalArgumentException("Invalid operation: " + e.getMessage());
+        }
     }
 
     @Override
@@ -19,10 +24,12 @@ public class ExpressionTask extends AbstractMathTask {
     }
 
     /**
-     @return текст задания
+     * @return текст задания
      */
     @Override
     public String getText() {
-        return left + " " + op.getSymbol() + " " + right + "= ?";
+        String text = left + " " + op.getSymbol() + " " + right + " = ?";
+        text += String.format(" (если ответ нецелый, укажите его с точностью до %d-х знаков после запятой, с округлением вниз)", MathTask.Operation.getAccuracy());
+        return text;
     }
 }

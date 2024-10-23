@@ -28,8 +28,9 @@ public abstract class AbstractMathTask implements MathTask {
      */
     public Result validate(String answer) {
         try {
-            int ans = Integer.parseInt(answer);
-            return this.answer == ans ? Result.OK : Result.WRONG;
+            double ans = Double.parseDouble(answer);
+            return (this.answer == ((int) (ans * (10 ^ MathTask.Operation.getAccuracy())))) ? Result.OK : Result.WRONG;
+
         } catch (NumberFormatException e) {
             return Result.INCORRECT_INPUT;
         }

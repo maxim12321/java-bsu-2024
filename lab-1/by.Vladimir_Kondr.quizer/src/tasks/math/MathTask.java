@@ -2,10 +2,10 @@ package tasks.math;
 
 import core.Task;
 
-import java.util.Random;
-
 public interface MathTask extends Task {
     boolean isValid();
+
+
     enum Operation {
         ADDITION("+"),
         SUBTRACTION("-"),
@@ -13,7 +13,11 @@ public interface MathTask extends Task {
         DIVISION("/");
 
         private final String symbol;
-        private static final Operation[] operations = values();
+        private static final int accuracy = 2;
+
+        public static int getAccuracy() {
+            return accuracy;
+        }
 
         Operation(String symbol) {
             this.symbol = symbol;
@@ -23,28 +27,18 @@ public interface MathTask extends Task {
             return symbol;
         }
 
-        public Integer perform(Integer a, Integer b) {
+        public int perform(Integer a, Integer b) {
             return switch (this) {
-                case ADDITION -> a + b;
-                case SUBTRACTION -> a - b;
-                case MULTIPLICATION -> a * b;
+                case ADDITION -> (a + b) * (10 ^ accuracy);
+                case SUBTRACTION -> (a - b) * (10 ^ accuracy);
+                case MULTIPLICATION -> a * b * (10 ^ accuracy);
                 case DIVISION -> {
                     if (b == 0) {
                         throw new ArithmeticException("Division by zero is not allowed");
                     }
-                    yield a / b;
+                    yield ((a / b) * 10 ^ accuracy);
                 }
             };
-        }
-
-        public static Operation pickRandom(Random rand) {
-            return operations[rand.nextInt(operations.length)];
-        }
-
-        public static Operation[] createArrayFromFlags(boolean... flags) {
-            return java.util.Arrays.stream(Operation.values())
-                    .filter(option -> flags[option.ordinal()])
-                    .toArray(Operation[]::new);
         }
 
         public Operation getOpposite () {

@@ -1,6 +1,7 @@
 package tasks;
 
 import tasks.math.AbstractMathTask;
+import tasks.math.MathTask;
 
 public class EquationTask extends AbstractMathTask {
     private final boolean isXFirst;
@@ -21,7 +22,6 @@ public class EquationTask extends AbstractMathTask {
         };
     }
 
-
     @Override
     public boolean isValid() {
         return !(!isXFirst && op == Operation.DIVISION && (right == 0 || left == 0)) &&
@@ -31,9 +31,13 @@ public class EquationTask extends AbstractMathTask {
 
     @Override
     public String getText() {
+        String text;
         if (this.isXFirst) {
-            return "x " + op.getSymbol() + " " + left + " = " + right;
+            text = "x " + op.getSymbol() + " " + left + " = " + right;
+        } else {
+            text = left + " " + op.getSymbol() + " x" + " = " + right;
         }
-        return left + " " + op.getSymbol() + " x" + " = " + right;
+        text += String.format(" (если ответ нецелый, укажите его с точностью до %d-х знаков после запятой, с округлением вниз)", MathTask.Operation.getAccuracy());
+        return text;
     }
 }

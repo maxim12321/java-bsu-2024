@@ -3,7 +3,6 @@ package generators;
 import core.Task;
 import core.TaskGenerator;
 import exceptions.EndOfPoolException;
-import tasks.EndOfPoolTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +11,7 @@ import java.util.Random;
 
 public class PoolTaskGenerator implements TaskGenerator<Task> {
     private final boolean allowDuplicate;
-    private Collection<Task> tasks;
+    private final Collection<Task> tasks;
     public PoolTaskGenerator(
             boolean allowDuplicate,
             Task... tasks
@@ -27,6 +26,14 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
     ) {
         this.allowDuplicate = allowDuplicate;
         this.tasks = tasks;
+    }
+
+    public int getSize() {
+        return tasks.size();
+    }
+
+    public boolean getAllowDuplicates() {
+        return allowDuplicate;
     }
 
     @Override

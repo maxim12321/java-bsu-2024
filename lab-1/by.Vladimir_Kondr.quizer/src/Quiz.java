@@ -1,20 +1,24 @@
+import core.GeneratorCreator;
 import core.Result;
 import core.Task;
 import core.TaskGenerator;
 import exceptions.QuizFinishedException;
 import exceptions.QuizNotFinishedException;
+import generators.PoolTaskGenerator;
 
-import java.lang.reflect.Array;
+import java.util.Map;
 
 /**
  * Class, который описывает один тест
  */
-public class Quiz {
+public class Quiz extends GeneratorCreator {
     private int taskCount;
-    private final TaskGenerator<? extends Task> generator;
+    private TaskGenerator<? extends Task> generator;
+    private final Class<? extends TaskGenerator<? extends Task>> generatorClass;
+    private final Map<String, Object> argsMap;
     private boolean isLastAnswerValid = true;
     private Task task;
-    private int[] answersCounters = {0, 0, 0};
+    private final int[] answersCounters = {0, 0, 0};
     /**
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
@@ -22,6 +26,23 @@ public class Quiz {
     Quiz(TaskGenerator<? extends Task> generator, int taskCount) {
         this.generator = generator;
         this.taskCount = taskCount;
+        this.generatorClass = null;
+        this.argsMap = null;
+        if (generator instanceof PoolTaskGenerator && taskCount > ((PoolTaskGenerator) generator).getSize() && !((PoolTaskGenerator) generator).getAllowDuplicates()) {
+            throw new IllegalArgumentException("Quiz is built on PoolTaskGenerator but demands from it more tasks than generator can produce");
+        }
+    }
+
+    /**
+     * @param generatorClass класс генератора заданий
+     * @param taskCount количество заданий в тесте
+     * @param argsMap словарь с аргументами для конструктора генератора
+     */
+    Quiz(Class<? extends TaskGenerator<? extends Task>> generatorClass, int taskCount, Map<String, Object> argsMap) {
+        this.generatorClass = generatorClass;
+        this.taskCount = taskCount;
+        this.argsMap = argsMap;
+        this.generator = null;
     }
 
     /**
@@ -31,6 +52,9 @@ public class Quiz {
     Task nextTask() {
         if (isFinished()) {
             throw new QuizFinishedException("Quiz finished. You can't ask for next task.");
+        }
+        if (generator == null) {
+            generator = createGenerator(generatorClass, argsMap);
         }
         if (isLastAnswerValid) {
             task = generator.generate();
@@ -47,7 +71,7 @@ public class Quiz {
             throw new QuizFinishedException("Quiz is finished. You can't provide answer.");
         }
         Result result = task.validate(answer);
-        isLastAnswerValid = (result == Result.INCORRECT_INPUT);
+        isLastAnswerValid = (result != Result.INCORRECT_INPUT);
         taskCount -= isLastAnswerValid ? 1 : 0;
         answersCounters[result.ordinal()]++;
         return result;
