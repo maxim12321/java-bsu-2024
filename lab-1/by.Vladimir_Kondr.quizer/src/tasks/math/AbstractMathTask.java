@@ -8,6 +8,13 @@ public abstract class AbstractMathTask implements MathTask {
     protected final int right;
     protected final int answer;
 
+    protected AbstractMathTask() {
+        this.op = null;
+        this.left = 0;
+        this.right = 0;
+        this.answer = 0;
+    }
+
     protected AbstractMathTask(Operation op, int left, int right) {
         this.op = op;
         this.left = left;
