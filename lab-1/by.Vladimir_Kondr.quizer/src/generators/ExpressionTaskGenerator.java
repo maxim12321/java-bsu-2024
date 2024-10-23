@@ -29,9 +29,11 @@ public class ExpressionTaskGenerator extends AbstractMathTaskGenerator<Expressio
         Random random = new Random();
         ExpressionTask task;
         do {
-            task = new ExpressionTask(getRandomNumber(random),
-                    getRandomNumber(random),
-                    (MathTask.Operation) operations.toArray()[random.nextInt(operations.size())]);
+            try {
+                task = new ExpressionTask(getRandomNumber(random),
+                        getRandomNumber(random),
+                        (MathTask.Operation) operations.toArray()[random.nextInt(operations.size())]);
+            } catch (IllegalArgumentException) {}
         } while (!task.isValid() && --tries > 0);
         if (tries <= 0) {
             throw new NumberGenerationException("Unable to generate a task that meets the criteria after 1000 attempts");

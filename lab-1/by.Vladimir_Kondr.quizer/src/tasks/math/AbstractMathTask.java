@@ -12,11 +12,11 @@ public abstract class AbstractMathTask implements MathTask {
         this.op = op;
         this.left = left;
         this.right = right;
-        this.answer = computeAnswer();
         boolean e = isValid();
         if (!e) {
             throw new IllegalArgumentException("Task is invalid");
         }
+        this.answer = computeAnswer();
     }
 
     /**

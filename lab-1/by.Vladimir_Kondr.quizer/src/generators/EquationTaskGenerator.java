@@ -23,10 +23,12 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTas
         Random random = new Random();
         EquationTask task;
         do {
-            task = new EquationTask(getRandomNumber(random),
-                    (MathTask.Operation) operations.toArray()[random.nextInt(operations.size())],
-                    getRandomNumber(random),
-                    random.nextBoolean());
+            try {
+                task = new EquationTask(getRandomNumber(random),
+                        (MathTask.Operation) operations.toArray()[random.nextInt(operations.size())],
+                        getRandomNumber(random),
+                        random.nextBoolean());
+            } catch (IllegalArgumentException) {}
         } while (!task.isValid() && --tries > 0);
         if (tries <= 0) {
             throw new NumberGenerationException("Unable to generate a task that meets the criteria after 1000 attempts");
