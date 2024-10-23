@@ -8,7 +8,20 @@ import javassist.bytecode.MethodInfo;
 import java.lang.reflect.Constructor;
 import java.util.Map;
 
+/**
+ * Abstract class for creating instances of TaskGenerator with specified arguments.
+ */
 public abstract class GeneratorCreator {
+
+    /**
+     * Creates an instance of TaskGenerator using the provided generator class and arguments map.
+     *
+     * @param generatorClass the class of the TaskGenerator to create
+     * @param argsMap        a map of argument names to values
+     * @return an instance of TaskGenerator
+     * @throws IllegalArgumentException if required arguments are missing or have type mismatches
+     * @throws RuntimeException         if the generator instance creation fails
+     */
     protected TaskGenerator<? extends Task> createGenerator(Class<? extends TaskGenerator<? extends Task>> generatorClass, Map<String, Object> argsMap) {
         try {
             Constructor<?>[] constructors = generatorClass.getConstructors();
@@ -50,6 +63,13 @@ public abstract class GeneratorCreator {
         }
     }
 
+    /**
+     * Retrieves the parameter names for the given constructor.
+     *
+     * @param constructor the constructor to retrieve parameter names for
+     * @return an array of parameter names
+     * @throws Exception if an error occurs while retrieving parameter names
+     */
     protected String[] getParameterNames(Constructor<?> constructor) throws Exception {
         ClassPool pool = ClassPool.getDefault();
         pool.insertClassPath(new ClassClassPath(constructor.getDeclaringClass()));
@@ -66,6 +86,14 @@ public abstract class GeneratorCreator {
         return paramNames;
     }
 
+    /**
+     * Converts an array of Class objects to an array of CtClass objects.
+     *
+     * @param pool    the ClassPool to use for conversion
+     * @param classes the array of Class objects to convert
+     * @return an array of CtClass objects
+     * @throws NotFoundException if a class cannot be found in the pool
+     */
     protected CtClass[] toCtClass(ClassPool pool, Class<?>[] classes) throws NotFoundException {
         CtClass[] ctClasses = new CtClass[classes.length];
         for (int i = 0; i < classes.length; i++) {

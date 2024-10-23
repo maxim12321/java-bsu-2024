@@ -14,6 +14,9 @@ public interface MathTask extends Task {
 
         private final String symbol;
         private static final int accuracy = 2;
+        public static int pow10() {
+            return (int) Math.pow(10, accuracy);
+        }
 
         public static int getAccuracy() {
             return accuracy;
@@ -29,14 +32,14 @@ public interface MathTask extends Task {
 
         public int perform(Integer a, Integer b) {
             return switch (this) {
-                case ADDITION -> (a + b) * (10 ^ accuracy);
-                case SUBTRACTION -> (a - b) * (10 ^ accuracy);
-                case MULTIPLICATION -> a * b * (10 ^ accuracy);
+                case ADDITION -> (a + b) * pow10();
+                case SUBTRACTION -> (a - b) * pow10();
+                case MULTIPLICATION -> a * b * pow10();
                 case DIVISION -> {
                     if (b == 0) {
                         throw new ArithmeticException("Division by zero is not allowed");
                     }
-                    yield ((a / b) * 10 ^ accuracy);
+                    yield (a / b) * pow10();
                 }
             };
         }
