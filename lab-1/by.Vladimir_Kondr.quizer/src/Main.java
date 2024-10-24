@@ -198,6 +198,7 @@ public class Main {
         return map;
     }
 
+    // getQuizMap2 основан на рефлексии
     static Map<String, Quiz> getQuizMap2() {
         HashMap<String, Quiz> map = new HashMap<>();
         map.put("Basic Addition", new Quiz(
