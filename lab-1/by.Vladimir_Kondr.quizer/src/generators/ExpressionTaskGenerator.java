@@ -24,7 +24,7 @@ public class ExpressionTaskGenerator extends AbstractMathTaskGenerator<Expressio
      * return задание типа {@link ExpressionTask}
      */
     @Override
-    public ExpressionTask generate() {
+    public ExpressionTask generate() throws NumberGenerationException {
         int tries = 1000;
         Random random = new Random();
         ExpressionTask task = null;

@@ -30,7 +30,7 @@ public interface MathTask extends Task {
             return symbol;
         }
 
-        public int perform(Integer a, Integer b) {
+        public int perform(Integer a, Integer b) throws ArithmeticException {
             return switch (this) {
                 case ADDITION -> (a + b) * pow10();
                 case SUBTRACTION -> (a - b) * pow10();
@@ -39,7 +39,7 @@ public interface MathTask extends Task {
                     if (b == 0) {
                         throw new ArithmeticException("Division by zero is not allowed");
                     }
-                    yield (a / b) * pow10();
+                    yield (int) ((double) a / (double) b) * pow10();
                 }
             };
         }

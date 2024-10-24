@@ -37,7 +37,7 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
     }
 
     @Override
-    public Task generate() {
+    public Task generate() throws EndOfPoolException {
         Random random = new Random();
         if (tasks.isEmpty()) {
             throw new EndOfPoolException("Generation of task is impossible, pool of tasks is empty");

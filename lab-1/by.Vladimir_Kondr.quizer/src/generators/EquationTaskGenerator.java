@@ -18,7 +18,7 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTas
      * return задание типа {@link EquationTask}
      */
     @Override
-    public EquationTask generate() {
+    public EquationTask generate() throws NumberGenerationException {
         int tries = 1000;
         Random random = new Random();
         EquationTask task = null;

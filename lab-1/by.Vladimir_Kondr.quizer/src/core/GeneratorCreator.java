@@ -22,7 +22,7 @@ public abstract class GeneratorCreator {
      * @throws IllegalArgumentException if required arguments are missing or have type mismatches
      * @throws RuntimeException         if the generator instance creation fails
      */
-    protected TaskGenerator<? extends Task> createGenerator(Class<? extends TaskGenerator<? extends Task>> generatorClass, Map<String, Object> argsMap) {
+    protected TaskGenerator<? extends Task> createGenerator(Class<? extends TaskGenerator<? extends Task>> generatorClass, Map<String, Object> argsMap) throws IllegalArgumentException, RuntimeException {
         try {
             Constructor<?>[] constructors = generatorClass.getConstructors();
             for (Constructor<?> constructor : constructors) {

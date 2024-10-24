@@ -30,7 +30,7 @@ public class GroupTaskGenerator extends GeneratorCreator implements TaskGenerato
     }
 
     @Override
-    public Task generate() {
+    public Task generate() throws NoSufficientGeneratorsException {
         if (generators.isEmpty() && generatorArgsList != null) {
             for (Pair<Class<? extends TaskGenerator<? extends Task>>, Map<String, Object>> pair : generatorArgsList) {
                 generators.add(createGenerator(pair.key(), pair.value()));

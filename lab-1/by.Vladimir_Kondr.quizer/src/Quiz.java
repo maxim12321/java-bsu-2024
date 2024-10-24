@@ -23,7 +23,7 @@ public class Quiz extends GeneratorCreator {
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
      */
-    Quiz(TaskGenerator<? extends Task> generator, int taskCount) {
+    Quiz(TaskGenerator<? extends Task> generator, int taskCount) throws IllegalArgumentException {
         this.generator = generator;
         this.taskCount = taskCount;
         this.generatorClass = null;
@@ -66,7 +66,7 @@ public class Quiz extends GeneratorCreator {
      * Предоставить ответ ученика. Если результат {@link Result#INCORRECT_INPUT}, то счетчик неправильных
      * ответов не увеличивается, а {@link #nextTask()} в следующий раз вернет тот же самый объект {@link Task}.
      */
-    Result provideAnswer(String answer) {
+    Result provideAnswer(String answer) throws QuizFinishedException {
         if (isFinished()) {
             throw new QuizFinishedException("Quiz is finished. You can't provide answer.");
         }
@@ -109,7 +109,7 @@ public class Quiz extends GeneratorCreator {
      * @return оценка, которая является отношением количества правильных ответов к количеству всех вопросов. 
      *         Оценка выставляется только в конце!
      */
-    double getMark() {
+    double getMark() throws QuizNotFinishedException {
         if (!isFinished()) {
             throw new QuizNotFinishedException("Quiz is not finished, you can't get the result yet.");
         }

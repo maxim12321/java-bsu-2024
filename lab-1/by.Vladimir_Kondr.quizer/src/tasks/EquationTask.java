@@ -1,25 +1,26 @@
 package tasks;
 
+import core.Result;
 import tasks.math.AbstractMathTask;
 import tasks.math.MathTask;
 
 public class EquationTask extends AbstractMathTask {
     private final boolean isXFirst;
+    private final int answer;
 
-    public EquationTask(int a, Operation op, int result, boolean isXFirst) {
+    public EquationTask(int a, Operation op, int result, boolean isXFirst) throws IllegalArgumentException {
         super(op, a, result);
         this.isXFirst = isXFirst;
+        this.answer = computeAnswer();
+
     }
 
     @Override
     protected int computeAnswer() {
-        if (this.isXFirst) {
+        if (this.isXFirst || this.op == Operation.ADDITION || this.op == Operation.MULTIPLICATION) {
             return op.getOpposite().perform(right, left);
         }
-        return switch(this.op) {
-            case ADDITION, SUBTRACTION, MULTIPLICATION -> op.getOpposite().perform(right, left);
-            case DIVISION -> op.perform(left, right);
-        };
+        return op.perform(left, right);
     }
 
     @Override
@@ -39,5 +40,22 @@ public class EquationTask extends AbstractMathTask {
         }
         text += String.format(" (если ответ нецелый, укажите его с точностью до %d-х знаков после запятой, с округлением вниз)", MathTask.Operation.getAccuracy());
         return text;
+    }
+
+    /**
+     * Проверяет ответ на задание и возвращает результат
+     *
+     * @param  answer ответ на задание
+     * @return        результат ответа
+     * @see           Result
+     */
+    public Result validate(String answer) {
+        try {
+            double ans = Double.parseDouble(answer);
+            return (this.answer == ((int) (ans * MathTask.Operation.pow10()))) ? Result.OK : Result.WRONG;
+
+        } catch (NumberFormatException e) {
+            return Result.INCORRECT_INPUT;
+        }
     }
 }

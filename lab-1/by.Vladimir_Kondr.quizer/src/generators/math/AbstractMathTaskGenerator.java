@@ -15,7 +15,7 @@ abstract public class AbstractMathTaskGenerator<T extends MathTask> implements M
      * @param minNumber              минимальное число
      * @param maxNumber              максимальное число
      */
-    protected AbstractMathTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> operations) {
+    protected AbstractMathTaskGenerator(int minNumber, int maxNumber, EnumSet<MathTask.Operation> operations) throws IllegalArgumentException {
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;
         this.operations = operations;
@@ -34,7 +34,7 @@ abstract public class AbstractMathTaskGenerator<T extends MathTask> implements M
         return this.maxNumber;
     }
 
-    public IllegalArgumentException isValid() {
+    public IllegalArgumentException isValid() throws IllegalArgumentException {
         if (getMinNumber() > getMaxNumber()) {
             return new IllegalArgumentException("Min value is greater than Max value");
         }
