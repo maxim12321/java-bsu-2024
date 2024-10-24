@@ -1,5 +1,7 @@
 package by.VeranikaFiliptsova.quizer;
 
+import by.VeranikaFiliptsova.quizer.exceptions.QuizNotFinishedException;
+
 import java.util.Scanner;
 
 public class Quiz {
@@ -8,9 +10,9 @@ public class Quiz {
     int counterOK;
     int counterIncInput;
     Task currentTask;
-    TaskGenerator currentGenerator;
+    TaskGenerator<? extends Task> currentGenerator;
 
-    Quiz(TaskGenerator generator, int taskCount) {
+    Quiz(TaskGenerator<? extends Task> generator, int taskCount) {
         currentTask = generator.generate();
         currentGenerator = generator;
         counter = taskCount;
@@ -63,8 +65,7 @@ public class Quiz {
         if (isFinished()) {
             return 10 * (double) counterOK /(counterOK + counterWrong);
         }
-        //QuizNotFinishedException;
-        return 1;
+        throw new QuizNotFinishedException();
     }
 
     void execute() {

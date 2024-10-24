@@ -1,5 +1,6 @@
 package by.VeranikaFiliptsova.quizer.generators.math;
 
+import by.VeranikaFiliptsova.quizer.exceptions.GeneratorNotValidException;
 import by.VeranikaFiliptsova.quizer.tasks.math.MathTask.Operation;
 import by.VeranikaFiliptsova.quizer.tasks.math.EquationMathTask;
 
@@ -27,10 +28,13 @@ public class EquationMathTaskGenerator extends AbstractMathTaskGenerator<Equatio
      * return задание типа {@link EquationMathTask}
      */
     public EquationMathTask generate() {
-        if ( isNotValid() || maxNumb == 0 && minNumb == 0
+        if ( isNotValid()) {
+            throw new GeneratorNotValidException("Set of allowed operations is empty or minimum value is greater than maximum value");
+        }
+        if (maxNumb == 0 && minNumb == 0
                 && !operationAllowed.contains(Operation.SUM)
                 && !operationAllowed.contains(Operation.DIFF)) {
-            throw new RuntimeException("impossible to generate valid task");
+            throw new GeneratorNotValidException("impossible to generate task without division on 0");
         }
         Random rand = new Random();
         int n1;
@@ -51,21 +55,22 @@ public class EquationMathTaskGenerator extends AbstractMathTaskGenerator<Equatio
                 n1 = randUsual();
             } while (n1 == 0);
             if (n1 > 0) {
-                n2 = n1 * rand.nextInt(maxNumb/n1 + 1);
+                n2 = n1 * ((minNumb + n1 - 1)/n1 + rand.nextInt((maxNumb - minNumb)/n1 + 1));
             } else {
-                n2 = n1 * rand.nextInt(minNumb/n1 + 1);
+                n2 = n1 * ((maxNumb + n1 - 1)/n1 + rand.nextInt((minNumb - maxNumb)/n1 + 1));
             }
 
         } else if (op.equals(Operation.DIV) && !xStart) {
-
             do {
                 n2 = randUsual();
             } while (n2 == 0);
-            if (n2 > 0) {
-                n1 = n2 * (1 + rand.nextInt(maxNumb/n2));
-            } else {
-                n1 = n2 * (1 + rand.nextInt(minNumb/n2));
-            }
+            do {
+                if (n2 > 0) {
+                    n1 = n2 * ((minNumb + n2 - 1)/n2 + rand.nextInt((maxNumb - minNumb)/n2 + 1));
+                } else {
+                    n1 = n2 * ((maxNumb + n2 - 1)/n2 + rand.nextInt((minNumb - maxNumb)/n2 + 1));
+                }
+            } while (n1 == 0);
 
         } else if (op.equals(Operation.DIV)) {
             do {

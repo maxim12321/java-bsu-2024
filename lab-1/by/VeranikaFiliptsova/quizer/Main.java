@@ -4,10 +4,12 @@ import by.VeranikaFiliptsova.quizer.generators.GroupTaskGenerator;
 import by.VeranikaFiliptsova.quizer.generators.PoolTaskGenerator;
 import by.VeranikaFiliptsova.quizer.generators.math.EquationMathTaskGenerator;
 import by.VeranikaFiliptsova.quizer.generators.math.ExpressionMathTaskGenerator;
+import by.VeranikaFiliptsova.quizer.generators.math.TextExpressionMathTaskGenerator;
 import by.VeranikaFiliptsova.quizer.tasks.TextTask;
 import by.VeranikaFiliptsova.quizer.tasks.math.EquationMathTask;
 import by.VeranikaFiliptsova.quizer.tasks.math.ExpressionMathTask;
 import by.VeranikaFiliptsova.quizer.tasks.math.MathTask;
+import by.VeranikaFiliptsova.quizer.tasks.math.TextExpressionMathTask;
 
 import java.util.*;
 
@@ -31,6 +33,16 @@ public class Main {
         GroupTaskGenerator groupGen = new GroupTaskGenerator(eqvGen, exprGen, pool1);
         Quiz test2 = new Quiz(groupGen, 10);
         myQuizMap.put("Test2", test2);
+
+        //test3
+        TextExpressionMathTaskGenerator textExprGen = new TextExpressionMathTaskGenerator(1, 20, operationAllowed);
+        Quiz test3 = new Quiz(textExprGen, 10);
+        myQuizMap.put("Test3", test3);
+
+        //test4
+        ExpressionMathTaskGenerator divGen = new ExpressionMathTaskGenerator(-10, 10, EnumSet.of(MathTask.Operation.DIV));
+        Quiz test4 = new Quiz(divGen, 20);
+        myQuizMap.put("Test4", test4);
         return myQuizMap;
 
     }

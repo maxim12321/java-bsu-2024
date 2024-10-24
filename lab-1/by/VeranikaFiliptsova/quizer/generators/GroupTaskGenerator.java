@@ -2,6 +2,7 @@ package by.VeranikaFiliptsova.quizer.generators;
 
 import by.VeranikaFiliptsova.quizer.Task;
 import by.VeranikaFiliptsova.quizer.TaskGenerator;
+import by.VeranikaFiliptsova.quizer.exceptions.GeneratorNotValidException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +49,6 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
             }
             return task;
         }
-        throw new RuntimeException("impossible to generate valid task for all generators");
+        throw new GeneratorNotValidException("all the generators in group thrown exceptions");
     }
 }
