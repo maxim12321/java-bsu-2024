@@ -2,6 +2,7 @@ package by.DmitryAntashkevich.quizer.generators;
 
 import by.DmitryAntashkevich.quizer.Task;
 import by.DmitryAntashkevich.quizer.TaskGenerator;
+import by.DmitryAntashkevich.quizer.exceptions.GeneratorException;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class GroupTaskGenerator implements TaskGenerator {
                 iterator.remove();
             }
         }
-        throw new RuntimeException("Can't generate test");
+        throw new GeneratorException("Can't generate test");
     }
 
     private final Collection<TaskGenerator> generators;

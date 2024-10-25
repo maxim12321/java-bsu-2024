@@ -13,5 +13,5 @@ public interface MathTaskGenerator extends TaskGenerator {
         return getMaxNumber() - getMaxNumber();
     }
 
-    boolean isValid();
+//    boolean isValid();
 }

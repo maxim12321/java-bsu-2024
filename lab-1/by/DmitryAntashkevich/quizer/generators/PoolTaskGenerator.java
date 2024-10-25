@@ -2,6 +2,7 @@ package by.DmitryAntashkevich.quizer.generators;
 
 import by.DmitryAntashkevich.quizer.Task;
 import by.DmitryAntashkevich.quizer.TaskGenerator;
+import by.DmitryAntashkevich.quizer.exceptions.GeneratorException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +45,7 @@ public class PoolTaskGenerator implements TaskGenerator {
     @Override
     public Task generate() {
         if (tasks.isEmpty()) {
-            throw new RuntimeException("No tasks to choose from");
+            throw new GeneratorException("No tasks to choose from");
         }
         Random random = new Random();
         int index = random.nextInt(tasks.size());

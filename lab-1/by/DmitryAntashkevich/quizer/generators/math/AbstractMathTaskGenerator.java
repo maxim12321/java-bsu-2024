@@ -1,5 +1,6 @@
 package by.DmitryAntashkevich.quizer.generators.math;
 
+import by.DmitryAntashkevich.quizer.exceptions.GeneratorException;
 import by.DmitryAntashkevich.quizer.tasks.math.MathTask.Operation;
 
 import java.util.EnumSet;
@@ -15,13 +16,20 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
         this.maxNumber = maxNumber;
         this.allowedOperations = allowedOperations;
         this.random = new Random();
-        if (!isValid()) {
-            throw new IllegalArgumentException("Invalid generator parameters");
-        }
+        validate();
+//        if (!isValid()) {
+//            throw new IllegalArgumentException("Invalid generator parameters");
+//        }
     }
 
     AbstractMathTaskGenerator(int minNumber, int maxNumber) {
         this(minNumber, maxNumber, EnumSet.allOf(Operation.class));
+    }
+
+    private void validate() {
+        if (allowedOperations.isEmpty()) throw new GeneratorException("No allowed operations");
+        if (minNumber > maxNumber) throw new GeneratorException("Min number is greater than max number");
+        if (minNumber == 0 && maxNumber == 0) throw new GeneratorException("Both min and max numbers equal 0");
     }
 
     @Override

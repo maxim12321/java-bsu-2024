@@ -1,5 +1,7 @@
 package by.DmitryAntashkevich.quizer;
 
+import by.DmitryAntashkevich.quizer.exceptions.QuizNotFinishedException;
+
 /**
  * Class, который описывает один тест
  */
@@ -79,7 +81,7 @@ public class Quiz {
      */
     public double getMark() {
         if (!isFinished()) {
-            throw new RuntimeException("Test is not finished yet");
+            throw new QuizNotFinishedException("Quiz is not finished yet");
         }
         return (double) correctAnswerCount / (double) taskCount;
     }
