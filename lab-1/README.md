@@ -8,48 +8,52 @@
 >Всю работу ведите в пакете `by.<ваш ник>.quizer`
 ## Базовые элементы
 
-### Result
+### by.DmitryAntashkevich.quizer.Result
 ```java
 /**
  * Enum, который описывает результат ответа на задание
  */
-enum Result {
+enum by.DmitryAntashkevich.quizer.Result {
     OK, // Получен правильный ответ
     WRONG, // Получен неправильный ответ
     INCORRECT_INPUT // Некорректный ввод. Например, текст, когда ожидалось число
 }
 ```
 
-### Task
+### by.DmitryAntashkevich.quizer.Task
 
 ```java
+import by.DmitryAntashkevich.quizer.Result;
+
 /**
  * Interface, который описывает одно задание
  */
-interface Task {
+interface by.DmitryAntashkevich.quizer.Task {
     /**
      @return текст задания
      */
     String getText();
-    
+
     /**
      * Проверяет ответ на задание и возвращает результат
      *
      * @param  answer ответ на задание
-     * @return        результат ответа
+     * @return результат ответа
      * @see           Result
      */
     Result validate(String answer);
 }
 ```
 
-### TaskGenerator
+### by.DmitryAntashkevich.quizer.TaskGenerator
 
 ```java
+import by.DmitryAntashkevich.quizer.Task;
+
 /**
  * Interface, который описывает один генератор заданий
  */
-interface TaskGenerator {
+interface by.DmitryAntashkevich.quizer.TaskGenerator {
     /**
      * Возвращает задание. При этом новый объект может не создаваться, если класс задания иммутабельный
      *
@@ -60,20 +64,25 @@ interface TaskGenerator {
 }
 ```
 
-### Quiz
+### by.DmitryAntashkevich.quizer.Quiz
+
 ```java
+import by.DmitryAntashkevich.quizer.Result;
+import by.DmitryAntashkevich.quizer.Task;
+import by.DmitryAntashkevich.quizer.TaskGenerator;
+
 /**
  * Class, который описывает один тест
  */
-class Quiz {
+class by.DmitryAntashkevich.quizer.Quiz {
     /**
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
      */
-    Quiz(TaskGenerator generator, int taskCount) { 
+    by.DmitryAntashkevich.quizer.Quiz(TaskGenerator generator, int taskCount) {
         // ...
     }
-    
+
     /**
      * @return задание, повторный вызов вернет слелующее
      * @see Task
@@ -81,7 +90,7 @@ class Quiz {
     Task nextTask() {
         // ...
     }
-    
+
     /**
      * Предоставить ответ ученика. Если результат {@link Result#INCORRECT_INPUT}, то счетчик неправильных 
      * ответов не увеличивается, а {@link #nextTask()} в следующий раз вернет тот же самый объект {@link Task}.
@@ -89,35 +98,35 @@ class Quiz {
     Result provideAnswer(String answer) {
         // ...
     }
-    
+
     /**
      * @return завершен ли тест
      */
     boolean isFinished() {
         // ...
     }
-    
+
     /**
      * @return количество правильных ответов
      */
     int getCorrectAnswerNumber() {
         // ...
     }
-    
+
     /**
      * @return количество неправильных ответов
      */
     int getWrongAnswerNumber() {
         // ...
     }
-    
+
     /**
      * @return количество раз, когда был предоставлен неправильный ввод
      */
     int getIncorrectInputNumber() {
         // ...
     }
-    
+
     /**
      * @return оценка, которая является отношением количества правильных ответов к количеству всех вопросов. 
      *         Оценка выставляется только в конце!
@@ -131,9 +140,11 @@ class Quiz {
 ## Функция main()
 
 ### getQuizMap
-Этот метод будет использоваться из `main()`, чтобы получить список доступных тестов. Создание всех тестов (`Quiz`) будет захардкожено в этом методе. После реализации разных TaskGenerator’ов (см. ниже), добавьте в этот метод несколько различных тестов.
+Этот метод будет использоваться из `main()`, чтобы получить список доступных тестов. Создание всех тестов (`by.DmitryAntashkevich.quizer.Quiz`) будет захардкожено в этом методе. После реализации разных by.DmitryAntashkevich.quizer.TaskGenerator’ов (см. ниже), добавьте в этот метод несколько различных тестов.
 
 ```java
+import by.DmitryAntashkevich.quizer.Quiz;
+
 /**
  * @return тесты в {@link Map}, где
  * ключ     - название теста {@link String}
@@ -156,21 +167,23 @@ public static void main() {
 	
 #### Описание 
 
-Для начала, получите список всех тестов с помощью статической функции `getQuizMap()` и выведите пользователю сообщение _“Введите название теста...”_. Затем получите объект `Quiz` по этому названию, если он есть, иначе попросите повторить попытку.
+Для начала, получите список всех тестов с помощью статической функции `getQuizMap()` и выведите пользователю сообщение _“Введите название теста...”_. Затем получите объект `by.DmitryAntashkevich.quizer.Quiz` по этому названию, если он есть, иначе попросите повторить попытку.
 
-Пока тест не завершен, опрашивайте ученика (пользуйтесь методами реализованного вами класса `Quiz`). В конце выведите ему его отметку.
+Пока тест не завершен, опрашивайте ученика (пользуйтесь методами реализованного вами класса `by.DmitryAntashkevich.quizer.Quiz`). В конце выведите ему его отметку.
 
-## Реализация Task и TaskGenerator
->Реализации `Task` следует расположить в пакете `tasks`, а реализации `TaskGenerator` в пакете `generators`.
+## Реализация by.DmitryAntashkevich.quizer.Task и by.DmitryAntashkevich.quizer.TaskGenerator
+>Реализации `by.DmitryAntashkevich.quizer.Task` следует расположить в пакете `tasks`, а реализации `by.DmitryAntashkevich.quizer.TaskGenerator` в пакете `generators`.
 	
-`Task` и `TaskGenerator` - интерфейсы, теперь нужно сделать их реализации.
-Все классы `*Task` реализуют интерфейс `Task`, а `*TaskGenerator` - интерфейс `TaskGenerator`.
+`by.DmitryAntashkevich.quizer.Task` и `by.DmitryAntashkevich.quizer.TaskGenerator` - интерфейсы, теперь нужно сделать их реализации.
+Все классы `*by.DmitryAntashkevich.quizer.Task` реализуют интерфейс `by.DmitryAntashkevich.quizer.Task`, а `*by.DmitryAntashkevich.quizer.TaskGenerator` - интерфейс `by.DmitryAntashkevich.quizer.TaskGenerator`.
 
 
-### ExpressionTaskGenerator 
+### by.DmitryAntashkevich.quizer.generators.ExpressionTaskGenerator 
 Генерирует примеры вида `<num1><operator><num2>=<answer>`. Например, `2*5=?`.
 
 ```java
+import by.DmitryAntashkevich.quizer.TaskGenerator;
+
 class ExpressionTaskGenerator implements TaskGenerator {
     /**
      * @param minNumber              минимальное число
@@ -180,17 +193,19 @@ class ExpressionTaskGenerator implements TaskGenerator {
      * @param generateMultiplication разрешить генерацию с оператором *
      * @param generateDivision       разрешить генерацию с оператором /
      */
-    ExpressionTaskGenerator(
-        int minNumber,
-        int maxNumber,
-        boolean generateSum,
-        boolean generateDifference,
-        boolean generateMultiplication,
-        boolean generateDivision
-    ) {
+    by.DmitryAntashkevich.quizer.generators.ExpressionTaskGenerator(
+    int minNumber,
+    int maxNumber,
+    boolean generateSum,
+    boolean generateDifference,
+    boolean generateMultiplication,
+    boolean generateDivision
+    )
+
+    {
         // ...
     }
-    
+
     /**
      * return задание типа {@link ExpressionTask}
      */
@@ -204,6 +219,8 @@ class ExpressionTaskGenerator implements TaskGenerator {
 Генерирует уравнения вида `<num1><operator>x=<answer>` и `x<operator><num2>=<answer>`. Например, `x/2=6`.
 
 ```java
+import by.DmitryAntashkevich.quizer.TaskGenerator;
+
 class EquationTaskGenerator implements TaskGenerator {
     /**
      * @param minNumber              минимальное число
@@ -214,16 +231,16 @@ class EquationTaskGenerator implements TaskGenerator {
      * @param generateDivision       разрешить генерацию с оператором /
      */
     EquationTaskGenerator(
-        int minNumber,
-        int maxNumber,
-        boolean generateSum,
-        boolean generateDifference,
-        boolean generateMultiplication,
-        boolean generateDivision
+            int minNumber,
+            int maxNumber,
+            boolean generateSum,
+            boolean generateDifference,
+            boolean generateMultiplication,
+            boolean generateDivision
     ) {
         // ...
     }
-    
+
     /**
      * return задание типа {@link EquationTask}
      */
@@ -234,9 +251,12 @@ class EquationTaskGenerator implements TaskGenerator {
 ```
 
 ### GroupTaskGenerator 
-`TaskGenerator`, который позволяет объединить несколько других `TaskGenerator`.
+`by.DmitryAntashkevich.quizer.TaskGenerator`, который позволяет объединить несколько других `by.DmitryAntashkevich.quizer.TaskGenerator`.
 
 ```java
+import by.DmitryAntashkevich.quizer.Task;
+import by.DmitryAntashkevich.quizer.TaskGenerator;
+
 class GroupTaskGenerator implements TaskGenerator {
     /**
      * Конструктор с переменным числом аргументов
@@ -268,9 +288,12 @@ class GroupTaskGenerator implements TaskGenerator {
 ```
 
 ### PoolTaskGenerator 
-`TaskGenerator`, который отдает задания из заранее заготовленного набора.
+`by.DmitryAntashkevich.quizer.TaskGenerator`, который отдает задания из заранее заготовленного набора.
 
 ```java
+import by.DmitryAntashkevich.quizer.Task;
+import by.DmitryAntashkevich.quizer.TaskGenerator;
+
 class PoolTaskGenerator implements TaskGenerator {
     /**
      * Конструктор с переменным числом аргументов
@@ -279,8 +302,8 @@ class PoolTaskGenerator implements TaskGenerator {
      * @param tasks          задания, которые в конструктор передаются через запятую
      */
     PoolTaskGenerator(
-        boolean allowDuplicate,
-        Task... tasks
+            boolean allowDuplicate,
+            Task... tasks
     ) {
         // ...
     }
@@ -292,8 +315,8 @@ class PoolTaskGenerator implements TaskGenerator {
      * @param tasks          задания, которые передаются в конструктор в Collection (например, {@link LinkedList})
      */
     PoolTaskGenerator(
-        boolean allowDuplicate,
-        Collection<Task> tasks
+            boolean allowDuplicate,
+            Collection<Task> tasks
     ) {
         // ...
     }
@@ -310,6 +333,8 @@ class PoolTaskGenerator implements TaskGenerator {
 ### TextTask
 
 ```java
+import by.DmitryAntashkevich.quizer.Task;
+
 /**
  * Задание с заранее заготовленным текстом. 
  * Можно использовать {@link PoolTaskGenerator}, чтобы задавать задания такого типа.
@@ -320,12 +345,12 @@ class TextTask implements Task {
      * @param answer ответ на задание
      */
     TextTask(
-        String text,
-        String answer
+            String text,
+            String answer
     ) {
         // ...
     }
-    
+
     // ...
 }
 ```
@@ -333,11 +358,11 @@ class TextTask implements Task {
 ## Добавляем абстракций
 Для всего в этом пункте следует сделать пакет `math` в пакетах `tasks` и `genertors`.
 
-Сейчас `ExpressionTask` и `EquationTask` наследуются напрямую от `Task`. Введем несколько абстракций, чтобы вынести общую логику из этих двух классов.
+Сейчас `ExpressionTask` и `EquationTask` наследуются напрямую от `by.DmitryAntashkevich.quizer.Task`. Введем несколько абстракций, чтобы вынести общую логику из этих двух классов.
 
->Описывывается иерархия для `Task`, такую же нужно повторить для `TaskGenerator`
+>Описывывается иерархия для `by.DmitryAntashkevich.quizer.Task`, такую же нужно повторить для `by.DmitryAntashkevich.quizer.TaskGenerator`
 
-Сделайте интерфейс `MathTask`, который расширяет интерфейс `Task`. Сделайте абстрактный класс `AbstractMathTask`, который реализует интерфейс `MathTask`. Далее сделайте, чтобы классы `ExpressionMathTask` и `EquationMathTask` наследовались от `AbstractMathTask`.
+Сделайте интерфейс `MathTask`, который расширяет интерфейс `by.DmitryAntashkevich.quizer.Task`. Сделайте абстрактный класс `AbstractMathTask`, который реализует интерфейс `MathTask`. Далее сделайте, чтобы классы `ExpressionMathTask` и `EquationMathTask` наследовались от `AbstractMathTask`.
 
 Перенесите обшую логику из `ExpressionMathTask` и `EquationMathTask` в `AbstractMathTask`.
 
@@ -357,17 +382,17 @@ default int getDiffNumber();
 
 ## ★ EnumSet
 
-Сейчас сигнатуры `ExpressionTaskGenerator` и `EquationTaskGenerator` выглядят не очень красиво, приходится передавать туда 4 була для каждого оператора. Сделайте `enum Operation` внутри интерфейса `MathTask` и передавайте в `ExpressionTaskGenerator` и `EquationTaskGenerator` вместо булов `EnumSet`.
+Сейчас сигнатуры `by.DmitryAntashkevich.quizer.generators.ExpressionTaskGenerator` и `EquationTaskGenerator` выглядят не очень красиво, приходится передавать туда 4 була для каждого оператора. Сделайте `enum Operation` внутри интерфейса `MathTask` и передавайте в `by.DmitryAntashkevich.quizer.generators.ExpressionTaskGenerator` и `EquationTaskGenerator` вместо булов `EnumSet`.
 
-## ★★ Generic Task Generators
+## ★★ Generic by.DmitryAntashkevich.quizer.Task Generators
 
-Добавьте параметризацию в интерфейс `TaskGenerator` таким образом, чтобы он генерировал определенный тип задач. Метод `generate` теперь должен возвращать не просто `Task`, а параметр `T`, который этот интерфейс реализует. Понятно, что при этом классы `ExpressionTaskGenerator` и `EquationTaskGenerator` не должны быть дженериками, они всегда возвращают `ExpressionTask` и `EquationTask`, соответственно. А вот над тем, добавлять ли параметризацию в `GroupTaskGenerator` и `PoolTaskGenerator`, предлагается подумать самостоятельно. 
+Добавьте параметризацию в интерфейс `by.DmitryAntashkevich.quizer.TaskGenerator` таким образом, чтобы он генерировал определенный тип задач. Метод `generate` теперь должен возвращать не просто `by.DmitryAntashkevich.quizer.Task`, а параметр `T`, который этот интерфейс реализует. Понятно, что при этом классы `by.DmitryAntashkevich.quizer.generators.ExpressionTaskGenerator` и `EquationTaskGenerator` не должны быть дженериками, они всегда возвращают `ExpressionTask` и `EquationTask`, соответственно. А вот над тем, добавлять ли параметризацию в `GroupTaskGenerator` и `PoolTaskGenerator`, предлагается подумать самостоятельно. 
 
 ## ★ UML
 В каком-нибудь онлайн UML-редакторе (если очень хочется, можно и в пеинте) сделайте схему с участием всех интерфейсов и классов. Это схему нужно приложить в AnyTask к ссылке на github.
 
 ## Добавляем исключения
-Добавьте исключения везде, где это необходимо. Например, когда у `Quiz` вызывается метод `getMark()`, пока тест не завершен или в конструктор `*MathTask` `maxNumber` передается меньше, чем `minNumber` и т.д. В случае некорректных `minNumber`, `maxNumber` уместно использовать `IllegalArgumentException`, для раннего вызова `getMark()` стоит сделать свое исключение, назвать `QuizNotFinishedException`. Все свои исключения стоит создавать в пакете `exceptions`.
+Добавьте исключения везде, где это необходимо. Например, когда у `by.DmitryAntashkevich.quizer.Quiz` вызывается метод `getMark()`, пока тест не завершен или в конструктор `*MathTask` `maxNumber` передается меньше, чем `minNumber` и т.д. В случае некорректных `minNumber`, `maxNumber` уместно использовать `IllegalArgumentException`, для раннего вызова `getMark()` стоит сделать свое исключение, назвать `QuizNotFinishedException`. Все свои исключения стоит создавать в пакете `exceptions`.
 
-## Добавляем тесты (Quiz) и проверяем
-Теперь добавьте в метод `getQuizMap()` тестов (минимум 5) и тщательно протестируйте приложение. Обязательно используйте все созданные классы, постарайтесь придумать свои `TaskGenerator`. Например, который генерирует задания вида _"У **A** было X яблок, он(она) подарил(а) **B** Y яблок. Сколько яблок осталось у **A**?"_.
+## Добавляем тесты (by.DmitryAntashkevich.quizer.Quiz) и проверяем
+Теперь добавьте в метод `getQuizMap()` тестов (минимум 5) и тщательно протестируйте приложение. Обязательно используйте все созданные классы, постарайтесь придумать свои `by.DmitryAntashkevich.quizer.TaskGenerator`. Например, который генерирует задания вида _"У **A** было X яблок, он(она) подарил(а) **B** Y яблок. Сколько яблок осталось у **A**?"_.
