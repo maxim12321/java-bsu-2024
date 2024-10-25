@@ -1,17 +1,17 @@
 package by.DmitryAntashkevich.quizer.generators.math;
 
-import by.DmitryAntashkevich.quizer.tasks.math.ExpressionTask;
+import by.DmitryAntashkevich.quizer.tasks.math.EquationTask;
 import by.DmitryAntashkevich.quizer.tasks.math.MathTask.Operation;
 
 import java.util.EnumSet;
 
-public class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
+public class EquationTaskGenerator extends AbstractMathTaskGenerator {
     /**
      * @param minNumber         минимальное число
      * @param maxNumber         максимальное число
      * @param allowedOperations разрешенные операции (+, -, *, /)
      */
-    public ExpressionTaskGenerator(
+    public EquationTaskGenerator(
             int minNumber,
             int maxNumber,
             EnumSet<Operation> allowedOperations
@@ -23,7 +23,7 @@ public class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
      * @param minNumber минимальное число
      * @param maxNumber максимальное число
      */
-    public ExpressionTaskGenerator(
+    public EquationTaskGenerator(
             int minNumber,
             int maxNumber
     ) {
@@ -35,25 +35,34 @@ public class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
         if (allowedOperations.isEmpty() || minNumber > maxNumber) {
             return false;
         }
-        if (allowedOperations.equals(EnumSet.of(Operation.DIVISION))) {
+        if (allowedOperations.equals(EnumSet.of(Operation.MULTIPLICATION, Operation.DIVISION))) {
             return minNumber != 0 || maxNumber != 0;
         }
         return true;
     }
 
     /**
-     * return задание типа {@link ExpressionTask}
+     * return задание типа {@link EquationTask}
      */
-    public ExpressionTask generate() {
+    public EquationTask generate() {
         Operation operation = generateOperation();
+        boolean isXOnLeft = generateBool();
         for (int i = 0; i < tryCount; i++) {
-            ExpressionTask task = switch (operation) {
-                case ADDITION, SUBTRACTION, MULTIPLICATION ->
-                        new ExpressionTask(generateNumber(), operation, generateNumber());
+            EquationTask task = switch (operation) {
+                case ADDITION, SUBTRACTION ->
+                        new EquationTask(generateNumber(), operation, generateNumber(), isXOnLeft);
+                case MULTIPLICATION -> {
+                    int lhs = generateNonZeroNumber();
+                    int rhs = generateMultiple(lhs);
+                    yield new EquationTask(lhs, operation, rhs, isXOnLeft);
+                }
                 case DIVISION -> {
+                    if (isXOnLeft) {
+                        yield new EquationTask(generateNonZeroNumber(), operation, generateNumber(), true);
+                    }
                     int rhs = generateNonZeroNumber();
                     int lhs = generateMultiple(rhs);
-                    yield new ExpressionTask(lhs, operation, rhs);
+                    yield new EquationTask(lhs, operation, rhs, false);
                 }
             };
             if (task.isValid()) {

@@ -3,20 +3,20 @@ package by.DmitryAntashkevich.quizer.generators;
 import by.DmitryAntashkevich.quizer.Task;
 import by.DmitryAntashkevich.quizer.TaskGenerator;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
+import java.util.LinkedList;
 
-class PoolTaskGenerator implements TaskGenerator {
+public class PoolTaskGenerator implements TaskGenerator {
     /**
      * Конструктор с переменным числом аргументов
      *
      * @param allowDuplicate разрешить повторения
      * @param tasks          задания, которые в конструктор передаются через запятую
      */
-    PoolTaskGenerator(
+    public PoolTaskGenerator(
             boolean allowDuplicate,
             Task... tasks
     ) {
@@ -30,7 +30,7 @@ class PoolTaskGenerator implements TaskGenerator {
      * @param allowDuplicate разрешить повторения
      * @param tasks          задания, которые передаются в конструктор в Collection (например, {@link LinkedList})
      */
-    PoolTaskGenerator(
+    public PoolTaskGenerator(
             boolean allowDuplicate,
             Collection<Task> tasks
     ) {

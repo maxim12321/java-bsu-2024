@@ -59,9 +59,13 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
         return allowedOperations.stream().toList().get(random.nextInt(allowedOperations.size()));
     }
 
+    protected boolean generateBool() {
+        return random.nextInt(2) == 1;
+    }
+
     protected final int minNumber;
     protected final int maxNumber;
     protected final EnumSet<Operation> allowedOperations;
-    protected final Random random;
     protected final int tryCount = 100;
+    private final Random random;
 }

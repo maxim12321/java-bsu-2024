@@ -1,7 +1,7 @@
 package by.DmitryAntashkevich.quizer.tasks.math;
 
 public class EquationTask extends AbstractMathTask {
-    EquationTask(int operand, MathTask.Operation operation, int result, boolean isXOnLeft) {
+    public EquationTask(int operand, MathTask.Operation operation, int result, boolean isXOnLeft) {
         super(operand, operation, result);
         this.isXOnLeft = isXOnLeft;
     }

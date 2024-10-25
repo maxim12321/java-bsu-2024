@@ -2,6 +2,7 @@ package by.DmitryAntashkevich.quizer.tasks;
 
 import by.DmitryAntashkevich.quizer.Result;
 import by.DmitryAntashkevich.quizer.Task;
+import by.DmitryAntashkevich.quizer.generators.PoolTaskGenerator;
 
 /**
  * Задание с заранее заготовленным текстом.
@@ -12,7 +13,7 @@ class TextTask implements Task {
      * @param text   текст задания
      * @param answer ответ на задание
      */
-    TextTask(
+    public TextTask(
             String text,
             String answer
     ) {
