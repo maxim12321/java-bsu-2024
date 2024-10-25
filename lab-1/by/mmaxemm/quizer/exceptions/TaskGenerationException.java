@@ -1,7 +1,7 @@
 package by.mmaxemm.quizer.exceptions;
 
-public class IncorrectGenerationException extends Exception {
-    public IncorrectGenerationException(String message) {
+public class TaskGenerationException extends Exception {
+    public TaskGenerationException(String message) {
         super(message);
     }
 

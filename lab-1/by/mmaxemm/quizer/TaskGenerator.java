@@ -1,6 +1,6 @@
 package by.mmaxemm.quizer;
 
-import by.mmaxemm.quizer.exceptions.IncorrectGenerationException;
+import by.mmaxemm.quizer.exceptions.TaskGenerationException;
 
 public interface TaskGenerator {
     /**
@@ -9,5 +9,5 @@ public interface TaskGenerator {
      * @return задание
      * @see    Task
      */
-    Task generate() throws IncorrectGenerationException;
+    Task generate() throws TaskGenerationException;
 }

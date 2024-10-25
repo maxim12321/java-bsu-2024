@@ -2,7 +2,7 @@ package by.mmaxemm.quizer.generators;
 
 import by.mmaxemm.quizer.Task;
 import by.mmaxemm.quizer.TaskGenerator;
-import by.mmaxemm.quizer.exceptions.IncorrectGenerationException;
+import by.mmaxemm.quizer.exceptions.TaskGenerationException;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -29,7 +29,7 @@ public class GroupTaskGenerator implements TaskGenerator {
      *         Если этот генератор выбросил исключение в методе generate(), выбирается другой.
      *         Если все генераторы выбрасывают исключение, то и тут выбрасывается исключение.
      */
-    public Task generate() throws IncorrectGenerationException {
+    public Task generate() throws TaskGenerationException {
         List<TaskGenerator> genList = new ArrayList<>(Arrays.asList(generators));
         while(!genList.isEmpty()) {
             try {
@@ -38,6 +38,6 @@ public class GroupTaskGenerator implements TaskGenerator {
                 continue;
             }
         }
-        throw new IncorrectGenerationException("All generators failed to generate a task");
+        throw new TaskGenerationException("All generators failed to generate a task");
     }
 }

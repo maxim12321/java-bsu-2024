@@ -2,39 +2,47 @@ package by.mmaxemm.quizer.generators;
 
 import by.mmaxemm.quizer.Task;
 import by.mmaxemm.quizer.TaskGenerator;
+
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
 
 public class PoolTaskGenerator implements TaskGenerator {
-    /**
-     * Конструктор с переменным числом аргументов
-     *
-     * @param allowDuplicate разрешить повторения
-     * @param tasks          задания, которые в конструктор передаются через запятую
-     */
+    boolean allowDuplicate;
+    List<Task> tasks;
+    Random random;
+
     PoolTaskGenerator(
             boolean allowDuplicate,
             Task... tasks
     ) {
-        // ...
+        this.allowDuplicate = allowDuplicate;
+        this.tasks = new ArrayList<>(Arrays.asList(tasks));
     }
 
-    /**
-     * Конструктор, который принимает коллекцию заданий
-     *
-     * @param allowDuplicate разрешить повторения
-     * @param tasks          задания, которые передаются в конструктор в Collection (например, {@link LinkedList})
-     */
     PoolTaskGenerator(
             boolean allowDuplicate,
             Collection<Task> tasks
     ) {
-        // ...
+        this.allowDuplicate = allowDuplicate;
+        this.tasks = new ArrayList<>(tasks);
     }
 
-    /**
-     * @return случайная задача из списка
-     */
     public Task generate() {
-        return null;
+        if(tasks.isEmpty()) {
+            throw new IllegalStateException("No tasks in the pool");
+        }
+        if(!allowDuplicate) {
+            int i = random.nextInt(tasks.size());
+            Task task = tasks.get(i);
+            tasks.remove(i);
+            return task;
+        } else {
+            int i = random.nextInt(tasks.size());
+            Task task = tasks.get(i);
+            return task;
+        }
     }
 }

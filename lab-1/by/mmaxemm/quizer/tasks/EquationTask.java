@@ -23,7 +23,7 @@ public class EquationTask implements Task {
     @Override
     public String getText() {
         //<num1><operator>x=<num2>
-        return num1 + operator + "x=" + num1;
+        return num1 + operator + "x=" + num2;
     }
 
     @Override
