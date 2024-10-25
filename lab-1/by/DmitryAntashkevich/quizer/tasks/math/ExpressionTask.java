@@ -1,7 +1,7 @@
 package by.DmitryAntashkevich.quizer.tasks.math;
 
 public class ExpressionTask extends AbstractMathTask {
-    ExpressionTask(int lhs, MathTask.Operation operation, int rhs) {
+    public ExpressionTask(int lhs, MathTask.Operation operation, int rhs) {
         super(lhs, operation, rhs);
     }
 
@@ -17,6 +17,6 @@ public class ExpressionTask extends AbstractMathTask {
 
     @Override
     public String getText() {
-        return String.valueOf(lhs) + operation.GetSymbol() + String.valueOf(rhs);
+        return toString(lhs) + operation.GetSymbol() + toString(rhs) + "=?";
     }
 }

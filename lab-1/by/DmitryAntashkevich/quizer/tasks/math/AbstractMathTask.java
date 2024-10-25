@@ -21,6 +21,10 @@ public abstract class AbstractMathTask implements MathTask {
         }
     }
 
+    protected String toString(int operand) {
+        return operand >= 0 ? String.valueOf(operand) : "(" + String.valueOf(operand) + ")";
+    }
+
     protected final int lhs;
     protected final int rhs;
     protected final MathTask.Operation operation;

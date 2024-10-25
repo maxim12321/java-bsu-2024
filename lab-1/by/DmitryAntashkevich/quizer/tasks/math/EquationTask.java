@@ -27,8 +27,8 @@ public class EquationTask extends AbstractMathTask {
 
     @Override
     public String getText() {
-        return (isXOnLeft ? "x" + operation.GetSymbol() + String.valueOf(lhs)
-                : String.valueOf(lhs) + operation.GetSymbol() + "x") + "=" + String.valueOf(rhs);
+        return (isXOnLeft ? "x" + operation.GetSymbol() + toString(lhs)
+                : toString(lhs) + operation.GetSymbol() + "x") + "=" + String.valueOf(rhs);
     }
 
     private final boolean isXOnLeft;
