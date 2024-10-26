@@ -94,7 +94,7 @@ public class Quiz {
         if (result[0] + result[1] + result[2] == 0) {
             return 1;
         }
-        return (double)result[0] / ((double)(result[0] + result[1] + result[2]));
+        return 10 * ((double)result[0] / ((double)(result[0] + result[1] + result[2])));
     }
 
 

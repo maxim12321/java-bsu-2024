@@ -6,6 +6,7 @@ import by.Alesia.quizer.generators.ExpressionTaskGenerator;
 import by.Alesia.quizer.generators.GroupTaskGenerator;
 import by.Alesia.quizer.generators.PoolTaskGenerator;
 import by.Alesia.quizer.tasks.TextTask;
+import by.Alesia.quizer.tasks.math.MathTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,11 +21,11 @@ static Map<String, Quiz> getQuizMap() {
     Map<String, Quiz> quizMap = new HashMap<>();
 
 
-    TaskGenerator sumExspressionGenerator = new ExpressionTaskGenerator(12, 100, true, true, false, false);
-    TaskGenerator mulExspressionGenerator = new ExpressionTaskGenerator(1, 500, false, false, true, false);
+    TaskGenerator sumExspressionGenerator = new ExpressionTaskGenerator(0, 100, EnumSet.of(MathTask.Operation.ADD, MathTask.Operation.SUB));
+    TaskGenerator mulExspressionGenerator = new ExpressionTaskGenerator(0, 500, EnumSet.of(MathTask.Operation.MUL, MathTask.Operation.DIV));
 
-    TaskGenerator sumEquationGenerator = new EquationTaskGenerator(12, 100, true, true, false, false);
-    TaskGenerator mulEquationGenerator = new EquationTaskGenerator(1, 100, false, false, false, true);
+    TaskGenerator sumEquationGenerator = new EquationTaskGenerator(0, 500, EnumSet.of(MathTask.Operation.ADD, MathTask.Operation.SUB));
+    TaskGenerator mulEquationGenerator = new EquationTaskGenerator(0, 100, EnumSet.of(MathTask.Operation.MUL, MathTask.Operation.DIV));
 
     quizMap.put("SUM Exsp", new Quiz(sumExspressionGenerator, 10));
     quizMap.put("MUL Exsp", new Quiz(mulExspressionGenerator, 10));
@@ -42,11 +43,15 @@ static Map<String, Quiz> getQuizMap() {
 
     PoolTaskGenerator PoolTest = new PoolTaskGenerator(true, textTask_1, textTask_2, textTask_3, textTask_4, textTask_5,
             textTask_6, textTask_7);
-    quizMap.put("Text tasks", new Quiz(PoolTest, 10));
+    quizMap.put("Text test", new Quiz(PoolTest, 10));
 
 
     GroupTaskGenerator groupGenerator = new GroupTaskGenerator(PoolTest, sumEquationGenerator, sumExspressionGenerator, mulEquationGenerator, mulExspressionGenerator);
     quizMap.put("Group test", new Quiz(groupGenerator, 10));
+
+    GroupTaskGenerator intGenerator = new GroupTaskGenerator(sumEquationGenerator, sumExspressionGenerator, mulEquationGenerator, mulExspressionGenerator);
+
+    quizMap.put("Integer test", new Quiz(intGenerator, 10));
 
     return quizMap;
 }

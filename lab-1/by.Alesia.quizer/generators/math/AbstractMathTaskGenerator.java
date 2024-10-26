@@ -3,6 +3,8 @@ package by.Alesia.quizer.generators.math;
 import by.Alesia.quizer.tasks.ExpressionTask;
 import by.Alesia.quizer.tasks.math.MathTask;
 
+import java.util.EnumSet;
+import java.util.Random;
 import java.util.Vector;
 
 import static by.Alesia.quizer.tasks.math.MathTask.Operation.*;
@@ -10,33 +12,29 @@ import static by.Alesia.quizer.tasks.math.MathTask.Operation.DIV;
 
 abstract public class AbstractMathTaskGenerator<T extends MathTask> implements MathTaskGenerator<T> {
 
-    protected Vector<MathTask.Operation> operations = new Vector<MathTask.Operation>(4);
     protected final int minNum;
     protected final int maxNum;
+    protected final Random random = new Random();
+    protected final EnumSet<MathTask.Operation> operations;
 
-    protected AbstractMathTaskGenerator(boolean add, boolean sub, boolean mul, boolean div, int minNum1, int maxNum1) {
-        if (add) {
-            operations.addElement(ADD);
-        }
-        if (sub) {
-            operations.addElement(SUB);
-        }
-        if (mul) {
-            operations.addElement(MUL);
-        }
-        if (div) {
-            operations.addElement(DIV);
-        }
-        this.minNum = minNum1;
-        this.maxNum = maxNum1;
+    protected AbstractMathTaskGenerator(int minNum, int maxNum, EnumSet<MathTask.Operation> operations) {
+        this.operations = operations;
+        this.minNum = minNum;
+        this.maxNum = maxNum;
+    }
+
+    protected AbstractMathTaskGenerator(int minNumber, int maxNumber) {
+        this(minNumber, maxNumber, EnumSet.allOf(MathTask.Operation.class));
     }
 
     public Integer genNum() {
-        return minNum + (int) ( Math.random() * (maxNum - minNum) );
+        return random.nextInt(minNum, maxNum + 1);
     }
 
     public MathTask.Operation genOperation() {
-        return  operations.get((int) ( Math.random() * operations.size() - 1));
+        return operations.stream()
+                .toList()
+                .get(random.nextInt(operations.size()));
     }
 
     @Override

@@ -2,6 +2,9 @@ package by.Alesia.quizer.generators;
 
 import by.Alesia.quizer.generators.math.AbstractMathTaskGenerator;
 import by.Alesia.quizer.tasks.EquationTask;
+import by.Alesia.quizer.tasks.math.MathTask;
+
+import java.util.EnumSet;
 
 
 public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTask> {
@@ -16,18 +19,23 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTas
     public EquationTaskGenerator(
             int minNumber,
             int maxNumber,
-            boolean generateSum,
-            boolean generateDifference,
-            boolean generateMultiplication,
-            boolean generateDivision
+            EnumSet<MathTask.Operation> operations
     ) {
-        super(generateSum, generateDifference, generateMultiplication, generateDivision, minNumber, maxNumber);
+        super(minNumber, maxNumber, operations);
     }
 
     /**
      * return задание типа {@link EquationTask}
      */
     public EquationTask generate() {
-        return new EquationTask(genNum(), genNum(), genOperation());
+        MathTask.Operation operation = genOperation();
+        int a = genNum();
+        int b = genNum();
+        if (operation == MathTask.Operation.MUL) {
+            while (b == 0 || ((a / b) * b != a)) {
+                b = genNum();
+            }
+        }
+        return new EquationTask(b, a, operation);
     }
 }

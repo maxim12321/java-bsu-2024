@@ -1,9 +1,6 @@
 package by.Alesia.quizer.tasks.math;
 
 import by.Alesia.quizer.Task;
-import by.Alesia.quizer.exceptions.DivisionByZero;
-
-import java.util.Vector;
 
 public interface MathTask extends Task {
     boolean IsValid();
@@ -15,7 +12,7 @@ public interface MathTask extends Task {
         DIV("/");
 
         Operation(String s) {
-            symbol =  s;
+            symbol = s;
         }
 
 
@@ -33,12 +30,7 @@ public interface MathTask extends Task {
                 case ADD -> a + b;
                 case SUB -> a - b;
                 case MUL -> a * b;
-                case DIV -> {
-                    if (b == 0) {
-                        throw new DivisionByZero("Division by zero is prohibited");
-                    }
-                    yield a / b;
-                }
+                case DIV -> a / b;
             };
         }
 
@@ -46,6 +38,6 @@ public interface MathTask extends Task {
             return symbol;
         }
 
-        private final String symbol;
+        final String symbol;
     }
 }

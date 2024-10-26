@@ -4,7 +4,7 @@ import by.Alesia.quizer.tasks.math.AbstractMathTask;
 
 public class EquationTask extends AbstractMathTask {
     public EquationTask(int a, int b, Operation operation) {
-        super(operation, a, b); // x+a=b
+        super(operation, a, b);
     }
 
 
