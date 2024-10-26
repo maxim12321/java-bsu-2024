@@ -63,7 +63,7 @@ public class Quiz {
 
     double getMark() {
         if (isFinished()) {
-            return 10 * (double) counterOK /(counterOK + counterWrong);
+            return 10 * (double) getCorrectAnswerNumber() /(getCorrectAnswerNumber() + getWrongAnswerNumber());
         }
         throw new QuizNotFinishedException();
     }

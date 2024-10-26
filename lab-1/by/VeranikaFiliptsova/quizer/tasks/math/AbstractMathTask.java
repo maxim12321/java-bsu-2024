@@ -12,7 +12,6 @@ abstract public class AbstractMathTask implements MathTask{
         num1 = n1;
         num2 = n2;
         operation = op;
-        //rightAnswer = calculate();
     }
 
     @Override
@@ -33,7 +32,6 @@ abstract public class AbstractMathTask implements MathTask{
         if (answerInt == rightAnswer) {
             return Result.OK;
         }
-        //System.out.println("правильный ответ был" + rightAnswer +";  n1 = "+num1+";  n2 = "+num2 );
         return Result.WRONG;
     }
 
