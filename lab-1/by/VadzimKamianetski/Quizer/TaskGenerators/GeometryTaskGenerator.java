@@ -28,7 +28,7 @@ public class GeometryTaskGenerator implements TaskGenerator<GeometryTask> {
         Integer secondNumber = rand.nextInt(minNumber, maxNumber + 1);
         Integer answer = 42;
         String text = "Something went wrong";
-        switch ((int) (Math.random() * 4)) {
+        switch (rand.nextInt(4)) {
             case 0:
                 text = "Найдите площадь прямоугольника со сторонами " + firstNumber.toString() + " и " + secondNumber.toString();
                 answer = firstNumber * secondNumber;

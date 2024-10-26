@@ -1,6 +1,6 @@
 package by.VadzimKamianetski.Quizer.TaskGenerators.Math;
 
-import by.VadzimKamianetski.Quizer.Operation;
+import by.VadzimKamianetski.Quizer.TaskGenerators.Operation;
 import by.VadzimKamianetski.Quizer.TaskGenerators.TaskGenerator;
 import by.VadzimKamianetski.Quizer.Tasks.Math.MathTask;
 

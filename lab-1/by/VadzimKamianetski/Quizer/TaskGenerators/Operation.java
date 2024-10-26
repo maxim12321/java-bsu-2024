@@ -1,4 +1,4 @@
-package by.VadzimKamianetski.Quizer;
+package by.VadzimKamianetski.Quizer.TaskGenerators;
 
 public enum Operation {
     GENERATESUM('+'), // разрешить генерацию с оператором +

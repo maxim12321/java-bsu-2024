@@ -49,14 +49,14 @@ public class Quiz {
         Result result = task.validate(answer);
         lastInput = true;
         switch (result) {
-            case Result.OK:
+            case OK:
                 correctCount++;
                 break;
-            case Result.WRONG:
+            case WRONG:
                 incorrectCount++;
                 break;
 
-            case Result.INCORRECT_INPUT:
+            case INCORRECT_INPUT:
                 incorrectInputCount++;
                 lastInput = false;
                 break;    

@@ -2,6 +2,7 @@ package by.VadzimKamianetski.Quizer;
 
 import by.VadzimKamianetski.Quizer.TaskGenerators.GeometryTaskGenerator;
 import by.VadzimKamianetski.Quizer.TaskGenerators.GroupTaskGenerator;
+import by.VadzimKamianetski.Quizer.TaskGenerators.Operation;
 import by.VadzimKamianetski.Quizer.TaskGenerators.PoolTaskGenerator;
 import by.VadzimKamianetski.Quizer.TaskGenerators.Math.EquationTaskGenerator;
 import by.VadzimKamianetski.Quizer.TaskGenerators.Math.ExpressionTaskGenerator;

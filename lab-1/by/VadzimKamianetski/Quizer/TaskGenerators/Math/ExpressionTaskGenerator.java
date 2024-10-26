@@ -1,7 +1,8 @@
 package by.VadzimKamianetski.Quizer.TaskGenerators.Math;
 
 import java.util.EnumSet;
-import by.VadzimKamianetski.Quizer.Operation;
+
+import by.VadzimKamianetski.Quizer.TaskGenerators.Operation;
 import by.VadzimKamianetski.Quizer.Tasks.Math.ExpressionTask;
 
 public class ExpressionTaskGenerator extends AbstractMathTaskGenerator<ExpressionTask> {
@@ -17,16 +18,16 @@ public class ExpressionTaskGenerator extends AbstractMathTaskGenerator<Expressio
         Operation operation = getByRandomOperation();
         Integer answer = 42;
         switch (operation) {
-            case Operation.GENERATESUM: 
+            case GENERATESUM: 
                 answer = (firstNumber + secondNumber);
                 break;
-            case Operation.GENERATEDIFFERENCE: 
+            case GENERATEDIFFERENCE: 
                 answer = (firstNumber - secondNumber);
                 break;
-            case Operation.GENERATEMULTIPLICATION: 
+            case GENERATEMULTIPLICATION: 
                 answer = (firstNumber * secondNumber);
                 break;
-            case Operation.GENERATEDIVISION: 
+            case GENERATEDIVISION: 
                 while (secondNumber == 0) {
                     secondNumber = Random();
                 }

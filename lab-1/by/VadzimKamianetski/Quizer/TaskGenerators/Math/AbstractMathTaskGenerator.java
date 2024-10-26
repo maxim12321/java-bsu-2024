@@ -3,7 +3,7 @@ package by.VadzimKamianetski.Quizer.TaskGenerators.Math;
 import java.util.EnumSet;
 import java.util.Random;
 
-import by.VadzimKamianetski.Quizer.Operation;
+import by.VadzimKamianetski.Quizer.TaskGenerators.Operation;
 import by.VadzimKamianetski.Quizer.Tasks.Math.MathTask;
 
 public abstract class AbstractMathTaskGenerator<T extends MathTask> implements MathTaskGenerator<T> {

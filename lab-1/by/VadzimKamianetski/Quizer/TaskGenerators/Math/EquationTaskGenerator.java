@@ -2,7 +2,7 @@ package by.VadzimKamianetski.Quizer.TaskGenerators.Math;
 
 import java.util.EnumSet;
 
-import by.VadzimKamianetski.Quizer.Operation;
+import by.VadzimKamianetski.Quizer.TaskGenerators.Operation;
 import by.VadzimKamianetski.Quizer.Tasks.Math.EquationTask;
 
 public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTask> {
@@ -26,23 +26,23 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTas
             default -> Position.RIGHT;  
         }; 
         switch (operation) {
-            case Operation.GENERATESUM:
+            case GENERATESUM:
                 answer = -firstNumber + secondNumber; 
                 break;
-            case Operation.GENERATEDIFFERENCE: 
+            case GENERATEDIFFERENCE: 
                 if (position == Position.LEFT) {
                     answer = firstNumber + secondNumber;
                 } else {
                     answer = firstNumber - secondNumber;
                 }
                 break;
-            case Operation.GENERATEMULTIPLICATION:
+            case GENERATEMULTIPLICATION:
                 while (firstNumber == 0) {
                     firstNumber = Random();
                 }
                 answer = secondNumber / firstNumber;
                 break;
-            case Operation.GENERATEDIVISION: 
+            case GENERATEDIVISION: 
                 while (firstNumber == 0) {
                     firstNumber = Random();
                 }
@@ -59,8 +59,8 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTas
             default:
         }
         String text = switch(position) {
-            case Position.LEFT -> "x" + operation.getSymbol() + Brackets(firstNumber);
-            case Position.RIGHT -> firstNumber.toString() + operation.getSymbol() + "x";
+            case LEFT -> "x" + operation.getSymbol() + Brackets(firstNumber);
+            case RIGHT -> firstNumber.toString() + operation.getSymbol() + "x";
         } + "=" + secondNumber.toString();
         
         
