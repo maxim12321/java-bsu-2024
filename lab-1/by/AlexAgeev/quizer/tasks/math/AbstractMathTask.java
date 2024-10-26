@@ -1,7 +1,5 @@
 package by.AlexAgeev.quizer.tasks.math;
 
-import by.AlexAgeev.quizer.Result;
-
 public abstract class AbstractMathTask implements MathTask {
 
     public AbstractMathTask(int x_pos, int first_num, int second_num, Operators operation) {
@@ -37,7 +35,7 @@ public abstract class AbstractMathTask implements MathTask {
             }
         }
         return answer;
-    };
+    }
 
 
 
