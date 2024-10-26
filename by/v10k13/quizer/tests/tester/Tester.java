@@ -2,8 +2,10 @@ package by.v10k13.quizer.tests.tester;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Consumer;
 
 public class Tester {
@@ -36,6 +38,17 @@ public class Tester {
         }
     }
 
+    private void PrintResult_() {
+        var cl = (Mists_ == 0) ? GREEN : RED;
+        System.out.print(YELLOW + "Group ");
+        System.out.print(cl + (cl == GREEN ? "completed!" : "failed!   "));
+        System.out.print(YELLOW + " [");
+        System.out.print(cl + (Tests_ - Mists_));
+        System.out.print(YELLOW + "/");
+        System.out.print(cl + Tests_);
+        System.out.println(YELLOW + "]");
+    }
+
     public void RunTestGroup(TestGroup group, String name) {
         Tests_ = 0;
         Mists_ = 0;
@@ -47,10 +60,7 @@ public class Tester {
             PrintException(ex, " ");
             System.out.print(RESET);
         }
-        if (Mists_ == 0)
-            System.out.println(YELLOW + "Group " + GREEN + "completed!" + RESET);
-        else
-            System.out.println(YELLOW + "Group completed with " + RED + (Tests_ - Mists_) + YELLOW + " correct tests from " + GREEN + (Tests_) + RESET);
+        PrintResult_();
     }
 
     public void Assert(boolean value) {
@@ -109,6 +119,7 @@ public class Tester {
                 .filter(a->Modifier.isStatic(a.getModifiers()))
                 .filter(a->a.getParameterCount() == 1)
                 .filter(a->a.getParameterTypes()[0].equals(Tester.class))
+                .sorted(Comparator.comparing(Method::getName))
                 .toList();
 
         var arg = new Object[1];
