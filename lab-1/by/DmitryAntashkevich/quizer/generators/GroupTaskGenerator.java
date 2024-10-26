@@ -41,7 +41,7 @@ public class GroupTaskGenerator implements TaskGenerator {
         while (!generators.isEmpty()) {
             var iterator = generators.iterator();
             int index = random.nextInt(generators.size());
-            for (; index >= 0; index--) {
+            for (; index > 0; index--) {
                 iterator.next();
             }
             var generator = iterator.next();

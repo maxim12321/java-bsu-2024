@@ -8,7 +8,7 @@ import by.DmitryAntashkevich.quizer.generators.PoolTaskGenerator;
  * Задание с заранее заготовленным текстом.
  * Можно использовать {@link PoolTaskGenerator}, чтобы задавать задания такого типа.
  */
-class TextTask implements Task {
+public class TextTask implements Task {
     /**
      * @param text   текст задания
      * @param answer ответ на задание

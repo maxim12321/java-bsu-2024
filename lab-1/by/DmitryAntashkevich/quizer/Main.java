@@ -1,8 +1,11 @@
 package by.DmitryAntashkevich.quizer;
 
+import by.DmitryAntashkevich.quizer.generators.GroupTaskGenerator;
+import by.DmitryAntashkevich.quizer.generators.PoolTaskGenerator;
 import by.DmitryAntashkevich.quizer.generators.math.EquationTaskGenerator;
 import by.DmitryAntashkevich.quizer.generators.math.ExpressionTaskGenerator;
 import by.DmitryAntashkevich.quizer.tasks.math.MathTask.Operation;
+import by.DmitryAntashkevich.quizer.tasks.*;
 
 import java.util.*;
 
@@ -25,6 +28,24 @@ public class Main {
         quizMap.put("advanced expr", new Quiz(advancedExpressionGenerator, 10));
         quizMap.put("simple eq", new Quiz(simpleEquationGenerator, 5));
         quizMap.put("advanced eq", new Quiz(advancedEquationGenerator, 10));
+
+        // Text tasks and pool generators
+        Task textTask1 = new TextTask("Какой ответ на главный вопрос жизни, вселенной и вообще?", "42");
+        Task textTask2 = new TextTask("Кто создал язык программирования c++?", "Бьёрн Страуструп");
+        Task textTask3 = new TextTask("Как совмещать уник, шад и личную жизнь?", "Никак");
+
+        TaskGenerator poolGenerator = new PoolTaskGenerator(true, textTask1, textTask2, textTask3);
+
+        quizMap.put("pool crush", new Quiz(new PoolTaskGenerator(false, textTask1, textTask2, textTask3), 5));
+        quizMap.put("pool no dup", new Quiz(new PoolTaskGenerator(false, textTask1, textTask2, textTask3), 3));
+        quizMap.put("pool with dup", new Quiz(poolGenerator, 5));
+
+        // Group generators
+        TaskGenerator groupCrushGenerator = new GroupTaskGenerator(new PoolTaskGenerator(false, textTask1, textTask2, textTask3), new PoolTaskGenerator(false, textTask1, textTask2, textTask3));
+        TaskGenerator allInOneGenerator = new GroupTaskGenerator(simpleEquationGenerator, advancedEquationGenerator, simpleExpressionGenerator, advancedExpressionGenerator, poolGenerator);
+
+        quizMap.put("group crush", new Quiz(groupCrushGenerator, 7));
+        quizMap.put("all in one", new Quiz(allInOneGenerator, 9));
 
         return quizMap;
     }
@@ -51,7 +72,7 @@ public class Main {
         while (!quiz.isFinished()) {
             Task task = quiz.nextTask();
             System.out.println(task.getText());
-            final String answer = in.next();
+            final String answer = in.nextLine();
             System.out.println(switch (quiz.provideAnswer(answer)) {
                 case OK -> "Верный ответ!";
                 case WRONG -> "Неверный ответ!";
