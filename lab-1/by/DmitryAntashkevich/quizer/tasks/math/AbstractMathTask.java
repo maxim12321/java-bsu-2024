@@ -7,9 +7,6 @@ public abstract class AbstractMathTask implements MathTask {
         this.lhs = lhs;
         this.rhs = rhs;
         this.operation = operation;
-        if (!isValid()) {
-            throw new IllegalArgumentException("Invalid task statement");
-        }
     }
 
     @Override

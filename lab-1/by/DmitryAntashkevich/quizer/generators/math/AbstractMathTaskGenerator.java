@@ -1,6 +1,6 @@
 package by.DmitryAntashkevich.quizer.generators.math;
 
-import by.DmitryAntashkevich.quizer.exceptions.GeneratorException;
+import by.DmitryAntashkevich.quizer.exceptions.InvalidTaskException;
 import by.DmitryAntashkevich.quizer.tasks.math.MathTask.Operation;
 
 import java.util.EnumSet;
@@ -17,9 +17,6 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
         this.allowedOperations = allowedOperations;
         this.random = new Random();
         validate();
-//        if (!isValid()) {
-//            throw new IllegalArgumentException("Invalid generator parameters");
-//        }
     }
 
     AbstractMathTaskGenerator(int minNumber, int maxNumber) {
@@ -27,9 +24,9 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
     }
 
     private void validate() {
-        if (allowedOperations.isEmpty()) throw new GeneratorException("No allowed operations");
-        if (minNumber > maxNumber) throw new GeneratorException("Min number is greater than max number");
-        if (minNumber == 0 && maxNumber == 0) throw new GeneratorException("Both min and max numbers equal 0");
+        if (allowedOperations.isEmpty()) throw new InvalidTaskException("No allowed operations");
+        if (minNumber > maxNumber) throw new InvalidTaskException("Min number is greater than max number");
+        if (minNumber == 0 && maxNumber == 0) throw new InvalidTaskException("Both min and max numbers equal 0");
     }
 
     @Override
@@ -58,9 +55,24 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
     }
 
     protected int generateMultiple(int divider) {
+        divider = Math.abs(divider);
         int min = minNumber / divider;
         int max = maxNumber / divider;
         return random.nextInt(min, max + 1) * divider;
+    }
+
+    protected int generateNonZeroMultiple(int divider) {
+        divider = Math.abs(divider);
+        int min = minNumber / divider;
+        int max = maxNumber / divider;
+        if (max < 0 || min > 0) {
+            return generateMultiple(divider);
+        }
+        int result = random.nextInt(min, max);
+        if (result >= 0) {
+            result++;
+        }
+        return result * divider;
     }
 
     protected Operation generateOperation() {
@@ -74,6 +86,5 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
     protected final int minNumber;
     protected final int maxNumber;
     protected final EnumSet<Operation> allowedOperations;
-    protected final int tryCount = 100;
     private final Random random;
 }

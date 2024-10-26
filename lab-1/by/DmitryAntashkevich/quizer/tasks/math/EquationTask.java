@@ -1,18 +1,21 @@
 package by.DmitryAntashkevich.quizer.tasks.math;
 
+import by.DmitryAntashkevich.quizer.exceptions.InvalidTaskException;
+
 public class EquationTask extends AbstractMathTask {
     public EquationTask(int operand, MathTask.Operation operation, int result, boolean isXOnLeft) {
         super(operand, operation, result);
         this.isXOnLeft = isXOnLeft;
+        validate();
     }
 
-    @Override
-    public boolean isValid() {
-        return switch (operation) {
-            case MULTIPLICATION -> lhs != 0;
-            case DIVISION -> !(lhs == 0 || (!isXOnLeft && lhs % rhs != 0));
-            default -> true;
-        };
+    public void validate() {
+        if (lhs == 0) {
+            throw new InvalidTaskException("lhs = 0");
+        }
+        if (operation.equals(Operation.DIVISION) && !isXOnLeft && lhs % rhs != 0) {
+            throw new InvalidTaskException(String.format("The equation is " + getText() + String.format(", but %d mod %d != 0", lhs, rhs)));
+        }
     }
 
     @Override

@@ -10,7 +10,7 @@ public interface MathTaskGenerator extends TaskGenerator {
      * @return разница между максимальным и минимальным возможным числом
      */
     default int getDiffNumber() {
-        return getMaxNumber() - getMaxNumber();
+        return getMaxNumber() - getMinNumber();
     }
 
 //    boolean isValid();

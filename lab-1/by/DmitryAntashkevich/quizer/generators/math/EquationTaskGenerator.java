@@ -1,6 +1,5 @@
 package by.DmitryAntashkevich.quizer.generators.math;
 
-import by.DmitryAntashkevich.quizer.exceptions.GeneratorException;
 import by.DmitryAntashkevich.quizer.tasks.math.EquationTask;
 import by.DmitryAntashkevich.quizer.tasks.math.MathTask.Operation;
 
@@ -31,45 +30,27 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator {
         super(minNumber, maxNumber);
     }
 
-//    @Override
-//    public boolean isValid() {
-//        if (allowedOperations.isEmpty() || minNumber > maxNumber) {
-//            return false;
-//        }
-//        if (allowedOperations.equals(EnumSet.of(Operation.MULTIPLICATION, Operation.DIVISION))) {
-//            return minNumber != 0 || maxNumber != 0;
-//        }
-//        return true;
-//    }
-
     /**
      * return задание типа {@link EquationTask}
      */
     public EquationTask generate() {
         Operation operation = generateOperation();
         boolean isXOnLeft = generateBool();
-        for (int i = 0; i < tryCount; i++) {
-            EquationTask task = switch (operation) {
-                case ADDITION, SUBTRACTION ->
-                        new EquationTask(generateNumber(), operation, generateNumber(), isXOnLeft);
-                case MULTIPLICATION -> {
-                    int lhs = generateNonZeroNumber();
-                    int rhs = generateMultiple(lhs);
-                    yield new EquationTask(lhs, operation, rhs, isXOnLeft);
-                }
-                case DIVISION -> {
-                    if (isXOnLeft) {
-                        yield new EquationTask(generateNonZeroNumber(), operation, generateNumber(), true);
-                    }
-                    int rhs = generateNonZeroNumber();
-                    int lhs = generateMultiple(rhs);
-                    yield new EquationTask(lhs, operation, rhs, false);
-                }
-            };
-            if (task.isValid()) {
-                return task;
+        return switch (operation) {
+            case ADDITION, SUBTRACTION -> new EquationTask(generateNumber(), operation, generateNumber(), isXOnLeft);
+            case MULTIPLICATION -> {
+                int lhs = generateNonZeroNumber();
+                int rhs = generateMultiple(lhs);
+                yield new EquationTask(lhs, operation, rhs, isXOnLeft);
             }
-        }
-        throw new GeneratorException("Failed to generate a task");
+            case DIVISION -> {
+                if (isXOnLeft) {
+                    yield new EquationTask(generateNonZeroNumber(), operation, generateNumber(), true);
+                }
+                int rhs = generateNonZeroNumber();
+                int lhs = generateNonZeroMultiple(rhs);
+                yield new EquationTask(lhs, operation, rhs, false);
+            }
+        };
     }
 }

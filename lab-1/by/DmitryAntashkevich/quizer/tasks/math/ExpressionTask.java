@@ -1,13 +1,23 @@
 package by.DmitryAntashkevich.quizer.tasks.math;
 
+import by.DmitryAntashkevich.quizer.exceptions.InvalidTaskException;
+
 public class ExpressionTask extends AbstractMathTask {
     public ExpressionTask(int lhs, MathTask.Operation operation, int rhs) {
         super(lhs, operation, rhs);
+        validate();
     }
 
-    @Override
-    public boolean isValid() {
-        return operation != Operation.DIVISION || (rhs != 0 && lhs % rhs == 0);
+    public void validate() {
+        if (!operation.equals(Operation.DIVISION)) {
+            return;
+        }
+        if (rhs == 0) {
+            throw new InvalidTaskException("rhs = 0");
+        }
+        if (lhs % rhs != 0) {
+            throw new InvalidTaskException("The Expression is " + getText() + String.format(", but %d mod %d != 0", lhs, rhs));
+        }
     }
 
     @Override

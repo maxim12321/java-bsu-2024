@@ -28,6 +28,5 @@ public interface MathTask extends Task {
         }
     }
 
-    boolean isValid();
     int getAnswer();
 }
