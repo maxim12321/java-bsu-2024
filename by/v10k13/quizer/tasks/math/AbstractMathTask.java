@@ -24,7 +24,7 @@ public abstract class AbstractMathTask extends AbstractTask implements MathTask 
                 return new AMTaskConfig(0, 1E-300, true);
             if (a % 1 == 0)
                 return new AMTaskConfig(a, 0.3, false);
-            return new AMTaskConfig(a, Math.pow(10, Math.floor(Math.log10(a))) * relativePrecision, true);
+            return new AMTaskConfig(a, Math.pow(10, Math.ceil(Math.log10(a))) * relativePrecision, true);
         }
     }
 
@@ -52,5 +52,13 @@ public abstract class AbstractMathTask extends AbstractTask implements MathTask 
         catch (NumberFormatException a) {
             return  Result.INCORRECT_INPUT;
         }
+    }
+
+    public double Precision() {
+        return Precision;
+    }
+
+    public double Answer() {
+        return Value;
     }
 }

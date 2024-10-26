@@ -1,5 +1,8 @@
 package by.v10k13.quizer;
 
+import by.v10k13.quizer.exceptions.RunOutOfTasksException;
+import by.v10k13.quizer.exceptions.TestNotFinishedYetException;
+
 /**
  * Class, который описывает один тест
  */
@@ -60,7 +63,7 @@ public class Quiz {
      */
     public Task nextTask() {
         if (isFinished())
-            throw new RuntimeException("No tasks left on this quiz.");
+            throw new RunOutOfTasksException();
 
         if (!InputMistakeOccurred_())
             GenerateNextTask_();
@@ -76,7 +79,7 @@ public class Quiz {
      */
     public Task.Result provideAnswer(String answer) {
         if (LastTask_ == null)
-            throw new RuntimeException("No tusk where provided.");
+            throw new RunOutOfTasksException();
 
         return UpdateTaskForResultOf_(LastTask_.validate(answer));
     }
@@ -117,7 +120,7 @@ public class Quiz {
      */
     public double getMark() {
         if (!isFinished())
-            throw new RuntimeException("Test not finished yet.");
+            throw new TestNotFinishedYetException();
 
         double res = CorrectAnswers_;
         res /= TotalTasksCount_;
