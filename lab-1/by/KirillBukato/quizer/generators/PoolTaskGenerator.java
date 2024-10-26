@@ -6,16 +6,18 @@ import by.KirillBukato.quizer.exceptions.PoolGeneratorRanOutException;
 
 import java.util.*;
 
-public class PoolTaskGenerator implements TaskGenerator<Task> {
+public class PoolTaskGenerator<T extends Task> implements TaskGenerator<T> {
     /**
      * Конструктор с переменным числом аргументов
      *
      * @param allowDuplicate разрешить повторения
      * @param tasks          задания, которые в конструктор передаются через запятую
      */
+
+    @SafeVarargs
     public PoolTaskGenerator(
             boolean allowDuplicate,
-            Task... tasks
+            T... tasks
     ) {
         this.allowDuplicate = allowDuplicate;
         this.tasks = new ArrayList<>(Arrays.asList(tasks));
@@ -29,7 +31,7 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
      */
     public PoolTaskGenerator(
             boolean allowDuplicate,
-            Collection<Task> tasks
+            Collection<T> tasks
     ) {
         this.allowDuplicate = allowDuplicate;
         this.tasks = new ArrayList<>(tasks);
@@ -39,13 +41,13 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
      * @return случайная задача из списка
      */
     @Override
-    public Task generate() throws PoolGeneratorRanOutException {
+    public T generate() throws PoolGeneratorRanOutException {
         if (tasks.isEmpty()) {
             throw new PoolGeneratorRanOutException("Pool Task Generator has no tasks left.");
         }
         Random random = new Random();
         int index = random.nextInt(tasks.size());
-        Task task = tasks.get(index);
+        T task = tasks.get(index);
         if (!allowDuplicate) {
             tasks.remove(index);
         }
@@ -53,5 +55,5 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
     }
 
     private final boolean allowDuplicate;
-    private final ArrayList<Task> tasks;
+    private final ArrayList<T> tasks;
 }

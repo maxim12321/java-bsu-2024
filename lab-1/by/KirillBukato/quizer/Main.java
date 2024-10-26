@@ -48,14 +48,14 @@ public class Main {
                 ), 5
         ));
         map.put("Pool with duplicates", new Quiz(
-                new PoolTaskGenerator(
+                new PoolTaskGenerator<>(
                         true,
                         new TextTask("Как зовут Олега?", "Олег"),
                         new TextTask("Как зовут Виктора?", "Виктор")
                 ), 3
         ));
         map.put("Pool without duplicates, fail", new Quiz(
-                new PoolTaskGenerator(
+                new PoolTaskGenerator<>(
                         false,
                         new TextTask("Как зовут Олега?", "Олег"),
                         new TextTask("Как зовут Родиона?", "Родион"),
@@ -65,27 +65,27 @@ public class Main {
                 ), 5
         ));
         map.put("Pool without duplicates, no fail", new Quiz(
-                new PoolTaskGenerator(
+                new PoolTaskGenerator<>(
                         false,
                         new TextTask("Как зовут Олега?", "Олег"),
                         new TextTask("Как зовут Виктора?", "Виктор")
                 ), 2
         ));
         map.put("Group, fail", new Quiz(
-                new GroupTaskGenerator(
-                        new PoolTaskGenerator(
+                new GroupTaskGenerator<>(
+                        new PoolTaskGenerator<>(
                                 false,
                                 new TextTask("Как зовут Олега?", "Олег"),
                                 new TextTask("Как зовут Виктора?", "Виктор")),
-                        new PoolTaskGenerator(
+                        new PoolTaskGenerator<>(
                                 false,
                                 new TextTask("Как зовут Диму?", "Дима"),
                                 new TextTask("Как зовут Вадима?", "Вадим"))
                 ), 5
         ));
         map.put("Group, no fail", new Quiz(
-                new GroupTaskGenerator(
-                        new PoolTaskGenerator(
+                new GroupTaskGenerator<>(
+                        new PoolTaskGenerator<>(
                                 false,
                                 new TextTask("Как зовут Олега?", "Олег"),
                                 new TextTask("Как зовут Виктора?", "Виктор")),
