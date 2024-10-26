@@ -1,7 +1,5 @@
 package by.VadzimKamianetski.Quizer.TaskGenerators.Math;
 
-import java.util.Random;
-
 import by.VadzimKamianetski.Quizer.Operation;
 import by.VadzimKamianetski.Quizer.TaskGenerators.TaskGenerator;
 import by.VadzimKamianetski.Quizer.Tasks.Math.MathTask;
@@ -15,7 +13,9 @@ public interface MathTaskGenerator<T extends MathTask> extends TaskGenerator<T> 
 
     String Brackets(Integer num);
     
-    Integer divisionRandom(Random rand, Integer num);
+    Integer divisionRandom(Integer num);
+
+    Integer Random();
 
     /**
      * @return разница между максимальным и минимальным возможным числом

@@ -1,6 +1,5 @@
 package by.VadzimKamianetski.Quizer.TaskGenerators.Math;
 
-import java.util.Random;
 import java.util.EnumSet;
 
 import by.VadzimKamianetski.Quizer.Operation;
@@ -18,9 +17,8 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTas
 
     @Override
     public EquationTask generate() {
-        Random rand = new Random();
-        Integer firstNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
-        Integer secondNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
+        Integer firstNumber = Random();
+        Integer secondNumber = Random();
         Operation operation = getByRandomOperation();
         Integer answer = 42;
         Position position = switch(rand.nextInt(2)) {
@@ -40,21 +38,21 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTas
                 break;
             case Operation.GENERATEMULTIPLICATION:
                 while (firstNumber == 0) {
-                    firstNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
+                    firstNumber = Random();
                 }
                 answer = secondNumber / firstNumber;
                 break;
             case Operation.GENERATEDIVISION: 
                 while (firstNumber == 0) {
-                    firstNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
+                    firstNumber = Random();
                 }
                 if (position == Position.LEFT) {
                     answer = firstNumber * secondNumber;
                 } else {
                     while (secondNumber == 0) {
-                        secondNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
+                        secondNumber = Random();
                     }
-                    firstNumber = divisionRandom(rand, secondNumber);
+                    firstNumber = divisionRandom(secondNumber);
                     answer = firstNumber / secondNumber;
                 }
                 break;

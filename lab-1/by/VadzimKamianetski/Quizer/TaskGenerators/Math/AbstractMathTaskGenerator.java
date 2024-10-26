@@ -9,7 +9,12 @@ import by.VadzimKamianetski.Quizer.Tasks.Math.MathTask;
 public abstract class AbstractMathTaskGenerator<T extends MathTask> implements MathTaskGenerator<T> {
 
     @Override
-    public Integer divisionRandom(Random rand, Integer num) {
+    public Integer Random() {
+        return rand.nextInt(minNumber, maxNumber + 1);
+    }
+
+    @Override
+    public Integer divisionRandom(Integer num) {
         if (num > 0) {
             return num * rand.nextInt(maxNumber/num + 1);
         }
@@ -24,6 +29,7 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
         return num.toString();
     }
 
+    final protected Random rand = new Random();
     protected int minNumber;
     protected int maxNumber;
     private EnumSet<Operation> availableOperations;
@@ -50,10 +56,10 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
         if (availableOperations == null || availableOperations.isEmpty()) {
             throw new IllegalArgumentException("The availableOperations cannot be empty.");
         }
-        int randomIndex = new Random().nextInt(availableOperations.size());
+        // int randomIndex = new Random().nextInt(availableOperations.size());
         int i = 0;
         for (Operation element : availableOperations) {
-            if (i == randomIndex) {
+            if (i == rand.nextInt(availableOperations.size())) {
                 return element;
             }
             i++;

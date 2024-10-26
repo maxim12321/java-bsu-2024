@@ -1,5 +1,7 @@
 package by.VadzimKamianetski.Quizer.TaskGenerators;
 
+import java.util.Random;
+
 import by.VadzimKamianetski.Quizer.Tasks.Math.GeometryTask;
 
 public class GeometryTaskGenerator implements TaskGenerator<GeometryTask> {
@@ -21,8 +23,9 @@ public class GeometryTaskGenerator implements TaskGenerator<GeometryTask> {
     
     @Override
     public GeometryTask generate() {
-        Integer firstNumber = (int) (Math.random() * (maxNumber - minNumber + 1) + minNumber);
-        Integer secondNumber = (int) (Math.random() * (maxNumber - minNumber + 1) + minNumber);
+        Random rand = new Random();
+        Integer firstNumber = rand.nextInt(minNumber, maxNumber + 1);
+        Integer secondNumber = rand.nextInt(minNumber, maxNumber + 1);
         Integer answer = 42;
         String text = "Something went wrong";
         switch ((int) (Math.random() * 4)) {
@@ -39,7 +42,7 @@ public class GeometryTaskGenerator implements TaskGenerator<GeometryTask> {
                 answer = firstNumber * firstNumber * 3;
                 break;        
             case 3:
-                Integer thirdNumber = (int) (Math.random() * (maxNumber - minNumber + 1) + minNumber);      
+                Integer thirdNumber = rand.nextInt(minNumber, maxNumber + 1);      
                 text = "Найдите удвоенную площадь трапеции с основаниями " + firstNumber.toString() + " и " + secondNumber.toString() + ". Высота равна " + thirdNumber.toString();
                 answer = (firstNumber + secondNumber) * thirdNumber;
                 break;

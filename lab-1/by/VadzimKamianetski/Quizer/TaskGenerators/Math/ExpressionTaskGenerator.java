@@ -1,8 +1,6 @@
 package by.VadzimKamianetski.Quizer.TaskGenerators.Math;
 
 import java.util.EnumSet;
-import java.util.Random;
-
 import by.VadzimKamianetski.Quizer.Operation;
 import by.VadzimKamianetski.Quizer.Tasks.Math.ExpressionTask;
 
@@ -14,9 +12,8 @@ public class ExpressionTaskGenerator extends AbstractMathTaskGenerator<Expressio
 
     @Override
     public ExpressionTask generate() {
-        Random rand = new Random();
-        Integer firstNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
-        Integer secondNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
+        Integer firstNumber = Random();
+        Integer secondNumber = Random();
         Operation operation = getByRandomOperation();
         Integer answer = 42;
         switch (operation) {
@@ -31,9 +28,9 @@ public class ExpressionTaskGenerator extends AbstractMathTaskGenerator<Expressio
                 break;
             case Operation.GENERATEDIVISION: 
                 while (secondNumber == 0) {
-                    secondNumber = rand.nextInt(maxNumber - minNumber + 1) + minNumber;
+                    secondNumber = Random();
                 }
-                firstNumber = divisionRandom(rand, secondNumber);
+                firstNumber = divisionRandom(secondNumber);
                 answer = (firstNumber / secondNumber);
                 break;          
             default:
