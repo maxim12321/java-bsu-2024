@@ -1,5 +1,6 @@
 package by.v10k13.quizer.tests;
 
+import by.v10k13.quizer.Quiz;
 import by.v10k13.quizer.Task;
 import by.v10k13.quizer.generators.math.AbstractMathTaskGenerator;
 import by.v10k13.quizer.generators.math.ExpressionTaskGenerator;
@@ -13,18 +14,6 @@ import java.util.EnumSet;
 import java.util.Scanner;
 
 public class TestMain {
-
-    public static class IncorrectAnswerException extends RuntimeException {
-        IncorrectAnswerException() {
-            super("Received incorrect answer.");
-        }
-    }
-
-    public static class IncorrectBehaviorException extends RuntimeException {
-        IncorrectBehaviorException() {
-            super("Found incorrect behavior.");
-        }
-    }
 
     @TestableGroup(Name="Math task validator test.")
     public static void MTTest(Tester tester_) {
@@ -52,6 +41,28 @@ public class TestMain {
             var task = new TextTask("How are you?", "OK");
             tester.Assert(task.validate("OK") == Task.Result.OK);
             tester.Assert(task.validate("BAD") == Task.Result.WRONG);
+        });
+    }
+
+    @TestableGroup(Name="Quiz tasks receive test.")
+    public static void QTest(Tester tester_) {
+        var q = new Quiz(
+                new ExpressionTaskGenerator(
+                        new AbstractMathTaskGenerator.MathTaskGeneratorConfig(
+                                1,
+                                10,
+                                EnumSet.of(MathTask.Operators.DevOp,
+                                        MathTask.Operators.MulOp
+                                ))),
+                10);
+        tester_.RunTest(tester->{
+            for (int i = 0; i < 10; i++) {
+                tester.AssertNoExceptions(() -> {
+                    q.nextTask();
+                });
+                q.provideAnswer("1");
+            }
+            tester.Assert(q.isFinished());
         });
     }
 

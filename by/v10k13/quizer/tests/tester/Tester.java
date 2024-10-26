@@ -58,6 +58,14 @@ public class Tester {
             throw new TestAssertionFailureException();
     }
 
+    public void AssertNoExceptions(Runnable code) {
+        try {
+            code.run();
+        } catch (RuntimeException ex) {
+            throw new TestBehaviorFailureException(ex);
+        }
+    }
+
     /**
      *
      * @param code Code with waited Exception
