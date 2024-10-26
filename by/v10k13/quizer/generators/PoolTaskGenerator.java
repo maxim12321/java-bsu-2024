@@ -8,11 +8,7 @@ import java.util.*;
 
 public class PoolTaskGenerator implements TaskGenerator<Task> {
 
-    private Iterator<Task> Iterator_;
-
-    private void InitDuplicated_(Collection<Task> src) {
-
-    }
+    private final Iterator<Task> Iterator_;
 
     /**
      * Конструктор с переменным числом аргументов
@@ -28,7 +24,7 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
         if (allowDuplicate)
             Tasks_ = new ArrayList<>(Arrays.stream(tasks).toList());
         else
-            Tasks_ = new HashSet<Task>(Arrays.stream(tasks).toList());
+            Tasks_ = new HashSet<>(Arrays.stream(tasks).toList());
         Iterator_ = Tasks_.iterator();
     }
 
@@ -47,7 +43,7 @@ public class PoolTaskGenerator implements TaskGenerator<Task> {
         if (allowDuplicate)
             Tasks_ = new ArrayList<>(tasks);
         else
-            Tasks_ = new HashSet<Task>(tasks);
+            Tasks_ = new HashSet<>(tasks);
 
         Iterator_ = Tasks_.iterator();
     }

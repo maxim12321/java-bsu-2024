@@ -11,7 +11,7 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
     protected final Random Random_ = new Random();
     private final EnumSet<MathTask.Operators> Ops_;
 
-    public static record MathTaskGeneratorConfig(int Min, int Max, EnumSet<MathTask.Operators> Ops){};
+    public record MathTaskGeneratorConfig(int Min, int Max, EnumSet<MathTask.Operators> Ops){}
 
     public AbstractMathTaskGenerator(int min, int max, EnumSet<MathTask.Operators> ops) {
         Min_ = min;
@@ -37,12 +37,11 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
 
     protected MathTask.Operators GetNextOperator_() {
         int operator = Math.abs(Random_.nextInt()) % Ops_.size();
-        return Ops_.stream().skip(operator).findFirst().get();
+        return Ops_.stream().skip(operator).findFirst().get(); // Absolutely always correct! FCK WARNINGS
     }
 
     protected double GetNextRoundedRangedNumber_() {
         double r_bound = getDiff();
-        double res = Math.round(Random_.nextDouble(r_bound) + getMinimum());
-        return res;
+        return (double) Math.round(Random_.nextDouble(r_bound) + getMinimum());
     }
 }

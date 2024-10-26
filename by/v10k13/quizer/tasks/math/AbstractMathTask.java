@@ -37,7 +37,7 @@ public abstract class AbstractMathTask extends AbstractTask implements MathTask 
 
     @Override
     public Result validate(String answer) {
-        String val = convertToParseble(answer, IsFloating);
+        String val = convertToParsable(answer, IsFloating);
         if (val == null)
             return Result.INCORRECT_INPUT;
 
@@ -52,13 +52,5 @@ public abstract class AbstractMathTask extends AbstractTask implements MathTask 
         catch (NumberFormatException a) {
             return  Result.INCORRECT_INPUT;
         }
-    }
-
-    public double Precision() {
-        return Precision;
-    }
-
-    public double Answer() {
-        return Value;
     }
 }

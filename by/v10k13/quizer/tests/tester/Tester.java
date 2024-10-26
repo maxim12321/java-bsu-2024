@@ -1,12 +1,10 @@
 package by.v10k13.quizer.tests.tester;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.function.Consumer;
 
 public class Tester {
     private static final String RED = "\033[0;31m";
@@ -41,7 +39,7 @@ public class Tester {
     private void PrintResult_() {
         var cl = (Mists_ == 0) ? GREEN : RED;
         System.out.print(YELLOW + "Group ");
-        System.out.print(cl + (cl == GREEN ? "completed!" : "failed!   "));
+        System.out.print(cl + (cl == GREEN ? "completed!" : "failed!   ")); // FCK WARNINGS
         System.out.print(YELLOW + " [");
         System.out.print(cl + (Tests_ - Mists_));
         System.out.print(YELLOW + "/");
@@ -121,9 +119,6 @@ public class Tester {
                 .filter(a->a.getParameterTypes()[0].equals(Tester.class))
                 .sorted(Comparator.comparing(Method::getName))
                 .toList();
-
-        var arg = new Object[1];
-        arg[0] = tester;
 
         for (var method : m_list) {
             var gr = method.getAnnotation(TestableGroup.class);

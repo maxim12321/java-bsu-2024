@@ -12,7 +12,7 @@ public class Quiz {
     private int CorrectAnswers_      = 0;
     private int InputMistakes_       = 0;
 
-    private final TaskGenerator Generator_;
+    private final TaskGenerator<?> Generator_;
     private Task LastTask_           = null;
 
 
@@ -44,12 +44,11 @@ public class Quiz {
     }
 
 
-
     /**
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
      */
-    public Quiz(TaskGenerator generator, int taskCount) {
+    public Quiz(TaskGenerator<?> generator, int taskCount) {
         Generator_ = generator;
         TotalTasksCount_ = taskCount;
         RemainingTasks_ = taskCount;

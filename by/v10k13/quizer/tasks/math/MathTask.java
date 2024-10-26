@@ -2,12 +2,11 @@ package by.v10k13.quizer.tasks.math;
 
 import by.v10k13.quizer.Task;
 
-import java.security.KeyPair;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public interface MathTask extends Task {
-    default String convertToParseble(String answer, boolean floating) {
+    default String convertToParsable(String answer, boolean floating) {
         answer = answer.strip();
         if (!floating && answer.contains("."))
             return null;
@@ -20,7 +19,7 @@ public interface MathTask extends Task {
         return answer;
     }
 
-    public enum Operators {
+    enum Operators {
         SumOp('+') {
             @Override
             public double Function(double a, double b) {
