@@ -2,6 +2,8 @@ package by.KirillBukato.quizer;
 
 import by.KirillBukato.quizer.exceptions.QuizFinishedException;
 import by.KirillBukato.quizer.exceptions.QuizNotFinishedException;
+import by.KirillBukato.quizer.generators.TaskGenerator;
+import by.KirillBukato.quizer.tasks.Task;
 
 /**
  * Class, который описывает один тест

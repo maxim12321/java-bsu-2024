@@ -1,4 +1,6 @@
-package by.KirillBukato.quizer;
+package by.KirillBukato.quizer.tasks;
+
+import by.KirillBukato.quizer.Result;
 
 /**
  * Interface, который описывает одно задание

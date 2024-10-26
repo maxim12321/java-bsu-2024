@@ -1,4 +1,6 @@
-package by.KirillBukato.quizer;
+package by.KirillBukato.quizer.generators;
+
+import by.KirillBukato.quizer.tasks.Task;
 
 /**
  * Interface, который описывает один генератор заданий

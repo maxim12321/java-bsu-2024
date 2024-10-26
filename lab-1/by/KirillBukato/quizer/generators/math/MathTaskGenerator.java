@@ -1,6 +1,6 @@
 package by.KirillBukato.quizer.generators.math;
 
-import by.KirillBukato.quizer.TaskGenerator;
+import by.KirillBukato.quizer.generators.TaskGenerator;
 import by.KirillBukato.quizer.tasks.math.MathTask;
 
 /**

@@ -1,7 +1,6 @@
 package by.KirillBukato.quizer.generators;
 
-import by.KirillBukato.quizer.Task;
-import by.KirillBukato.quizer.TaskGenerator;
+import by.KirillBukato.quizer.tasks.Task;
 import by.KirillBukato.quizer.exceptions.InvalidGeneratorException;
 
 import java.util.*;

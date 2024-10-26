@@ -1,7 +1,6 @@
 package by.KirillBukato.quizer.tasks;
 
 import by.KirillBukato.quizer.Result;
-import by.KirillBukato.quizer.Task;
 
 public interface VariantTask extends Task {
 
