@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/ubbwd/java-bsu-2024/lab-1</OriginalElement>
+  <nodes>
+    <node x="-137.0" y="122.5">by.AlexAgeev.quizer.TaskGenerator</node>
+    <node x="-188.0" y="542.5">by.AlexAgeev.quizer.generators.math.ExpressionTaskGenerator</node>
+    <node x="171.0" y="-17.5">by.AlexAgeev.quizer.Task</node>
+    <node x="-180.5" y="262.5">by.AlexAgeev.quizer.generators.math.MathTaskGenerator</node>
+    <node x="987.5" y="262.5">by.AlexAgeev.quizer.tasks.math.AbstractMathTask</node>
+    <node x="530.5" y="35.5">by.AlexAgeev.quizer.exceptions.NoGeneratorsAvailableException</node>
+    <node x="322.0" y="542.5">by.AlexAgeev.quizer.generators.math.EquationTaskGenerator</node>
+    <node x="-407.5" y="262.5">by.AlexAgeev.quizer.Main</node>
+    <node x="921.0" y="35.5">by.AlexAgeev.quizer.exceptions.MinIsBiggerThanMaxException</node>
+    <node x="114.5" y="262.5">by.AlexAgeev.quizer.generators.GroupTaskGenerator</node>
+    <node x="307.0" y="-17.5">by.AlexAgeev.quizer.Result</node>
+    <node x="343.0" y="122.5">by.AlexAgeev.quizer.tasks.math.MathTask</node>
+    <node x="921.0" y="-17.5">by.AlexAgeev.quizer.exceptions.QuizNotFinishedException</node>
+    <node x="-140.0" y="402.5">by.AlexAgeev.quizer.generators.math.AbstractMathTaskGenerator</node>
+    <node x="422.5" y="262.5">by.AlexAgeev.quizer.generators.PoolTaskGenerator</node>
+    <node x="737.0" y="402.5">by.AlexAgeev.quizer.tasks.math.ExpressionTask</node>
+    <node x="1009.5" y="387.5">by.AlexAgeev.quizer.tasks.math.EquationTask</node>
+    <node x="530.5" y="-17.5">by.AlexAgeev.quizer.exceptions.AllGeneratorsFailedException</node>
+    <node x="1.0" y="-17.5">by.AlexAgeev.quizer.Quiz</node>
+    <node x="149.5" y="122.5">by.AlexAgeev.quizer.tasks.TextTask</node>
+    <node x="702.0" y="262.5">by.AlexAgeev.quizer.generators.TextTaskGenerator</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="by.AlexAgeev.quizer.generators.math.EquationTaskGenerator" target="by.AlexAgeev.quizer.generators.math.MathTaskGenerator" relationship="REALIZATION">
+      <point x="71.5" y="-17.5" />
+      <point x="536.5" y="500.0" />
+      <point x="205.0" y="500.0" />
+      <point x="205.0" y="380.0" />
+      <point x="-55.0" y="380.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.generators.GroupTaskGenerator" target="by.AlexAgeev.quizer.TaskGenerator" relationship="REALIZATION">
+      <point x="0.0" y="-17.5" />
+      <point x="245.0" y="240.0" />
+      <point x="545.0" y="240.0" />
+      <point x="545.0" y="180.0" />
+      <point x="46.0" y="180.0" />
+      <point x="61.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.tasks.math.ExpressionTask" target="by.AlexAgeev.quizer.tasks.math.AbstractMathTask" relationship="GENERALIZATION">
+      <point x="0.0" y="-17.5" />
+      <point x="842.5" y="367.0" />
+      <point x="961.0" y="367.0" />
+      <point x="961.0" y="307.0" />
+      <point x="1105.0" y="307.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.generators.TextTaskGenerator" target="by.AlexAgeev.quizer.TaskGenerator" relationship="REALIZATION">
+      <point x="0.0" y="-17.5" />
+      <point x="825.0" y="240.0" />
+      <point x="545.0" y="240.0" />
+      <point x="545.0" y="180.0" />
+      <point x="46.0" y="180.0" />
+      <point x="61.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.generators.math.AbstractMathTaskGenerator" target="by.AlexAgeev.quizer.generators.math.MathTaskGenerator" relationship="REALIZATION">
+      <point x="0.0" y="-17.5" />
+      <point x="25.0" y="380.0" />
+      <point x="-55.0" y="380.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.tasks.TextTask" target="by.AlexAgeev.quizer.Task" relationship="REALIZATION">
+      <point x="0.0" y="-17.5" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.tasks.math.MathTask" target="by.AlexAgeev.quizer.Task" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-17.5" />
+      <point x="421.0" y="100.0" />
+      <point x="261.0" y="100.0" />
+      <point x="36.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.generators.math.MathTaskGenerator" target="by.AlexAgeev.quizer.TaskGenerator" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-17.5" />
+      <point x="-55.0" y="240.0" />
+      <point x="-76.0" y="240.0" />
+      <point x="-61.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.generators.PoolTaskGenerator" target="by.AlexAgeev.quizer.TaskGenerator" relationship="REALIZATION">
+      <point x="0.0" y="-17.5" />
+      <point x="545.0" y="180.0" />
+      <point x="46.0" y="180.0" />
+      <point x="61.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.tasks.math.AbstractMathTask" target="by.AlexAgeev.quizer.tasks.math.MathTask" relationship="REALIZATION">
+      <point x="0.0" y="-17.5" />
+      <point x="1105.0" y="220.0" />
+      <point x="421.0" y="220.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.TaskGenerator" target="by.AlexAgeev.quizer.Task" relationship="DEPENDENCY">
+      <point x="0.0" y="-17.5" />
+      <point x="-15.0" y="100.0" />
+      <point x="189.0" y="100.0" />
+      <point x="-36.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.generators.math.ExpressionTaskGenerator" target="by.AlexAgeev.quizer.generators.math.AbstractMathTaskGenerator" relationship="GENERALIZATION">
+      <point x="76.5" y="-17.5" />
+      <point x="41.5" y="520.0" />
+      <point x="45.0" y="520.0" />
+      <point x="45.0" y="460.0" />
+      <point x="25.0" y="460.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.generators.math.EquationTaskGenerator" target="by.AlexAgeev.quizer.generators.math.AbstractMathTaskGenerator" relationship="GENERALIZATION">
+      <point x="-71.5" y="-17.5" />
+      <point x="393.5" y="520.0" />
+      <point x="45.0" y="520.0" />
+      <point x="45.0" y="460.0" />
+      <point x="25.0" y="460.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.tasks.math.EquationTask" target="by.AlexAgeev.quizer.tasks.math.AbstractMathTask" relationship="GENERALIZATION">
+      <point x="0.0" y="-17.5" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="by.AlexAgeev.quizer.generators.math.ExpressionTaskGenerator" target="by.AlexAgeev.quizer.generators.math.MathTaskGenerator" relationship="REALIZATION">
+      <point x="-76.5" y="-17.5" />
+      <point x="-111.5" y="520.0" />
+      <point x="-155.0" y="520.0" />
+      <point x="-155.0" y="380.0" />
+      <point x="-55.0" y="380.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="517.5" y="280.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
