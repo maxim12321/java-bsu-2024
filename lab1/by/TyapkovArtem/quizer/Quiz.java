@@ -54,6 +54,7 @@ public class Quiz {
         return a;
     }
 
+
     /**
      * @return завершен ли тест
      */
