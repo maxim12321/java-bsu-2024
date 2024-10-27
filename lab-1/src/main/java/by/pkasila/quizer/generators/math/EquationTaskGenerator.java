@@ -22,7 +22,7 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTas
     public void validateGenerator() throws BadGeneratorException {
         super.validateGenerator();
         if (hasDivisionAndMultiplication() && getMinNumber() == 0 && getMaxNumber() == 0) {
-            throw new BadGeneratorException("Always division by zero");
+            throw new BadGeneratorException("always division by zero");
         }
     }
 

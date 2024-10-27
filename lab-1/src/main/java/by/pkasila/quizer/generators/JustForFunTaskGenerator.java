@@ -18,7 +18,7 @@ public class JustForFunTaskGenerator extends AbstractExpressionTaskGenerator<Jus
         super(minNumber, maxNumber, operationSet);
         this.storySet = new ArrayList<>(storySet);
         if (storySet.isEmpty()) {
-            throw new BadGeneratorException("Fun must not be empty");
+            throw new BadGeneratorException("fun must not be empty");
         }
     }
 

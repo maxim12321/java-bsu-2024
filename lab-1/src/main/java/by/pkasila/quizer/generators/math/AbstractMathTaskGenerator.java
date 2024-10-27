@@ -32,7 +32,7 @@ public abstract class AbstractMathTaskGenerator<T extends MathTask> implements M
 
     public void validateGenerator() throws BadGeneratorException {
         if (getMinNumber() > getMaxNumber()) {
-            throw new BadGeneratorException("Min value is greater than Max value");
+            throw new BadGeneratorException("min is greater than max value");
         }
     }
 

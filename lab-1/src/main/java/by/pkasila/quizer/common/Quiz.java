@@ -35,7 +35,7 @@ public class Quiz {
      */
     public Task nextTask() throws FinishedQuizException {
         if (this.isFinished()) {
-            throw new FinishedQuizException("You can't request next task.");
+            throw new FinishedQuizException("you cannot request next task");
         }
 
         if (this.currentTask == null) {
@@ -109,10 +109,12 @@ public class Quiz {
      */
     public double getMark() {
         if (!this.isFinished()) {
-            throw new UnfinishedQuizException("Quiz cannot get result yet.");
+            throw new UnfinishedQuizException("cannot get result yet");
         }
 
-        if (getCorrectAnswerNumber() + getWrongAnswerNumber() == 0) return 1;
+        if (getCorrectAnswerNumber() + getWrongAnswerNumber() == 0) {
+            return 1;
+        }
         return ((double) getCorrectAnswerNumber()) / (getCorrectAnswerNumber() + getWrongAnswerNumber());
     }
 }

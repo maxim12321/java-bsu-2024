@@ -21,7 +21,7 @@ public class VariantExpressionTaskGenerator extends AbstractExpressionTaskGenera
     public void validateGenerator() throws BadGeneratorException {
         super.validateGenerator();
         if (getDiffNumber() < 3) {
-            throw new BadGeneratorException("Task will always have repeating variants");
+            throw new BadGeneratorException("always repeating variants");
         }
     }
 

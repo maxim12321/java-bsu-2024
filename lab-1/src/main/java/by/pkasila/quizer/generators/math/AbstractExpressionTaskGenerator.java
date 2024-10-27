@@ -21,7 +21,7 @@ public abstract class AbstractExpressionTaskGenerator<T extends AbstractExpressi
     public void validateGenerator() throws BadGeneratorException {
         super.validateGenerator();
         if (hasDivision() && getMinNumber() == 0 && getMaxNumber() == 0) {
-            throw new BadGeneratorException("Always division by zero");
+            throw new BadGeneratorException("always division by zero");
         }
     }
 }
