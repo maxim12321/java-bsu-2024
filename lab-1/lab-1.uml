@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/dilik/Programming/Java/Test3/java-bsu-2024/lab-1</OriginalElement>
+  <nodes>
+    <node x="186.5" y="918.5">by.AlbertRadoshko.quizer.exceptions.InvalidTaskException</node>
+    <node x="-152.0" y="1394.0">by.AlbertRadoshko.quizer.Result</node>
+    <node x="204.0" y="1726.0">by.AlbertRadoshko.quizer.generators.math.EquationTaskGenerator</node>
+    <node x="768.0" y="-14.0">by.AlbertRadoshko.quizer.Task</node>
+    <node x="637.0" y="1726.0">by.AlbertRadoshko.quizer.generators.math.ExpressionTaskGenerator</node>
+    <node x="861.0" y="398.5">by.AlbertRadoshko.quizer.TaskGenerator</node>
+    <node x="337.0" y="178.5">by.AlbertRadoshko.quizer.tasks.math.MathTask</node>
+    <node x="-95.5" y="1653.5">by.AlbertRadoshko.quizer.Quiz</node>
+    <node x="461.5" y="894.5">by.AlbertRadoshko.quizer.generators.math.MathTaskGenerator</node>
+    <node x="176.5" y="349.5">by.AlbertRadoshko.quizer.tasks.math.MathTask.Operation</node>
+    <node x="1200.5" y="1701.0">by.AlbertRadoshko.quizer.tasks.TextTask</node>
+    <node x="49.5" y="1973.5">by.AlbertRadoshko.quizer.Main</node>
+    <node x="1188.5" y="398.5">by.AlbertRadoshko.quizer.exceptions.GeneratorException</node>
+    <node x="366.0" y="1381.5">by.AlbertRadoshko.quizer.tasks.math.ExpressionTask</node>
+    <node x="689.0" y="1345.0">by.AlbertRadoshko.quizer.generators.math.AbstractMathTaskGenerator</node>
+    <node x="-2.0" y="601.0">by.AlbertRadoshko.quizer.tasks.math.AbstractMathTask</node>
+    <node x="666.5" y="674.0">by.AlbertRadoshko.quizer.generators.PoolTaskGenerator</node>
+    <node x="1057.5" y="894.0">by.AlbertRadoshko.quizer.generators.GroupTaskGenerator</node>
+    <node x="-34.0" y="1181.5">by.AlbertRadoshko.quizer.tasks.math.EquationTask</node>
+    <node x="-131.5" y="2118.5">by.AlbertRadoshko.quizer.exceptions.QuizNotFinishedException</node>
+    <node x="-135.5" y="894.0">by.AlbertRadoshko.quizer.tasks.math.EquationTask.EquationType</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="by.AlbertRadoshko.quizer.tasks.math.EquationTask" target="by.AlbertRadoshko.quizer.tasks.math.EquationTask.EquationType" relationship="TO_ONE">
+      <point x="-43.75" y="-68.5" />
+      <point x="97.25" y="1150.0" />
+      <point x="39.25" y="1150.0" />
+      <point x="58.25" y="56.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.tasks.math.AbstractMathTask" target="by.AlbertRadoshko.quizer.tasks.math.MathTask" relationship="REALIZATION">
+      <point x="71.5" y="-129.0" />
+      <point x="212.5" y="570.0" />
+      <point x="401.0" y="570.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.PoolTaskGenerator" target="by.AlbertRadoshko.quizer.TaskGenerator" relationship="REALIZATION">
+      <point x="87.25" y="-56.0" />
+      <point x="928.25" y="650.0" />
+      <point x="961.0" y="650.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.Main" target="by.AlbertRadoshko.quizer.tasks.TextTask" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="161.0" y="1910.0" />
+      <point x="1301.0" y="1910.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.math.EquationTaskGenerator" target="by.AlbertRadoshko.quizer.tasks.math.EquationTask" relationship="CREATE">
+      <point x="-98.5" y="-44.0" />
+      <point x="302.5" y="1670.0" />
+      <point x="341.0" y="1670.0" />
+      <point x="341.0" y="1150.0" />
+      <point x="272.25" y="1150.0" />
+      <point x="131.25" y="-68.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.PoolTaskGenerator" target="by.AlbertRadoshko.quizer.Task" relationship="TO_MANY">
+      <point x="-87.25" y="-56.0" />
+      <point x="753.75" y="630.0" />
+      <point x="841.0" y="630.0" />
+      <point x="841.0" y="110.0" />
+      <point x="837.75" y="110.0" />
+      <point x="-23.25" y="44.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.math.MathTaskGenerator" target="by.AlbertRadoshko.quizer.TaskGenerator" relationship="INTERFACE_GENERALIZATION">
+      <point x="59.75" y="-55.5" />
+      <point x="640.75" y="650.0" />
+      <point x="894.3333333333333" y="650.0" />
+      <point x="-66.66666666666666" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.Main" target="by.AlbertRadoshko.quizer.generators.math.EquationTaskGenerator" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="161.0" y="1690.0" />
+      <point x="302.5" y="1690.0" />
+      <point x="-98.5" y="-44.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.math.EquationTaskGenerator" target="by.AlbertRadoshko.quizer.generators.math.AbstractMathTaskGenerator" relationship="GENERALIZATION">
+      <point x="98.5" y="-44.0" />
+      <point x="499.5" y="1670.0" />
+      <point x="901.0" y="1670.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.math.AbstractMathTaskGenerator" target="by.AlbertRadoshko.quizer.tasks.math.MathTask" relationship="DEPENDENCY">
+      <point x="-106.0" y="-105.0" />
+      <point x="795.0" y="1090.0" />
+      <point x="441.0" y="1090.0" />
+      <point x="441.0" y="270.0" />
+      <point x="443.66666666666663" y="270.0" />
+      <point x="42.66666666666667" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.math.ExpressionTaskGenerator" target="by.AlbertRadoshko.quizer.generators.math.AbstractMathTaskGenerator" relationship="GENERALIZATION">
+      <point x="102.0" y="-44.0" />
+      <point x="943.0" y="1670.0" />
+      <point x="901.0" y="1670.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.Main" target="by.AlbertRadoshko.quizer.generators.GroupTaskGenerator" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="161.0" y="1910.0" />
+      <point x="1181.0" y="1910.0" />
+      <point x="1181.0" y="1030.0" />
+      <point x="1041.0" y="1030.0" />
+      <point x="1041.0" y="630.0" />
+      <point x="1363.3333333333333" y="630.0" />
+      <point x="122.33333333333334" y="-56.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.math.AbstractMathTaskGenerator" target="by.AlbertRadoshko.quizer.generators.math.MathTaskGenerator" relationship="REALIZATION">
+      <point x="106.0" y="-105.0" />
+      <point x="1007.0" y="1070.0" />
+      <point x="581.0" y="1070.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.tasks.TextTask" target="by.AlbertRadoshko.quizer.Task" relationship="REALIZATION">
+      <point x="0.0" y="-69.0" />
+      <point x="1301.0" y="1670.0" />
+      <point x="1441.0" y="1670.0" />
+      <point x="1441.0" y="190.0" />
+      <point x="930.75" y="190.0" />
+      <point x="69.75" y="44.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.math.MathTaskGenerator" target="by.AlbertRadoshko.quizer.tasks.math.MathTask" relationship="DEPENDENCY">
+      <point x="-59.75" y="-55.5" />
+      <point x="521.25" y="870.0" />
+      <point x="521.0" y="870.0" />
+      <point x="521.0" y="410.0" />
+      <point x="441.0" y="410.0" />
+      <point x="441.0" y="270.0" />
+      <point x="443.66666666666663" y="270.0" />
+      <point x="42.66666666666667" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.tasks.math.MathTask.Operation" target="by.AlbertRadoshko.quizer.tasks.math.MathTask" relationship="INNER_CLASS">
+      <point x="0.0" y="-80.5" />
+      <point x="281.0" y="310.0" />
+      <point x="358.33333333333337" y="310.0" />
+      <point x="-42.66666666666667" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.Main" target="by.AlbertRadoshko.quizer.Quiz" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="161.0" y="1910.0" />
+      <point x="21.0" y="1910.0" />
+      <point x="0.0" y="116.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.Main" target="by.AlbertRadoshko.quizer.generators.math.ExpressionTaskGenerator" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="161.0" y="1910.0" />
+      <point x="621.0" y="1910.0" />
+      <point x="621.0" y="1690.0" />
+      <point x="739.0" y="1690.0" />
+      <point x="-102.0" y="-44.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.tasks.math.MathTask" target="by.AlbertRadoshko.quizer.Task" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="401.0" y="150.0" />
+      <point x="791.25" y="150.0" />
+      <point x="-69.75" y="44.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.Quiz" target="by.AlbertRadoshko.quizer.Task" relationship="TO_MANY">
+      <point x="0.0" y="-116.5" />
+      <point x="21.0" y="1630.0" />
+      <point x="-59.0" y="1630.0" />
+      <point x="-59.0" y="1610.0" />
+      <point x="-179.0" y="1610.0" />
+      <point x="-179.0" y="130.0" />
+      <point x="841.0" y="130.0" />
+      <point x="841.0" y="110.0" />
+      <point x="837.75" y="110.0" />
+      <point x="-23.25" y="44.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.GroupTaskGenerator" target="by.AlbertRadoshko.quizer.TaskGenerator" relationship="TO_MANY">
+      <point x="0.0" y="-56.0" />
+      <point x="1241.0" y="610.0" />
+      <point x="1027.6666666666667" y="610.0" />
+      <point x="66.66666666666666" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.math.ExpressionTaskGenerator" target="by.AlbertRadoshko.quizer.tasks.math.ExpressionTask" relationship="CREATE">
+      <point x="-102.0" y="-44.0" />
+      <point x="739.0" y="1650.0" />
+      <point x="661.0" y="1650.0" />
+      <point x="661.0" y="1350.0" />
+      <point x="568.5" y="1350.0" />
+      <point x="67.5" y="-68.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.tasks.math.EquationTask" target="by.AlbertRadoshko.quizer.tasks.math.AbstractMathTask" relationship="GENERALIZATION">
+      <point x="43.75" y="-68.5" />
+      <point x="184.75" y="1110.0" />
+      <point x="181.0" y="1110.0" />
+      <point x="181.0" y="1010.0" />
+      <point x="141.0" y="1010.0" />
+      <point x="0.0" y="129.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.tasks.math.EquationTask" target="by.AlbertRadoshko.quizer.exceptions.InvalidTaskException" relationship="CREATE">
+      <point x="131.25" y="-68.5" />
+      <point x="272.25" y="1130.0" />
+      <point x="301.0" y="1130.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.GroupTaskGenerator" target="by.AlbertRadoshko.quizer.TaskGenerator" relationship="REALIZATION">
+      <point x="-122.33333333333337" y="-56.0" />
+      <point x="1118.6666666666665" y="650.0" />
+      <point x="961.0" y="650.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.tasks.math.ExpressionTask" target="by.AlbertRadoshko.quizer.tasks.math.AbstractMathTask" relationship="GENERALIZATION">
+      <point x="-67.5" y="-68.5" />
+      <point x="433.5" y="1110.0" />
+      <point x="181.0" y="1110.0" />
+      <point x="181.0" y="1010.0" />
+      <point x="141.0" y="1010.0" />
+      <point x="0.0" y="129.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.tasks.math.EquationTask.EquationType" target="by.AlbertRadoshko.quizer.tasks.math.EquationTask" relationship="INNER_CLASS">
+      <point x="-58.25" y="56.0" />
+      <point x="-77.25" y="1150.0" />
+      <point x="9.75" y="1150.0" />
+      <point x="-131.25" y="-68.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.generators.GroupTaskGenerator" target="by.AlbertRadoshko.quizer.exceptions.GeneratorException" relationship="CREATE">
+      <point x="122.33333333333334" y="-56.0" />
+      <point x="1363.3333333333333" y="610.0" />
+      <point x="1301.0" y="610.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.Quiz" target="by.AlbertRadoshko.quizer.Result" relationship="TO_ONE">
+      <point x="0.0" y="-116.5" />
+      <point x="21.0" y="1630.0" />
+      <point x="-59.0" y="1630.0" />
+      <point x="0.0" y="56.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.TaskGenerator" target="by.AlbertRadoshko.quizer.Task" relationship="DEPENDENCY">
+      <point x="0.0" y="-31.5" />
+      <point x="961.0" y="370.0" />
+      <point x="881.0" y="370.0" />
+      <point x="881.0" y="190.0" />
+      <point x="884.25" y="190.0" />
+      <point x="23.25" y="44.0" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.tasks.math.AbstractMathTask" target="by.AlbertRadoshko.quizer.tasks.math.MathTask.Operation" relationship="TO_ONE">
+      <point x="-71.5" y="-129.0" />
+      <point x="69.5" y="550.0" />
+      <point x="281.0" y="550.0" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.tasks.math.ExpressionTask" target="by.AlbertRadoshko.quizer.exceptions.InvalidTaskException" relationship="CREATE">
+      <point x="67.5" y="-68.5" />
+      <point x="568.5" y="1130.0" />
+      <point x="301.0" y="1130.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.AlbertRadoshko.quizer.Main" target="by.AlbertRadoshko.quizer.generators.PoolTaskGenerator" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="161.0" y="1910.0" />
+      <point x="1141.0" y="1910.0" />
+      <point x="1141.0" y="1050.0" />
+      <point x="841.0" y="1050.0" />
+      <point x="0.0" y="56.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.4056859205776173" showDependencies="true" x="640.9999999999998" y="1093.9999999999998" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
