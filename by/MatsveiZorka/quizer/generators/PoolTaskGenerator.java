@@ -3,7 +3,6 @@ package by.MatsveiZorka.quizer.generators;
 import by.MatsveiZorka.quizer.*;
 import by.MatsveiZorka.quizer.exceptions.TaskGenerationException;
 
-import java.io.InvalidClassException;
 import java.util.*;
 
 class PoolTaskGenerator<T extends Task> implements TaskGenerator<T> {

@@ -1,16 +1,12 @@
 package by.MatsveiZorka.quizer;
 
-import static by.MatsveiZorka.quizer.Result.WRONG;
-
 public class Quiz {
     private final TaskGenerator generator_;
     private final int taskCount_; // количество задач
     private Task currentTask_; // номер текущей задачи с нуля
-    private int counterOfTasks_ = -1; // счётчик сгенерированных задач
     private int counterOfCorrectTasks_ = 0; // счётчик верно решённых задач
     private int counterOfIncorrectInputs_ = 0; // счётчик некорректных вводов
     private int counterOfWrongAnswers_ = 0; // счётчик неверно решённых задач
-    private boolean isOK = true;
 
     /**
      * @param generator генератор заданий
@@ -30,7 +26,7 @@ public class Quiz {
             throw new RuntimeException("The quiz is already finished.");
         }
         if (currentTask_ == null) {
-            counterOfTasks_++;
+            // counterOfTasks_++;
             currentTask_ = generator_.generate();
         }
         return currentTask_;
@@ -62,7 +58,7 @@ public class Quiz {
      * @return завершен ли тест
      */
     public boolean isFinished() {
-        return (taskCount_ == counterOfCorrectTasks_);
+        return (taskCount_ == counterOfCorrectTasks_ + counterOfWrongAnswers_);
     }
 
     /**

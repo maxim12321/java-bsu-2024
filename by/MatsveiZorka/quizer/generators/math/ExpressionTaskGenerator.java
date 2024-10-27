@@ -1,6 +1,6 @@
-package by.MatsveiZorka.quizer.generators;
+package by.MatsveiZorka.quizer.generators.math;
 
-import by.MatsveiZorka.quizer.tasks.ExpressionMathTask;
+import by.MatsveiZorka.quizer.tasks.math.ExpressionMathTask;
 import by.MatsveiZorka.quizer.tasks.Operators;
 
 import java.util.EnumSet;

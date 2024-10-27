@@ -40,7 +40,7 @@ public class GroupTaskGenerator implements TaskGenerator {
         for (int i = 0; i < Tasks_.size(); i++) {
             try {
                 return Tasks_.get((i + src_index) % Tasks_.size()).generate();
-            } catch (TaskGenerationException _) {}
+            } catch (TaskGenerationException exept1) {}
         }
         throw new TaskGenerationException("No tasks left");
     }
