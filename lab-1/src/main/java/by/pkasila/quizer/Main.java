@@ -4,12 +4,14 @@ import by.pkasila.quizer.common.MathOperation;
 import by.pkasila.quizer.common.Quiz;
 import by.pkasila.quizer.common.Result;
 import by.pkasila.quizer.generators.GroupTaskGenerator;
+import by.pkasila.quizer.generators.JustForFunTaskGenerator;
 import by.pkasila.quizer.generators.PoolTaskGenerator;
 import by.pkasila.quizer.generators.TextVariantTaskGenerator;
 import by.pkasila.quizer.generators.math.EquationTaskGenerator;
 import by.pkasila.quizer.generators.math.ExpressionTaskGenerator;
 import by.pkasila.quizer.generators.math.VariantExpressionTaskGenerator;
 import by.pkasila.quizer.tasks.TextTask;
+import by.pkasila.quizer.tasks.math.JustForFun;
 
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -48,30 +50,6 @@ public class Main {
                         EnumSet.of(MathOperation.SUM,
                                 MathOperation.DIFFERENCE)
                 ), 10
-        ));
-        map.put("PoolDups", new Quiz(
-                new PoolTaskGenerator<>(
-                        true,
-                        new TextTask("Когда Капустник? (дд.мм.гггг)", "06.11.2024"),
-                        new TextTask("Кто такой Андрей?", "Бог")
-                ), 3
-        ));
-        map.put("PoolFailedDups", new Quiz(
-                new PoolTaskGenerator<>(
-                        false,
-                        new TextTask("Когда Капустник? (дд.мм.гггг)", "06.11.2024"),
-                        new TextTask("Кто такой Андрей?", "Бог"),
-                        new TextTask("Где работает Андрей?", "Google"),
-                        new TextTask("Где работал Андрей раньше?", "Лицей")
-
-                ), 5
-        ));
-        map.put("PoolDupEqual", new Quiz(
-                new PoolTaskGenerator<>(
-                        false,
-                        new TextTask("Когда Капустник? (дд.мм.гггг)", "06.11.2024"),
-                        new TextTask("Кто такой Андрей?", "Бог")
-                ), 2
         ));
         map.put("GroupFail", new Quiz(
                 new GroupTaskGenerator<>(
@@ -113,6 +91,32 @@ public class Main {
                                 MathOperation.DIVISION)
                 ), 10
         ));
+
+        map.put("PoolDups", new Quiz(
+                new PoolTaskGenerator<>(
+                        true,
+                        new TextTask("Когда Капустник? (дд.мм.гггг)", "06.11.2024"),
+                        new TextTask("Кто такой Андрей?", "Бог")
+                ), 3
+        ));
+        map.put("PoolFailedDups", new Quiz(
+                new PoolTaskGenerator<>(
+                        false,
+                        new TextTask("Когда Капустник? (дд.мм.гггг)", "06.11.2024"),
+                        new TextTask("Кто такой Андрей?", "Бог"),
+                        new TextTask("Где работает Андрей?", "Google"),
+                        new TextTask("Где работал Андрей раньше?", "Лицей")
+
+                ), 5
+        ));
+        map.put("PoolDupEqual", new Quiz(
+                new PoolTaskGenerator<>(
+                        false,
+                        new TextTask("Когда Капустник? (дд.мм.гггг)", "06.11.2024"),
+                        new TextTask("Кто такой Андрей?", "Бог")
+                ), 2
+        ));
+
         map.put("TaskVariant", new Quiz(
                 new TextVariantTaskGenerator(
                         "Как зовут Ильина?",
@@ -127,6 +131,28 @@ public class Main {
                                 MathOperation.SUM,
                                 MathOperation.DIFFERENCE,
                                 MathOperation.MULTIPLICATION)
+                ), 10
+        ));
+
+        map.put("JustForFun", new Quiz(
+                new JustForFunTaskGenerator(
+                        0,
+                        1000,
+                        EnumSet.of(MathOperation.SUM,
+                                MathOperation.DIFFERENCE,
+                                MathOperation.MULTIPLICATION,
+                                MathOperation.DIVISION)
+                ), 10
+        ));
+        map.put("JustForFunJetBrains", new Quiz(
+                new JustForFunTaskGenerator(
+                        0,
+                        1000,
+                        EnumSet.of(MathOperation.SUM,
+                                MathOperation.DIFFERENCE,
+                                MathOperation.MULTIPLICATION,
+                                MathOperation.DIVISION),
+                        EnumSet.of(JustForFun.JETBRAINS)
                 ), 10
         ));
         return map;

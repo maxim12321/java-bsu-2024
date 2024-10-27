@@ -31,7 +31,7 @@ public class PoolTaskGenerator<T extends Task> implements TaskGenerator<T> {
     @Override
     public T generate() throws EmptyPoolGeneratorException {
         if (tasks.isEmpty()) {
-            throw new EmptyPoolGeneratorException("Pool Task Generator has no tasks left.");
+            throw new EmptyPoolGeneratorException("no tasks left");
         }
         Random random = new Random();
         int index = random.nextInt(tasks.size());

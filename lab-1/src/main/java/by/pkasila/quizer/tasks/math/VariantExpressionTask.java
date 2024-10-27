@@ -23,8 +23,9 @@ public class VariantExpressionTask extends AbstractExpressionTask implements Var
 
     @Override
     public boolean isInvalid() {
-        if (Math.abs(variants[0] - variants[1]) < 0.001 || Math.abs(variants[0] - variants[2]) < 0.001 || Math.abs(variants[1] - variants[2]) < 0.001)
+        if (Math.abs(variants[0] - variants[1]) < 0.001 || Math.abs(variants[0] - variants[2]) < 0.001 || Math.abs(variants[1] - variants[2]) < 0.001) {
             return true;
+        }
         return super.isInvalid();
     }
 

@@ -16,7 +16,7 @@ public class GroupTaskGenerator<T extends Task> implements TaskGenerator<T> {
     public GroupTaskGenerator(TaskGenerator<? extends T>... generators) throws BadGeneratorException {
         this.generators = new ArrayList<>(Arrays.asList(generators));
         if (this.generators.isEmpty()) {
-            throw new BadGeneratorException("GroupTaskGenerator must have at least one generator");
+            throw new BadGeneratorException("must have at least one generator");
         }
     }
 
