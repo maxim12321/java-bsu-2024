@@ -1,16 +1,15 @@
 package by.SanchukS.quizer.generators;
 
 import by.SanchukS.quizer.TaskGenerator;
+import by.SanchukS.quizer.tasks.EquationTask;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 class EquationTaskGenerator implements TaskGenerator {
-    private final Random random = new Random();
-    private final int minNumber;
-    private final int maxNumber;
-    private final List<String> operations;
+    private ExpressionGenerator expressionGenerator;
+    private Random random = new Random();
 
     /**
      * @param minNumber              минимальное число
@@ -28,21 +27,18 @@ class EquationTaskGenerator implements TaskGenerator {
             boolean generateMultiplication,
             boolean generateDivision
     ) {
-        this.minNumber = minNumber;
-        this.maxNumber = maxNumber;
-
         List<String> operations = new ArrayList<>();
         if (generateSum) operations.add("+");
         if (generateDifference) operations.add("-");
         if (generateMultiplication) operations.add("*");
         if (generateDivision) operations.add("/");
-        this.operations = operations;
+        this.expressionGenerator = new ExpressionGenerator(minNumber, maxNumber, operations);
     }
 
     /**
      * return задание типа {@link EquationTask}
      */
-    EquationTask generate() {
-        // ...
+    public EquationTask generate() {
+        return new EquationTask(expressionGenerator.generateExpression(), random.nextBoolean());
     }
 }
