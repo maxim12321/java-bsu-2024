@@ -9,7 +9,7 @@ public class EquationTask extends AbstractMathTask {
     public double calculateRightAnswer() {
         return switch(operator) {
             case ADDITION -> num2 - num1;
-            case SUBSTRACTION -> num1 + num1;
+            case SUBSTRACTION -> (num1 - num2);
             case MULTIPLICATION -> (double) num2 / num1;
             case DIVISION -> num1 * num1;
         };

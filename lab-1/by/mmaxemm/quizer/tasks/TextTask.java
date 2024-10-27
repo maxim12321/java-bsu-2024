@@ -28,7 +28,7 @@ public class TextTask implements Task {
 
     @Override
     public Result validate(String answer) {
-        return answer.trim().toLowerCase() == this.answer.trim().toLowerCase()
+        return answer.trim().toLowerCase().equalsIgnoreCase(this.answer.trim().toLowerCase())
                 ? Result.OK : Result.WRONG;
     }
 }

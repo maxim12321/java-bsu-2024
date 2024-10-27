@@ -26,6 +26,7 @@ public class PoolTaskGenerator implements TaskGenerator {
     ) {
         this.allowDuplicate = allowDuplicate;
         this.tasks = new ArrayList<>(Arrays.asList(tasks));
+        this.random = new Random();
     }
 
     /**
@@ -34,12 +35,13 @@ public class PoolTaskGenerator implements TaskGenerator {
      * @param allowDuplicate разрешить повторения
      * @param tasks          задания, которые передаются в конструктор в Collection (например, {@link LinkedList})
      */
-    PoolTaskGenerator(
+    public PoolTaskGenerator(
             boolean allowDuplicate,
             Collection<Task> tasks
     ) {
         this.allowDuplicate = allowDuplicate;
         this.tasks = new ArrayList<>(tasks);
+        this.random = new Random();
     }
 
     /**

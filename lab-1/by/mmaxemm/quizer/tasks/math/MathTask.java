@@ -11,8 +11,8 @@ public interface MathTask extends Task {
     public static enum Operation {
         ADDITION("+"),
         SUBSTRACTION("-"),
-        MULTIPLICATION("/"),
-        DIVISION("*");
+        MULTIPLICATION("*"),
+        DIVISION("/");
 
         private final String symbol;
 
