@@ -15,12 +15,12 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
 
     @Override
     public int GetMinimum() {
-        return MaxNumber_;
+        return MinNumber_;
     }
 
     @Override
     public int GetMaximum() {
-        return MinNumber_;
+        return MaxNumber_;
     }
 
     public record Config(int Min, int Max, EnumSet<Operation> Ops){};
