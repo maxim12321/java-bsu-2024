@@ -359,8 +359,9 @@ default int getDiffNumber();
 
 Сейчас сигнатуры `ExpressionTaskGenerator` и `EquationTaskGenerator` выглядят не очень красиво, приходится передавать туда 4 була для каждого оператора. Сделайте `enum Operation` внутри интерфейса `MathTask` и передавайте в `ExpressionTaskGenerator` и `EquationTaskGenerator` вместо булов `EnumSet`.
 
-## ★★ ~~Generic ExpressionTask и EquationTask~~
-`in development`
+## ★★ Generic Task Generators
+
+Добавьте параметризацию в интерфейс `TaskGenerator` таким образом, чтобы он генерировал определенный тип задач. Метод `generate` теперь должен возвращать не просто `Task`, а параметр `T`, который этот интерфейс реализует. Понятно, что при этом классы `ExpressionTaskGenerator` и `EquationTaskGenerator` не должны быть дженериками, они всегда возвращают `ExpressionTask` и `EquationTask`, соответственно. А вот над тем, добавлять ли параметризацию в `GroupTaskGenerator` и `PoolTaskGenerator`, предлагается подумать самостоятельно. 
 
 ## ★ UML
 В каком-нибудь онлайн UML-редакторе (если очень хочется, можно и в пеинте) сделайте схему с участием всех интерфейсов и классов. Это схему нужно приложить в AnyTask к ссылке на github.
