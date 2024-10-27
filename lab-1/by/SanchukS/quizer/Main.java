@@ -22,7 +22,10 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        runQuiz(quiz);
+        double mark = quiz.getMark();
 
+        System.out.println("Mark: " + mark);
     }
 
     /**
@@ -47,5 +50,15 @@ public class Main {
         System.out.print("Enter quiz name: ");
         quizName = scanner.nextLine();
         return quizName;
+    }
+
+    static void runQuiz(Quiz quiz) {
+        Scanner scanner = new Scanner(System.in);
+        while (!quiz.isFinished()) {
+            Task currentTask = quiz.nextTask();
+            System.out.println(currentTask.getText());
+            String answer = scanner.nextLine();
+            System.out.println(quiz.provideAnswer(answer).name());
+        }
     }
 }
