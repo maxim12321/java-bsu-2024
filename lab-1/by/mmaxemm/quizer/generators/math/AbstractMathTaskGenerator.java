@@ -12,10 +12,11 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
     protected Random random;
     protected final ArrayList<MathTask.Operation> availableOperators;
 
+
     public AbstractMathTaskGenerator(int minNumber,
                               int maxNumber,
                               EnumSet<MathTask.Operation> availableOperators) {
-        if(minNumber > maxNumber) {
+        if(getDiffNumber() < 0) {
             throw new IllegalArgumentException("min number cannot be greater than max number");
         }
         if(availableOperators.isEmpty()) {

@@ -14,11 +14,21 @@ public class GroupTaskGenerator implements TaskGenerator {
     TaskGenerator[] generators;
     Random random;
 
+    /**
+     * Конструктор с переменным числом аргументов
+     *
+     * @param generators генераторы, которые в конструктор передаются через запятую
+     */
     public GroupTaskGenerator(TaskGenerator... generators) {
       this.generators = generators;
       random = new Random();
     }
 
+    /**
+     * Конструктор, который принимает коллекцию генераторов
+     *
+     * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
+     */
     public GroupTaskGenerator(Collection<TaskGenerator> generators) {
         this.generators = generators.toArray(new TaskGenerator[0]);
         random = new Random();

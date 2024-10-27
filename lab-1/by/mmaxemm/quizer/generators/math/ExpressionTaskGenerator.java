@@ -6,6 +6,11 @@ import java.util.EnumSet;
 
 public class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
 
+    /**
+     * @param minNumber              минимальное число
+     * @param maxNumber              максимальное число
+     * @param availableOperators     допустимые в генерации операторы
+     */
     public ExpressionTaskGenerator(
             int minNumber,
             int maxNumber,
@@ -14,6 +19,9 @@ public class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
         super(minNumber, maxNumber, availableOperators);
     }
 
+    /**
+     * return задание типа {@link ExpressionTask}
+     */
     @Override
     public ExpressionTask generate() {
         int num1 = random.nextInt(maxNumber - minNumber + 1) + minNumber;

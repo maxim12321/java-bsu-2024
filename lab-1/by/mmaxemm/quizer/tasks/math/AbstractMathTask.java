@@ -13,6 +13,7 @@ public abstract class AbstractMathTask implements MathTask {
         this.operator = operator;
     }
 
+
     public Result validate(String answer) {
         try {
             return Math.abs(Double.parseDouble(answer) - calculateRightAnswer())

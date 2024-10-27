@@ -5,8 +5,8 @@ public interface MathTask extends Task {
     /**
      * @return ожидаемый ответ на задание
      */
-
     public double calculateRightAnswer();
+
 
     public static enum Operation {
         ADDITION("+"),
@@ -20,6 +20,9 @@ public interface MathTask extends Task {
             this.symbol = symbol;
         }
 
+        /**
+         * @return символ операции
+         */
         public String getSymbol() {
             return symbol;
         }

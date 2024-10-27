@@ -2,6 +2,9 @@ package by.mmaxemm.quizer;
 
 import by.mmaxemm.quizer.Result;
 
+/**
+ * Interface, который описывает одно задание
+ */
 public interface Task {
     /**
      @return текст задания

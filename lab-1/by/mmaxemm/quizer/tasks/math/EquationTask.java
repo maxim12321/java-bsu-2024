@@ -1,5 +1,8 @@
 package by.mmaxemm.quizer.tasks.math;
 
+/**
+ * выражение вида <num1><operator>x=<num2>
+ */
 public class EquationTask extends AbstractMathTask {
 
     @Override
@@ -18,7 +21,6 @@ public class EquationTask extends AbstractMathTask {
 
     @Override
     public String getText() {
-        //<num1><operator>x=<num2>
         return num1 + operator.getSymbol() + "x=" + num2;
     }
 }

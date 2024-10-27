@@ -14,6 +14,12 @@ public class PoolTaskGenerator implements TaskGenerator {
     List<Task> tasks;
     Random random;
 
+    /**
+     * Конструктор с переменным числом аргументов
+     *
+     * @param allowDuplicate разрешить повторения
+     * @param tasks          задания, которые в конструктор передаются через запятую
+     */
     public PoolTaskGenerator(
             boolean allowDuplicate,
             Task... tasks
@@ -22,6 +28,12 @@ public class PoolTaskGenerator implements TaskGenerator {
         this.tasks = new ArrayList<>(Arrays.asList(tasks));
     }
 
+    /**
+     * Конструктор, который принимает коллекцию заданий
+     *
+     * @param allowDuplicate разрешить повторения
+     * @param tasks          задания, которые передаются в конструктор в Collection (например, {@link LinkedList})
+     */
     PoolTaskGenerator(
             boolean allowDuplicate,
             Collection<Task> tasks
@@ -30,6 +42,9 @@ public class PoolTaskGenerator implements TaskGenerator {
         this.tasks = new ArrayList<>(tasks);
     }
 
+    /**
+     * @return случайная задача из списка
+     */
     public Task generate() {
         if(tasks.isEmpty()) {
             throw new IllegalStateException("No tasks in the pool");

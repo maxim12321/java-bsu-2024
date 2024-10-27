@@ -1,5 +1,8 @@
 package by.mmaxemm.quizer.tasks.math;
 
+/**
+ * выражение вида <num1><operator><num2>=?
+ */
 public class ExpressionTask extends AbstractMathTask {
 
     @Override
@@ -17,7 +20,6 @@ public class ExpressionTask extends AbstractMathTask {
     }
 
     @Override
-    //<num1><operator><num2>=?
     public String getText() {
         return num1 + operator.getSymbol() + num2 + "=?";
     }
