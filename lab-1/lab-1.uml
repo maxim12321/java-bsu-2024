@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/dilik/Programming/Java/Test/lab-1</OriginalElement>
+  <nodes>
+    <node x="1484.5" y="298.5">by.dilik14.quizer.tasks.math.MathTask</node>
+    <node x="1142.5" y="178.5">by.dilik14.quizer.exceptions.QuizNotFinishedException</node>
+    <node x="1338.0" y="1141.5">by.dilik14.quizer.tasks.math.EquationTask</node>
+    <node x="-145.5" y="1721.0">by.dilik14.quizer.tasks.TextTask</node>
+    <node x="1411.0" y="1746.0">by.dilik14.quizer.generators.math.ExpressionTaskGenerator</node>
+    <node x="448.0" y="298.5">by.dilik14.quizer.exceptions.TaskGeneratorException</node>
+    <node x="1003.0" y="1317.0">by.dilik14.quizer.generators.math.AbstractMathTaskGenerator</node>
+    <node x="755.0" y="298.5">by.dilik14.quizer.generators.TaskGenerator</node>
+    <node x="1540.0" y="1401.5">by.dilik14.quizer.tasks.math.ExpressionTask</node>
+    <node x="1610.5" y="670.0">by.dilik14.quizer.tasks.math.MathTask.Operation</node>
+    <node x="63.5" y="1973.5">by.dilik14.quizer.Main</node>
+    <node x="-138.0" y="1974.0">by.dilik14.quizer.Result</node>
+    <node x="1255.5" y="694.5">by.dilik14.quizer.generators.math.MathTaskGenerator</node>
+    <node x="948.0" y="633.5">by.dilik14.quizer.Quiz</node>
+    <node x="978.0" y="1746.0">by.dilik14.quizer.generators.math.EquationTaskGenerator</node>
+    <node x="1532.0" y="954.0">by.dilik14.quizer.tasks.math.AbstractMathTask</node>
+    <node x="-151.5" y="261.5">by.dilik14.quizer.tasks.DeadLineTask</node>
+    <node x="-151.5" y="706.0">by.dilik14.quizer.generators.DeadLineTaskGenerator</node>
+    <node x="662.0" y="-14.0">by.dilik14.quizer.tasks.Task</node>
+    <node x="994.0" y="298.5">by.dilik14.quizer.exceptions.QuizFinishedException</node>
+    <node x="191.0" y="694.0">by.dilik14.quizer.generators.PoolTaskGenerator</node>
+    <node x="498.5" y="494.0">by.dilik14.quizer.generators.GroupTaskGenerator</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="by.dilik14.quizer.Main" target="by.dilik14.quizer.generators.GroupTaskGenerator" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="175.0" y="1890.0" />
+      <point x="875.0" y="1890.0" />
+      <point x="875.0" y="970.0" />
+      <point x="915.0" y="970.0" />
+      <point x="915.0" y="470.0" />
+      <point x="645.875" y="470.0" />
+      <point x="-49.125" y="-56.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.tasks.DeadLineTask" target="by.dilik14.quizer.tasks.Task" relationship="REALIZATION">
+      <point x="0.0" y="-68.5" />
+      <point x="-45.0" y="110.0" />
+      <point x="685.25" y="110.0" />
+      <point x="-69.75" y="44.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.tasks.TextTask" target="by.dilik14.quizer.tasks.Task" relationship="REALIZATION">
+      <point x="0.0" y="-69.0" />
+      <point x="-45.0" y="1690.0" />
+      <point x="-185.0" y="1690.0" />
+      <point x="-185.0" y="250.0" />
+      <point x="-45.0" y="250.0" />
+      <point x="-45.0" y="110.0" />
+      <point x="685.25" y="110.0" />
+      <point x="-69.75" y="44.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.tasks.math.EquationTask" target="by.dilik14.quizer.tasks.math.AbstractMathTask" relationship="GENERALIZATION">
+      <point x="0.0" y="-68.5" />
+      <point x="1495.0" y="1110.0" />
+      <point x="1675.0" y="1110.0" />
+      <point x="0.0" y="56.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.Main" target="by.dilik14.quizer.generators.PoolTaskGenerator" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="175.0" y="670.0" />
+      <point x="464.33333333333337" y="670.0" />
+      <point x="109.33333333333334" y="-56.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.math.MathTaskGenerator" target="by.dilik14.quizer.tasks.math.MathTask" relationship="DEPENDENCY">
+      <point x="59.75" y="-55.5" />
+      <point x="1434.75" y="670.0" />
+      <point x="1515.0" y="670.0" />
+      <point x="1515.0" y="390.0" />
+      <point x="1514.6666666666667" y="390.0" />
+      <point x="-60.33333333333333" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.GroupTaskGenerator" target="by.dilik14.quizer.tasks.Task" relationship="DEPENDENCY">
+      <point x="49.125" y="-56.0" />
+      <point x="744.125" y="450.0" />
+      <point x="735.0" y="450.0" />
+      <point x="735.0" y="110.0" />
+      <point x="731.75" y="110.0" />
+      <point x="-23.25" y="44.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.GroupTaskGenerator" target="by.dilik14.quizer.exceptions.TaskGeneratorException" relationship="CREATE">
+      <point x="-49.125" y="-56.0" />
+      <point x="645.875" y="450.0" />
+      <point x="575.0" y="450.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.Main" target="by.dilik14.quizer.Quiz" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="175.0" y="1890.0" />
+      <point x="915.0" y="1890.0" />
+      <point x="915.0" y="990.0" />
+      <point x="1235.0" y="990.0" />
+      <point x="1235.0" y="610.0" />
+      <point x="1138.5" y="610.0" />
+      <point x="63.5" y="-116.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.Quiz" target="by.dilik14.quizer.exceptions.QuizNotFinishedException" relationship="CREATE">
+      <point x="63.5" y="-116.5" />
+      <point x="1138.5" y="590.0" />
+      <point x="1135.0" y="590.0" />
+      <point x="1135.0" y="390.0" />
+      <point x="1275.0" y="390.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.DeadLineTaskGenerator" target="by.dilik14.quizer.tasks.DeadLineTask" relationship="CREATE">
+      <point x="-63.25" y="-44.0" />
+      <point x="-88.25" y="650.0" />
+      <point x="-45.0" y="650.0" />
+      <point x="0.0" y="68.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.Quiz" target="by.dilik14.quizer.exceptions.QuizFinishedException" relationship="CREATE">
+      <point x="63.5" y="-116.5" />
+      <point x="1138.5" y="590.0" />
+      <point x="1135.0" y="590.0" />
+      <point x="1135.0" y="390.0" />
+      <point x="1115.0" y="390.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.Main" target="by.dilik14.quizer.generators.math.EquationTaskGenerator" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="175.0" y="1890.0" />
+      <point x="955.0" y="1890.0" />
+      <point x="955.0" y="1710.0" />
+      <point x="1273.5" y="1710.0" />
+      <point x="98.5" y="-44.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.tasks.math.MathTask.Operation" target="by.dilik14.quizer.tasks.math.MathTask" relationship="INNER_CLASS">
+      <point x="0.0" y="-80.0" />
+      <point x="1715.0" y="650.0" />
+      <point x="1635.3333333333333" y="650.0" />
+      <point x="60.333333333333314" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.PoolTaskGenerator" target="by.dilik14.quizer.tasks.Task" relationship="DEPENDENCY">
+      <point x="-109.33333333333337" y="-56.0" />
+      <point x="245.66666666666663" y="350.0" />
+      <point x="255.0" y="350.0" />
+      <point x="255.0" y="270.0" />
+      <point x="735.0" y="270.0" />
+      <point x="735.0" y="110.0" />
+      <point x="731.75" y="110.0" />
+      <point x="-23.25" y="44.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.Main" target="by.dilik14.quizer.generators.DeadLineTaskGenerator" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="175.0" y="1890.0" />
+      <point x="135.0" y="1890.0" />
+      <point x="135.0" y="670.0" />
+      <point x="-88.25" y="670.0" />
+      <point x="-63.25" y="-44.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.DeadLineTaskGenerator" target="by.dilik14.quizer.generators.TaskGenerator" relationship="REALIZATION">
+      <point x="63.25" y="-44.0" />
+      <point x="38.25" y="430.0" />
+      <point x="355.0" y="430.0" />
+      <point x="355.0" y="390.0" />
+      <point x="788.3333333333334" y="390.0" />
+      <point x="-66.66666666666666" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.math.ExpressionTaskGenerator" target="by.dilik14.quizer.generators.math.AbstractMathTaskGenerator" relationship="GENERALIZATION">
+      <point x="-102.0" y="-44.0" />
+      <point x="1513.0" y="1690.0" />
+      <point x="1215.0" y="1690.0" />
+      <point x="0.0" y="153.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.Main" target="by.dilik14.quizer.tasks.TextTask" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="175.0" y="1890.0" />
+      <point x="-45.0" y="1890.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.math.AbstractMathTaskGenerator" target="by.dilik14.quizer.generators.math.MathTaskGenerator" relationship="REALIZATION">
+      <point x="-106.0" y="-153.0" />
+      <point x="1109.0" y="1290.0" />
+      <point x="1275.0" y="1290.0" />
+      <point x="1275.0" y="990.0" />
+      <point x="1375.0" y="990.0" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.PoolTaskGenerator" target="by.dilik14.quizer.exceptions.TaskGeneratorException" relationship="CREATE">
+      <point x="109.33333333333334" y="-56.0" />
+      <point x="464.33333333333337" y="450.0" />
+      <point x="575.0" y="450.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.math.ExpressionTaskGenerator" target="by.dilik14.quizer.tasks.math.ExpressionTask" relationship="CREATE">
+      <point x="102.0" y="-44.0" />
+      <point x="1717.0" y="1650.0" />
+      <point x="1675.0" y="1650.0" />
+      <point x="0.0" y="68.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.GroupTaskGenerator" target="by.dilik14.quizer.generators.TaskGenerator" relationship="REALIZATION">
+      <point x="-147.375" y="-56.0" />
+      <point x="547.625" y="430.0" />
+      <point x="355.0" y="430.0" />
+      <point x="355.0" y="390.0" />
+      <point x="788.3333333333334" y="390.0" />
+      <point x="-66.66666666666666" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.GroupTaskGenerator" target="by.dilik14.quizer.generators.TaskGenerator" relationship="TO_MANY">
+      <point x="147.375" y="-56.0" />
+      <point x="842.375" y="450.0" />
+      <point x="855.0" y="450.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.Quiz" target="by.dilik14.quizer.generators.TaskGenerator" relationship="TO_ONE">
+      <point x="-63.5" y="-116.5" />
+      <point x="1011.5" y="610.0" />
+      <point x="975.0" y="610.0" />
+      <point x="975.0" y="430.0" />
+      <point x="855.0" y="430.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.math.AbstractMathTaskGenerator" target="by.dilik14.quizer.tasks.math.MathTask" relationship="DEPENDENCY">
+      <point x="106.0" y="-153.0" />
+      <point x="1321.0" y="1090.0" />
+      <point x="1515.0" y="1090.0" />
+      <point x="1515.0" y="390.0" />
+      <point x="1514.6666666666667" y="390.0" />
+      <point x="-60.33333333333333" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.math.MathTaskGenerator" target="by.dilik14.quizer.generators.TaskGenerator" relationship="INTERFACE_GENERALIZATION">
+      <point x="-59.75" y="-55.5" />
+      <point x="1315.25" y="410.0" />
+      <point x="921.6666666666667" y="410.0" />
+      <point x="66.66666666666666" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.tasks.math.AbstractMathTask" target="by.dilik14.quizer.tasks.math.MathTask" relationship="REALIZATION">
+      <point x="-71.5" y="-56.0" />
+      <point x="1603.5" y="930.0" />
+      <point x="1595.0" y="930.0" />
+      <point x="1595.0" y="730.0" />
+      <point x="1575.0" y="730.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.TaskGenerator" target="by.dilik14.quizer.tasks.Task" relationship="DEPENDENCY">
+      <point x="0.0" y="-31.5" />
+      <point x="855.0" y="270.0" />
+      <point x="735.0" y="270.0" />
+      <point x="735.0" y="110.0" />
+      <point x="731.75" y="110.0" />
+      <point x="-23.25" y="44.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.math.EquationTaskGenerator" target="by.dilik14.quizer.generators.math.AbstractMathTaskGenerator" relationship="GENERALIZATION">
+      <point x="-98.5" y="-44.0" />
+      <point x="1076.5" y="1690.0" />
+      <point x="1215.0" y="1690.0" />
+      <point x="0.0" y="153.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.PoolTaskGenerator" target="by.dilik14.quizer.generators.TaskGenerator" relationship="REALIZATION">
+      <point x="0.0" y="-56.0" />
+      <point x="355.0" y="390.0" />
+      <point x="788.3333333333334" y="390.0" />
+      <point x="-66.66666666666666" y="31.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.tasks.math.MathTask" target="by.dilik14.quizer.tasks.Task" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-31.5" />
+      <point x="1575.0" y="110.0" />
+      <point x="824.75" y="110.0" />
+      <point x="69.75" y="44.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.Main" target="by.dilik14.quizer.generators.math.ExpressionTaskGenerator" relationship="CREATE">
+      <point x="0.0" y="-56.5" />
+      <point x="175.0" y="1890.0" />
+      <point x="1395.0" y="1890.0" />
+      <point x="1395.0" y="1670.0" />
+      <point x="1717.0" y="1670.0" />
+      <point x="102.0" y="-44.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.tasks.math.AbstractMathTask" target="by.dilik14.quizer.tasks.math.MathTask.Operation" relationship="TO_ONE">
+      <point x="71.5" y="-56.0" />
+      <point x="1746.5" y="930.0" />
+      <point x="1715.0" y="930.0" />
+      <point x="0.0" y="80.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.generators.math.EquationTaskGenerator" target="by.dilik14.quizer.tasks.math.EquationTask" relationship="CREATE">
+      <point x="98.5" y="-44.0" />
+      <point x="1273.5" y="1650.0" />
+      <point x="1495.0" y="1650.0" />
+      <point x="0.0" y="68.5" />
+    </edge>
+    <edge source="by.dilik14.quizer.Quiz" target="by.dilik14.quizer.tasks.Task" relationship="TO_ONE">
+      <point x="-63.5" y="-116.5" />
+      <point x="1011.5" y="610.0" />
+      <point x="975.0" y="610.0" />
+      <point x="975.0" y="250.0" />
+      <point x="778.25" y="250.0" />
+      <point x="23.25" y="44.0" />
+    </edge>
+    <edge source="by.dilik14.quizer.tasks.math.ExpressionTask" target="by.dilik14.quizer.tasks.math.AbstractMathTask" relationship="GENERALIZATION">
+      <point x="0.0" y="-68.5" />
+      <point x="0.0" y="56.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.42385667138142386" showDependencies="true" x="827.5000000000001" y="1046.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
