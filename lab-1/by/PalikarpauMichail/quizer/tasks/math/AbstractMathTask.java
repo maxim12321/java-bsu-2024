@@ -27,6 +27,7 @@ abstract public class AbstractMathTask implements MathTask {
         }
     }
 
+    @Override
     public Result validate(String answer) {
         /*
          * Возвращает информацию о неправильном вводе, если answer неприводимо к Integer
@@ -52,7 +53,7 @@ abstract public class AbstractMathTask implements MathTask {
             } else {
                 throw new RuntimeException();
             }
-        } catch(RuntimeException exception) {
+        } catch(Exception exception) {
             return Result.WRONG;
         }
     }

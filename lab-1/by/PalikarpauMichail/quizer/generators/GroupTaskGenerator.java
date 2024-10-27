@@ -9,13 +9,13 @@ import by.PalikarpauMichail.quizer.Task;
 import by.PalikarpauMichail.quizer.TaskGenerator;
 import by.PalikarpauMichail.quizer.exceptions.TaskGenerationException;
 
-public class GroupTaskGenerator implements TaskGenerator {
+public class GroupTaskGenerator<T extends Task> implements TaskGenerator<T> {
     /**
      * Функция, которая убирает из списка генераторы, бросающие исключения
      */
     private void FilterGenerators() {
-        List<TaskGenerator> goodGenerators = new ArrayList<>();
-        for (TaskGenerator generator : generators) {
+        List<TaskGenerator<? extends T>> goodGenerators = new ArrayList<>();
+        for (var generator : generators) {
             try {
                 generator.generate();
                 goodGenerators.add(generator);
@@ -31,7 +31,8 @@ public class GroupTaskGenerator implements TaskGenerator {
      *
      * @param generators генераторы, которые в конструктор передаются через запятую
      */
-    public GroupTaskGenerator(TaskGenerator... generators) {
+    @SafeVarargs
+    public GroupTaskGenerator(TaskGenerator<? extends T>... generators) {
         this.generators = List.of(generators);
         FilterGenerators();
     }
@@ -41,7 +42,7 @@ public class GroupTaskGenerator implements TaskGenerator {
      *
      * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
      */
-    public GroupTaskGenerator(Collection<TaskGenerator> generators) {
+    public GroupTaskGenerator(Collection<TaskGenerator<? extends T>> generators) {
         this.generators = new ArrayList<>(generators);
         FilterGenerators();
     }
@@ -50,12 +51,13 @@ public class GroupTaskGenerator implements TaskGenerator {
      * Генератор выбирает случайный генератор из списка, для создания задания
      * При пустом списке генераторов бросает исключение
      */
-    public Task generate() {
+    @Override
+    public T generate() throws TaskGenerationException { 
         if (generators.size() == 0) {
             throw new TaskGenerationException();
         }
         return generators.get(IntegerRandom.get(0, generators.size() - 1)).generate();
     } 
 
-    List<TaskGenerator> generators;
+    List<TaskGenerator<? extends T>> generators;
 }

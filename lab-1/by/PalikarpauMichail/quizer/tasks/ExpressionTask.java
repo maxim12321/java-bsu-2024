@@ -12,6 +12,7 @@ public class ExpressionTask extends AbstractMathTask{
         super(firstOperand, secondOperand, null, operation);
     }
 
+    @Override
     public String getText() {
         String text = new String(
             super.firstOperand.toString() +

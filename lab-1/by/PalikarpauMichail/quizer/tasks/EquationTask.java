@@ -19,6 +19,7 @@ public class EquationTask extends AbstractMathTask{
         }
     }
 
+    @Override
     public String getText() {
         String text = new String();
         if (firstOperand == null) {

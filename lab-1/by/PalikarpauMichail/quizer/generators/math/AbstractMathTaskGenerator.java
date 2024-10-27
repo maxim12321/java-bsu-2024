@@ -10,12 +10,22 @@ import by.PalikarpauMichail.quizer.exceptions.BadMathGeneratorBoundariesExceptio
 import by.PalikarpauMichail.quizer.exceptions.TaskGenerationException;
 import by.PalikarpauMichail.quizer.tasks.math.MathTask;
 
-abstract public class AbstractMathTaskGenerator implements MathTaskGenerator {
+abstract public class AbstractMathTaskGenerator<T extends MathTask> implements MathTaskGenerator<T> {
+    /**
+     * Конструктор принимающий верхнюю и нижнюю границы и список операций
+     * Удаляет из списка операции, с которыми нельзя сгенерировать пример и бросает исключение, если список становится пустым
+     * Бросает исключение, если нижняя граница больше верхней
+     * 
+     * @param minNumber нижняя граница генерации
+     * @param maxNumber верхняя граница генерации
+     * @param operations список операций
+     */
+    
     public AbstractMathTaskGenerator(
         int minNumber,
         int maxNumber,
         EnumSet<MathTask.Operation> operations
-    ) {
+    ) throws BadMathGeneratorBoundariesException, IllegalArgumentException {
         if (minNumber > maxNumber) {
             throw new IllegalArgumentException();
         }
@@ -24,18 +34,14 @@ abstract public class AbstractMathTaskGenerator implements MathTaskGenerator {
         this.operations = operations;
 
         if (operations.contains(MathTask.Operation.MULTIPLICATION) || operations.contains(MathTask.Operation.DIVISON)) {
-            try {
-                validateMultiplicationArgumentsGeneration();
-            } catch(TaskGenerationException exception) {
+            if (!validateMultiplicationArgumentsGeneration()) {
                 operations.remove(MathTask.Operation.MULTIPLICATION);
                 operations.remove(MathTask.Operation.DIVISON);
             }
         }
 
         if (operations.contains(MathTask.Operation.ADDITION) || operations.contains(MathTask.Operation.SUBTRACTION)) {
-            try {
-                validateAdditionArgumentsGeneration();
-            } catch(TaskGenerationException exception) {
+            if (!validateAdditionArgumentsGeneration()) {
                 operations.remove(MathTask.Operation.ADDITION);
                 operations.remove(MathTask.Operation.SUBTRACTION);
             }
@@ -76,7 +82,7 @@ abstract public class AbstractMathTaskGenerator implements MathTaskGenerator {
 
     /**
      * @param n факторизуемое число
-     * @return все делители числа, лежащие в границах
+     * @return все делители числа, лежащие в границах [minNumber, maxNumber] и не равные 1(так неинтересно)
      */
     public List<Integer> Factorize(int n) {
         List<Integer> factors = new ArrayList<>();
@@ -96,7 +102,7 @@ abstract public class AbstractMathTaskGenerator implements MathTaskGenerator {
 
 
     /**
-     * проверяет, что задачи на умножение/деление генерятся за нормальное число попыток
+     * проверяет, что задачи на сложение/вычитание генерятся за нормальное число попыток
      */
     public boolean validateAdditionArgumentsGeneration() {
         for (int tryIndex = 0; tryIndex < maxGenerationTries; tryIndex++) {
@@ -106,7 +112,7 @@ abstract public class AbstractMathTaskGenerator implements MathTaskGenerator {
                 return true;
             }
         } 
-        throw new TaskGenerationException();
+        return false;
     }
 
     /**
@@ -120,11 +126,11 @@ abstract public class AbstractMathTaskGenerator implements MathTaskGenerator {
                 return true;
             }
         } 
-        throw new TaskGenerationException();
+        return false;
     }
 
     /**
-     * проверяет, что задачи на умножение/деление генерятся за нормальное число попыток
+     * генерирует аргументы для задачи на сложение
      */
     public List<Integer> generateAdditionArguments() {
         while (true) {
@@ -137,7 +143,7 @@ abstract public class AbstractMathTaskGenerator implements MathTaskGenerator {
     }
 
     /**
-     * проверяет, что задачи на умножение/деление генерятся за нормальное число попыток
+     * генерирует аргументы для задачи на вычитание
      */
     public List<Integer> generateSubtractionArguments() {
         while (true) {
@@ -150,7 +156,7 @@ abstract public class AbstractMathTaskGenerator implements MathTaskGenerator {
     }
 
     /**
-     *  Сгенерировать задачу на умножение
+     * генерирует аргументы для задачи на умножение
      */
     public List<Integer> generateMultiplicationArguments() {
         while (true) {
@@ -163,12 +169,19 @@ abstract public class AbstractMathTaskGenerator implements MathTaskGenerator {
         }
     }
 
+    /**
+     * генерирует аргументы для задачи на деление
+     */
     public List<Integer> generateDivisionArguments() {
         var arguments = generateMultiplicationArguments();
         return List.of(arguments.get(2), arguments.get(0), arguments.get(1));
     }
 
-    public AbstractMap.SimpleEntry<List<Integer>, MathTask.Operation> generateArguments() {
+    /**
+     * сгенерировать случайную задачу
+     * @return Key - 
+     */
+    public AbstractMap.SimpleEntry<MathTask.Operation, List<Integer>> generateArguments() {
         List<MathTask.Operation> operationsList = new ArrayList<>(operations);
         if (operationsList.isEmpty()) {
             throw new TaskGenerationException();
@@ -193,14 +206,14 @@ abstract public class AbstractMathTaskGenerator implements MathTaskGenerator {
                 return null;
             }
         }
-        return new AbstractMap.SimpleEntry<>(arguments, operationsList.get(i));
+        return new AbstractMap.SimpleEntry<>(operationsList.get(i), arguments);
     }
 
-    abstract public MathTask generate();
+    abstract public T generate();
 
     private static int maxGenerationTries = 100;
 
     private int minNumber;
     private int maxNumber;
-    protected EnumSet<MathTask.Operation> operations;
+    private EnumSet<MathTask.Operation> operations;
 }

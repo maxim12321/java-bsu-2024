@@ -11,7 +11,7 @@ class Quiz {
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
      */
-    Quiz(TaskGenerator generator, int taskCount) { 
+    Quiz(TaskGenerator<?> generator, int taskCount) { 
         this.generator = generator;
         this.cashedTask = null;
         this.taskCount = taskCount;
@@ -96,16 +96,18 @@ class Quiz {
      * @return оценка, которая является отношением количества правильных ответов к количеству всех вопросов. 
      *         Оценка выставляется только в конце!
      */
-    double getMark() {
+    double getMark() throws QuizNotFinishedException {
         if (currentTaskIndex != taskCount) {
             throw new QuizNotFinishedException();
         } else {
+            if (taskCount == 0) {
+                return 1;
+            }
             return (double)correctAnswerCount / (double)taskCount;
         }
-        // ...
     }
 
-    TaskGenerator generator;
+    TaskGenerator<?> generator;
     Task cashedTask;
     int taskCount;
     int currentTaskIndex;

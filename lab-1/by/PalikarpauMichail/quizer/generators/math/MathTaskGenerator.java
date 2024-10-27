@@ -1,14 +1,15 @@
 package by.PalikarpauMichail.quizer.generators.math;
+
 import by.PalikarpauMichail.quizer.TaskGenerator;
 import by.PalikarpauMichail.quizer.tasks.math.MathTask;
 
 
-public interface MathTaskGenerator extends TaskGenerator {
+public interface MathTaskGenerator<T extends MathTask> extends TaskGenerator<T> {
     int getMinNumber();
     int getMaxNumber();
     int getRandomNumber();
     MathTask.Operation getRandomOperation();
-    MathTask generate();
+    T generate();
     
     default int getDiffNumber() {
         return getMaxNumber() - getMinNumber();

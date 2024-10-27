@@ -10,18 +10,19 @@ import by.PalikarpauMichail.quizer.Task;
 import by.PalikarpauMichail.quizer.TaskGenerator;
 import by.PalikarpauMichail.quizer.exceptions.TaskGenerationException;
 
-public class PoolTaskGenerator implements TaskGenerator {
+public class PoolTaskGenerator<T extends Task> implements TaskGenerator<T> {
     /**
      * Конструктор с переменным числом аргументов
      *
      * @param allowDuplicate разрешить повторения
      * @param tasks          задания, которые в конструктор передаются через запятую
      */
+    @SafeVarargs
     public PoolTaskGenerator(
         boolean allowDuplicate,
-        Task... tasks
+        T... tasks
     ) {
-        this.tasks = new ArrayList<Task>(Arrays.asList(tasks));
+        this.tasks = new ArrayList<>(Arrays.asList(tasks));
         this.allowDuplicate = allowDuplicate;
     }
 
@@ -33,7 +34,7 @@ public class PoolTaskGenerator implements TaskGenerator {
      */
     public PoolTaskGenerator(
         boolean allowDuplicate,
-        Collection<Task> tasks
+        Collection<T> tasks
     ) {
         this.tasks = new ArrayList<>(tasks);
         this.allowDuplicate = allowDuplicate;
@@ -42,18 +43,19 @@ public class PoolTaskGenerator implements TaskGenerator {
     /**
      * @return случайная задача из списка
      */
-    public Task generate() {
+    @Override
+    public T generate() throws TaskGenerationException {
         if (tasks.isEmpty()) {
             throw new TaskGenerationException();
         }
         int i = IntegerRandom.get(0, tasks.size() - 1);
-        Task task = tasks.get(i);
+        T task = tasks.get(i);
         if (!allowDuplicate) {
             tasks.remove(i);
         }
         return task;
     }
 
-    List<Task> tasks;
+    List<T> tasks;
     boolean allowDuplicate;
 }

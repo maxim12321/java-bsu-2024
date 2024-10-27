@@ -26,9 +26,9 @@ public class Main {
         TextMathTaskGenerator textMathTaskGenerator = new TextMathTaskGenerator(0, 100, allOperations);
 
 
-        GroupTaskGenerator groupTaskGenerator = new GroupTaskGenerator(expressionTaskGenerator, equationTaskGenerator);
+        GroupTaskGenerator<Task> groupTaskGenerator = new GroupTaskGenerator<>(expressionTaskGenerator, equationTaskGenerator);
 
-        PoolTaskGenerator poolTaskGenerator = new PoolTaskGenerator(
+        PoolTaskGenerator<TextTask> poolTaskGenerator = new PoolTaskGenerator<>(
             false, 
             new TextTask("Назовите столицу Португалии", "Лиссабон"),
             new TextTask("Назовите столицу Чили", "Сантьяго"),
@@ -36,7 +36,7 @@ public class Main {
             new TextTask("Назовите самый большой океан в мире", "Тихий океан")
         );
 
-        PoolTaskGenerator exceptionGenerator = new PoolTaskGenerator(false, new Task[]{});
+        PoolTaskGenerator<Task> exceptionGenerator = new PoolTaskGenerator<>(false, new Task[]{});
     
         Quiz easyMathTasksQuiz = new Quiz(easyMathTaskGenerator, 10);
         Quiz textQuestionsQuiz = new Quiz(poolTaskGenerator, 4);       
