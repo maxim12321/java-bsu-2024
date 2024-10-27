@@ -13,11 +13,15 @@ public class Quiz {
 
     private Task currentTask;
     private Result currentResult;
+
     /**
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
      */
     Quiz(TaskGenerator generator, int taskCount) {
+        if (generator == null || taskCount <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.generator = generator;
         this.taskCount = taskCount;
     }
