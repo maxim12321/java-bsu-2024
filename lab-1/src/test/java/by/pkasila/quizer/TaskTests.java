@@ -1,5 +1,6 @@
 package by.pkasila.quizer;
 
+import by.pkasila.quizer.common.Result;
 import by.pkasila.quizer.tasks.TextTask;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package by.pkasila.quizer;
+package by.pkasila.quizer.common;
 
 /**
  *  Enum specifying possible result options

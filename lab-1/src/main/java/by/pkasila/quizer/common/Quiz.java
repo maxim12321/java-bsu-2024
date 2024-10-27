@@ -1,12 +1,15 @@
-package by.pkasila.quizer;
+package by.pkasila.quizer.common;
 
-import by.pkasila.quizer.exceptions.QuizException;
+import by.pkasila.quizer.exceptions.FinishedQuizException;
+import by.pkasila.quizer.exceptions.NoTaskException;
+import by.pkasila.quizer.exceptions.UnfinishedQuizException;
+import by.pkasila.quizer.generators.TaskGenerator;
 
 /**
  * Class, который описывает один тест
  */
 public class Quiz {
-    private final TaskGenerator generator;
+    private final TaskGenerator<? extends Task> generator;
     private final int taskCount;
 
     private int tasksGiven = 0;
@@ -21,7 +24,7 @@ public class Quiz {
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
      */
-    Quiz(TaskGenerator generator, int taskCount) {
+    public Quiz(TaskGenerator<? extends Task> generator, int taskCount) {
         this.generator = generator;
         this.taskCount = taskCount;
     }
@@ -30,14 +33,16 @@ public class Quiz {
      * @return задание, повторный вызов вернет слелующее
      * @see Task
      */
-    Task nextTask() throws QuizException {
+    public Task nextTask() throws FinishedQuizException {
         if (this.isFinished()) {
-            throw new QuizException("the quiz is already finished");
+            throw new FinishedQuizException("You can't request next task.");
         }
 
-        this.currentTask = this.generator.generate();
+        if (this.currentTask == null) {
+            this.currentTask = this.generator.generate();
 
-        this.tasksGiven++;
+            this.tasksGiven++;
+        }
 
         return this.currentTask;
     }
@@ -46,9 +51,9 @@ public class Quiz {
      * Предоставить ответ ученика. Если результат {@link Result#INCORRECT_INPUT}, то счетчик неправильных
      * ответов не увеличивается, а {@link #nextTask()} в следующий раз вернет тот же самый объект {@link Task}.
      */
-    Result provideAnswer(String answer) throws QuizException {
+    public Result provideAnswer(String answer) throws NoTaskException {
         if (this.currentTask == null) {
-            throw new QuizException("there is no task given at the moment");
+            throw new NoTaskException("there is no task given at the moment");
         }
 
         Result result = this.currentTask.validate(answer);
@@ -73,28 +78,28 @@ public class Quiz {
     /**
      * @return завершен ли тест
      */
-    boolean isFinished() {
+    public boolean isFinished() {
         return this.tasksGiven == this.taskCount;
     }
 
     /**
      * @return количество правильных ответов
      */
-    int getCorrectAnswerNumber() {
+    public int getCorrectAnswerNumber() {
         return this.correctAnswersNumber;
     }
 
     /**
      * @return количество неправильных ответов
      */
-    int getWrongAnswerNumber() {
+    public int getWrongAnswerNumber() {
         return this.wrongAnswerNumber;
     }
 
     /**
      * @return количество раз, когда был предоставлен неправильный ввод
      */
-    int getIncorrectInputNumber() {
+    public int getIncorrectInputNumber() {
         return this.incorrectInputNumber;
     }
 
@@ -102,11 +107,12 @@ public class Quiz {
      * @return оценка, которая является отношением количества правильных ответов к количеству всех вопросов.
      *         Оценка выставляется только в конце!
      */
-    double getMark() {
+    public double getMark() {
         if (!this.isFinished()) {
-            throw new QuizException("the quiz is not finished");
+            throw new UnfinishedQuizException("Quiz cannot get result yet.");
         }
 
-        return ((double) this.correctAnswersNumber) / this.taskCount;
+        if (getCorrectAnswerNumber() + getWrongAnswerNumber() == 0) return 1;
+        return ((double) getCorrectAnswerNumber()) / (getCorrectAnswerNumber() + getWrongAnswerNumber());
     }
 }

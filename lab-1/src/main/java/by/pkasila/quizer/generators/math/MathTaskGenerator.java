@@ -1,13 +1,17 @@
 package by.pkasila.quizer.generators.math;
 
-public interface MathTaskGenerator {
-    int getMinNumber(); // получить минимальное число
-    int getMaxNumber(); // получить максимальное число
+import by.pkasila.quizer.generators.TaskGenerator;
+import by.pkasila.quizer.common.MathTask;
 
-    /**
-     * @return разница между максимальным и минимальным возможным числом
-     */
+public interface MathTaskGenerator<T extends MathTask> extends TaskGenerator<T> {
+
+    int getMinNumber();
+
+    int getMaxNumber();
+
+    T generateUnvalidated();
+
     default int getDiffNumber() {
-        return this.getMaxNumber() - this.getMinNumber();
+        return getMaxNumber() - getMinNumber();
     }
 }

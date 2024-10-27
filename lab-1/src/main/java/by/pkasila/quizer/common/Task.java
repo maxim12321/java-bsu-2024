@@ -1,16 +1,16 @@
-package by.pkasila.quizer;
+package by.pkasila.quizer.common;
 
 /**
- * Task is the interface providing common methods for task
+ * Interface, который описывает одно задание
  */
 public interface Task {
     /**
-     @return the task in the text format
+     @return текст задания
      */
     String getText();
 
     /**
-     * Check the answer to the task and returns result
+     * Проверяет ответ на задание и возвращает результат
      *
      * @param  answer ответ на задание
      * @return        результат ответа

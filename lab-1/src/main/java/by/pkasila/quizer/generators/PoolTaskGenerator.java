@@ -1,43 +1,44 @@
 package by.pkasila.quizer.generators;
 
-import by.pkasila.quizer.Task;
-import by.pkasila.quizer.TaskGenerator;
-import by.pkasila.quizer.exceptions.QuizException;
+import by.pkasila.quizer.exceptions.EmptyPoolGeneratorException;
+import by.pkasila.quizer.common.Task;
 
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.*;
 
-public class PoolTaskGenerator implements TaskGenerator {
-    /**
-     * Конструктор с переменным числом аргументов
-     *
-     * @param allowDuplicate разрешить повторения
-     * @param tasks          задания, которые в конструктор передаются через запятую
-     */
-    PoolTaskGenerator(
+public class PoolTaskGenerator<T extends Task> implements TaskGenerator<T> {
+
+    private final boolean allowDuplicate;
+
+    private final ArrayList<T> tasks;
+
+    @SafeVarargs
+    public PoolTaskGenerator(
             boolean allowDuplicate,
-            Task... tasks
+            T... tasks
     ) {
-        // ...
+        this.allowDuplicate = allowDuplicate;
+        this.tasks = new ArrayList<>(Arrays.asList(tasks));
     }
 
-    /**
-     * Конструктор, который принимает коллекцию заданий
-     *
-     * @param allowDuplicate разрешить повторения
-     * @param tasks          задания, которые передаются в конструктор в Collection (например, {@link LinkedList})
-     */
-    PoolTaskGenerator(
+    public PoolTaskGenerator(
             boolean allowDuplicate,
-            Collection<Task> tasks
+            Collection<T> tasks
     ) {
-        // ...
+        this.allowDuplicate = allowDuplicate;
+        this.tasks = new ArrayList<>(tasks);
     }
 
-    /**
-     * @return случайная задача из списка
-     */
-    public Task generate() {
-        throw new QuizException("not implemented");
+    @Override
+    public T generate() throws EmptyPoolGeneratorException {
+        if (tasks.isEmpty()) {
+            throw new EmptyPoolGeneratorException("Pool Task Generator has no tasks left.");
+        }
+        Random random = new Random();
+        int index = random.nextInt(tasks.size());
+        T task = tasks.get(index);
+        if (!allowDuplicate) {
+            tasks.remove(index);
+        }
+        return task;
     }
 }
