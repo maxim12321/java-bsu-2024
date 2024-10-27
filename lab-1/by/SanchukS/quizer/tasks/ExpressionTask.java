@@ -22,9 +22,10 @@ public class ExpressionTask implements Task {
 
     @Override
     public Result validate(String answer) {
+        int rightAnswer = expression.getNumber(2);
         try {
             int userAnswer = Integer.parseInt(answer);
-            return userAnswer == expression.getNumber(2) ? Result.OK : Result.WRONG;
+            return userAnswer == rightAnswer ? Result.OK : Result.WRONG;
         } catch (NumberFormatException e) {
             return Result.INCORRECT_INPUT;
         }
