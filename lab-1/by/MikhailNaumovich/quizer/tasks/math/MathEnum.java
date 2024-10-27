@@ -1,6 +1,8 @@
 package by.MikhailNaumovich.quizer.tasks.math;
 
+
 public enum MathEnum {
+    
     ADD('+'),
     SUBTRACT('-'),
     MULTIPLY('*'),

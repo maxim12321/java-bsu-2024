@@ -1,14 +1,15 @@
 package by.MikhailNaumovich.quizer.generators.math;
 
 import by.MikhailNaumovich.quizer.exceptions.InvalidGeneratorException;
+
 import by.MikhailNaumovich.quizer.tasks.math.EquationTask;
 import by.MikhailNaumovich.quizer.tasks.math.MathEnum;
 
 import java.util.Random;
 import java.util.EnumSet;
 
-public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTask> {
 
+public class EquationTaskGenerator extends AbstractMathTaskGenerator<EquationTask> {
 
     public EquationTaskGenerator(int minNumber, int maxNumber, EnumSet<MathEnum> operations) throws InvalidGeneratorException{
         super(minNumber, maxNumber, operations);

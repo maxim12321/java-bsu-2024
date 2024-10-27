@@ -1,6 +1,8 @@
 package by.MikhailNaumovich.quizer.tasks.math;
 
+
 public class EquationTask extends AbstractMathTask {
+    
     public EquationTask(int left, MathEnum operator, int right, boolean isFactorLeft) {
         super(left, operator, right);
         this.isFactorLeft = isFactorLeft;

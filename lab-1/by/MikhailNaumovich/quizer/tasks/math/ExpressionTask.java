@@ -1,5 +1,6 @@
 package by.MikhailNaumovich.quizer.tasks.math;
 
+
 public class ExpressionTask extends AbstractMathTask {
 
     public ExpressionTask(int left, MathEnum operator, int right) {

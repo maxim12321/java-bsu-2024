@@ -2,12 +2,14 @@ package by.MikhailNaumovich.quizer.generators.math;
 
 import by.MikhailNaumovich.quizer.tasks.math.AbstractMathTask;
 import by.MikhailNaumovich.quizer.tasks.math.MathEnum;
+
 import by.MikhailNaumovich.quizer.exceptions.InvalidGeneratorException;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
+
 
 public abstract class AbstractMathTaskGenerator<T extends AbstractMathTask> implements MathTaskGenerator<T> {
 

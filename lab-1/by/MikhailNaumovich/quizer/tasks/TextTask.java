@@ -1,7 +1,8 @@
 package by.MikhailNaumovich.quizer.tasks;
 
-import by.MikhailNaumovich.quizer.Task;
 import by.MikhailNaumovich.quizer.Result;
+import by.MikhailNaumovich.quizer.Task;
+
 import by.MikhailNaumovich.quizer.generators.PoolTaskGenerator;
 
 /**

@@ -2,6 +2,7 @@ package by.MikhailNaumovich.quizer.generators;
 
 import by.MikhailNaumovich.quizer.Task;
 import by.MikhailNaumovich.quizer.TaskGenerator;
+
 import by.MikhailNaumovich.quizer.exceptions.InvalidGeneratorException;
 import by.MikhailNaumovich.quizer.exceptions.InvalidArgumentException;
 
@@ -11,6 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+
 public class GroupTaskGenerator<T extends Task> implements TaskGenerator<T> {
     /**
      * Конструктор с переменным числом аргументов
@@ -19,14 +21,14 @@ public class GroupTaskGenerator<T extends Task> implements TaskGenerator<T> {
      */
     
     @SafeVarargs
-    public GroupTaskGenerator(TaskGenerator<? extends Task>... generators) throws InvalidGeneratorException {
+    public GroupTaskGenerator(TaskGenerator<? extends T>... generators) throws InvalidGeneratorException {
         if (generators == null) {
             throw new InvalidArgumentException("Generators is null");
         }
         if (generators.length == 0) {
             throw new InvalidArgumentException("Generators is empty");
         }
-        List<TaskGenerator<? extends Task>> generatorList = Arrays.stream(generators).toList();
+        List<TaskGenerator<? extends T>> generatorList = Arrays.stream(generators).toList();
         if (generatorList.contains(null)) {
             throw new InvalidGeneratorException("Generators contains null");
         }
@@ -38,7 +40,7 @@ public class GroupTaskGenerator<T extends Task> implements TaskGenerator<T> {
      *
      * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
      */
-    public GroupTaskGenerator(Collection<TaskGenerator<? extends Task>> generators) {
+    public GroupTaskGenerator(Collection<TaskGenerator<? extends T>> generators) {
         if (generators == null) {
             throw new IllegalArgumentException("Generators is null");
         }
@@ -56,6 +58,7 @@ public class GroupTaskGenerator<T extends Task> implements TaskGenerator<T> {
      *         Если этот генератор выбросил исключение в методе generate(), выбирается другой.
      *         Если все генераторы выбрасывают исключение, то и тут выбрасывается исключение.
      */
+
     @Override
     public T generate() throws InvalidGeneratorException {
         if (taskGenerators.isEmpty()) {
@@ -72,14 +75,8 @@ public class GroupTaskGenerator<T extends Task> implements TaskGenerator<T> {
         while (!indices.isEmpty()) {
             int randomIndex = random.nextInt(indices.size());
             int generatorIndex = indices.get(randomIndex);
-            
             try {
-                Task generatedTask = taskGenerators.get(generatorIndex).generate();
-                if (generatedTask instanceof Task) {
-                    return (T) generatedTask;
-                } else {
-                    throw new InvalidGeneratorException("Generated task is not of the expected type");
-                }
+                return taskGenerators.get(generatorIndex).generate();
             } catch (InvalidGeneratorException e) {
                 indices.remove(randomIndex);
             }
@@ -89,5 +86,5 @@ public class GroupTaskGenerator<T extends Task> implements TaskGenerator<T> {
 
     }
 
-    private final List<TaskGenerator<? extends Task>> taskGenerators;
+    private final List<TaskGenerator<? extends T>> taskGenerators;
 }

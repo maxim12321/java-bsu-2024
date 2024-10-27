@@ -1,6 +1,7 @@
 package by.MikhailNaumovich.quizer.generators.math;
 
 import by.MikhailNaumovich.quizer.exceptions.InvalidGeneratorException;
+
 import by.MikhailNaumovich.quizer.tasks.math.ExpressionTask;
 import by.MikhailNaumovich.quizer.tasks.math.MathEnum;
 

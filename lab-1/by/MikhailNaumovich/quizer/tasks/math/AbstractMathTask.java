@@ -2,6 +2,7 @@ package by.MikhailNaumovich.quizer.tasks.math;
 
 import by.MikhailNaumovich.quizer.Result;
 
+
 public abstract class AbstractMathTask implements MathTask {
 
     public AbstractMathTask(int left, MathEnum operator, int right) {

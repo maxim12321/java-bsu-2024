@@ -2,18 +2,20 @@ package by.MikhailNaumovich.quizer.generators;
 
 import by.MikhailNaumovich.quizer.Task;
 import by.MikhailNaumovich.quizer.TaskGenerator;
+
 import by.MikhailNaumovich.quizer.exceptions.InvalidArgumentException;
 import by.MikhailNaumovich.quizer.exceptions.InvalidGeneratorException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Random;
+
 import java.util.stream.Collectors;
-import java.util.Collections;
-import java.util.LinkedHashSet;
 
 
 public class PoolTaskGenerator<T extends Task> implements TaskGenerator<T> {
@@ -54,6 +56,7 @@ public class PoolTaskGenerator<T extends Task> implements TaskGenerator<T> {
      * @param allowDuplicate разрешить повторения
      * @param tasks          задания, которые передаются в конструктор в Collection (например, {@link LinkedList})
      */
+    
     public PoolTaskGenerator(
         boolean allowDuplicate,
         Collection<T> tasks
@@ -92,9 +95,7 @@ public class PoolTaskGenerator<T extends Task> implements TaskGenerator<T> {
         } else {
             currentIndex = random.nextInt(tasks.size());
             T task = tasks.get(currentIndex);
-            if (!allowDuplicate) {
-               tasks.remove(currentIndex);
-            }
+            tasks.remove(currentIndex);
             return task;
         }
     }
