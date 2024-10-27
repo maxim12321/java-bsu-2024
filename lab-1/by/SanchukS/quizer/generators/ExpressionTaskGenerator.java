@@ -9,10 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 class ExpressionTaskGenerator implements TaskGenerator {
-    private final Random random = new Random();
-    private final int minNumber;
-    private final int maxNumber;
-    private final List<String> operations;
+    private ExpressionGenerator expressionGenerator;
 
     /**
      * @param minNumber              минимальное число
@@ -30,43 +27,18 @@ class ExpressionTaskGenerator implements TaskGenerator {
             boolean generateMultiplication,
             boolean generateDivision
     ) {
-        this.minNumber = minNumber;
-        this.maxNumber = maxNumber;
-
         List<String> operations = new ArrayList<>();
         if (generateSum) operations.add("+");
         if (generateDifference) operations.add("-");
         if (generateMultiplication) operations.add("*");
         if (generateDivision) operations.add("/");
-        this.operations = operations;
+        this.expressionGenerator = new ExpressionGenerator(minNumber, maxNumber, operations);
     }
 
     /**
      * return задание типа {@link ExpressionTask}
      */
     public ExpressionTask generate() {
-        return new ExpressionTask(generateExpression());
-    }
-
-    private Expression generateExpression() {
-        String operation = operations.get(random.nextInt(operations.size()));
-        int firstNumber;
-        int secondNumber;
-        if (operation.equals("/")) {
-            firstNumber = random.nextInt(maxNumber - minNumber) + minNumber;
-            List<Integer> divisors = new ArrayList<>();
-            divisors.add(firstNumber);
-
-            int buffer = firstNumber;
-            for (int i = 1; i * 2 <= buffer; ++i) {
-                if (buffer % i == 0 && i > minNumber) divisors.add(i);
-            }
-
-            secondNumber = divisors.get(random.nextInt(divisors.size()));
-        } else {
-            firstNumber = random.nextInt(maxNumber - minNumber) + minNumber;
-            secondNumber = random.nextInt(maxNumber - minNumber) + minNumber;
-        }
-        return Expression.of(firstNumber, operation, secondNumber);
+        return new ExpressionTask(expressionGenerator.generateExpression());
     }
 }
