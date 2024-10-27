@@ -33,4 +33,8 @@ public class Expression {
     public String getOperation() {
         return operation;
     }
+
+    public static Expression of(int number1, String operation, int number2) {
+        return new Expression(number1, operation, number2);
+    }
 }

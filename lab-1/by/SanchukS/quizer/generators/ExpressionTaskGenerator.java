@@ -1,5 +1,6 @@
 package by.SanchukS.quizer.generators;
 
+import by.SanchukS.quizer.Expression;
 import by.SanchukS.quizer.TaskGenerator;
 import by.SanchukS.quizer.tasks.ExpressionTask;
 
@@ -53,6 +54,6 @@ class ExpressionTaskGenerator implements TaskGenerator {
             firstNumber = random.nextInt(maxNumber - minNumber) + minNumber;
             secondNumber = random.nextInt(maxNumber - minNumber) + minNumber;
         }
-        return new ExpressionTask(firstNumber, operation, secondNumber);
+        return new ExpressionTask(new Expression(firstNumber, operation, secondNumber));
     }
 }
