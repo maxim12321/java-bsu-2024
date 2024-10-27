@@ -74,8 +74,4 @@ public class Quiz {
         }
         return (double) correctAnswerNumber / taskCount;
     }
-
-    static Map<String, Quiz> getQuizMap() {
-        return null;
-    }
 }

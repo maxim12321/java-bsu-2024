@@ -14,7 +14,7 @@ public class PoolTaskGenerator implements TaskGenerator {
     List<Task> tasks;
     Random random;
 
-    PoolTaskGenerator(
+    public PoolTaskGenerator(
             boolean allowDuplicate,
             Task... tasks
     ) {

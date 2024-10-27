@@ -14,12 +14,12 @@ public class GroupTaskGenerator implements TaskGenerator {
     TaskGenerator[] generators;
     Random random;
 
-    GroupTaskGenerator(TaskGenerator... generators) {
+    public GroupTaskGenerator(TaskGenerator... generators) {
       this.generators = generators;
       random = new Random();
     }
 
-    GroupTaskGenerator(Collection<TaskGenerator> generators) {
+    public GroupTaskGenerator(Collection<TaskGenerator> generators) {
         this.generators = generators.toArray(new TaskGenerator[0]);
         random = new Random();
     }
