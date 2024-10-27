@@ -45,15 +45,28 @@ class ExpressionTaskGenerator implements TaskGenerator {
      * return задание типа {@link ExpressionTask}
      */
     public ExpressionTask generate() {
+        return new ExpressionTask(generateExpression());
+    }
+
+    private Expression generateExpression() {
         String operation = operations.get(random.nextInt(operations.size()));
         int firstNumber;
         int secondNumber;
         if (operation.equals("/")) {
-            throw new UnsupportedOperationException("Not realized yet");
+            firstNumber = random.nextInt(maxNumber - minNumber) + minNumber;
+            List<Integer> divisors = new ArrayList<>();
+            divisors.add(firstNumber);
+
+            int buffer = firstNumber;
+            for (int i = 1; i * 2 <= buffer; ++i) {
+                if (buffer % i == 0 && i > minNumber) divisors.add(i);
+            }
+
+            secondNumber = divisors.get(random.nextInt(divisors.size()));
         } else {
             firstNumber = random.nextInt(maxNumber - minNumber) + minNumber;
             secondNumber = random.nextInt(maxNumber - minNumber) + minNumber;
         }
-        return new ExpressionTask(new Expression(firstNumber, operation, secondNumber));
+        return Expression.of(firstNumber, operation, secondNumber);
     }
 }
