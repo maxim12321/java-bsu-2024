@@ -40,6 +40,7 @@ public class Expression {
 
     @Override
     public boolean equals(Expression obj) {
+        if (obj == null) return false;
         boolean result = operation.equals(obj.getOperation());
         for (int i = 0; i < 3; ++i) {
             result &= numbers[i] == obj.getNumber(i);
