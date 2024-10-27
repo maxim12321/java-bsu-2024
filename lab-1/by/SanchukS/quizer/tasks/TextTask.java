@@ -2,6 +2,7 @@ package by.SanchukS.quizer.tasks;
 
 import by.SanchukS.quizer.Result;
 import by.SanchukS.quizer.Task;
+import by.SanchukS.quizer.generators.PoolTaskGenerator;
 
 /**
  * Задание с заранее заготовленным текстом.

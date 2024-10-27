@@ -5,7 +5,7 @@ import by.SanchukS.quizer.TaskGenerator;
 
 import java.util.*;
 
-class PoolTaskGenerator implements TaskGenerator {
+public class PoolTaskGenerator implements TaskGenerator {
     private final List<Task> tasks;
     private final boolean allowDuplicate;
     private final Random random = new Random();
