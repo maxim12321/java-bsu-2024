@@ -66,10 +66,6 @@ public abstract class AbstractMathTaskGenerator<T extends AbstractMathTask> impl
         return operationsList.get((int) (Math.random() * operationsList.size()));
     }
 
-    protected boolean isOperationValid(MathEnum operation, int number) {
-        return operation != MathEnum.DIVIDE || number != 0;
-    }
-
     protected final int minNumber;
     protected final int maxNumber;
     private final ArrayList<MathEnum> operations;
