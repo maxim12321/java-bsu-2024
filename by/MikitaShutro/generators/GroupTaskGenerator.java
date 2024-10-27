@@ -22,7 +22,6 @@ class GroupTaskGenerator implements TaskGenerator {
     }
 
     /**
-     * Конструктор, который принимает коллекцию генераторов
      *
      * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
      */
