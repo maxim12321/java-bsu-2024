@@ -178,7 +178,7 @@ public class Main {
         }
         Quiz quiz = quizMap.get(testName);
 
-        System.out.println("Beginning test. Prepare to answer " + /* quiz.getTasksAmount()  +*/  " questions.");
+        System.out.println("Beginning test. Prepare to answer " + quiz.getTasksAmount() + " questions.");
         while (!quiz.isFinished()) {
             System.out.println(quiz.nextTask().getText());
             String answer = scanner.nextLine();
