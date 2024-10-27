@@ -3,7 +3,7 @@ package by.SanchukS.quizer;
 /**
  * Class, который описывает один тест
  */
-class Quiz {
+public class Quiz {
     private final int taskCount;
     private final TaskGenerator generator;
 
