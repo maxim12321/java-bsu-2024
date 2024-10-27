@@ -9,13 +9,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
-public class GroupTaskGenerator implements TaskGenerator {
+public class GroupTaskGenerator<T extends Task> implements TaskGenerator<T> {
     /**
      * Конструктор с переменным числом аргументов
      *
      * @param generators генераторы, которые в конструктор передаются через запятую
      */
-    public GroupTaskGenerator(TaskGenerator... generators) {
+    @SafeVarargs
+    public GroupTaskGenerator(TaskGenerator<? extends T>... generators) {
         this.generators = new ArrayList<>(Arrays.asList(generators));
     }
 
@@ -24,8 +25,8 @@ public class GroupTaskGenerator implements TaskGenerator {
      *
      * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
      */
-    public GroupTaskGenerator(Collection<TaskGenerator> generators) {
-        this.generators = generators;
+    public GroupTaskGenerator(Collection<TaskGenerator<? extends T>> generators) {
+        this.generators = new ArrayList<>(generators);
     }
 
     /**
@@ -34,27 +35,22 @@ public class GroupTaskGenerator implements TaskGenerator {
      * Если все генераторы выбрасывают исключение, то и тут выбрасывается исключение.
      */
     @Override
-    public Task generate() {
+    public T generate() {
         generators.addAll(removed);
         removed.clear();
         Random random = new Random();
         while (!generators.isEmpty()) {
-            var iterator = generators.iterator();
             int index = random.nextInt(generators.size());
-            for (; index > 0; index--) {
-                iterator.next();
-            }
-            var generator = iterator.next();
             try {
-                return generator.generate();
+                return generators.get(index).generate();
             } catch (Exception e) {
-                removed.add(generator);
-                iterator.remove();
+                removed.add(generators.get(index));
+                generators.remove(index);
             }
         }
-        throw new GeneratorException("Can't generate test");
+        throw new GeneratorException("All generators failed generation");
     }
 
-    private final Collection<TaskGenerator> generators;
-    private final Collection<TaskGenerator> removed = new ArrayList<>();
+    private final ArrayList<TaskGenerator<? extends T>> generators;
+    private final ArrayList<TaskGenerator<? extends T>> removed = new ArrayList<>();
 }

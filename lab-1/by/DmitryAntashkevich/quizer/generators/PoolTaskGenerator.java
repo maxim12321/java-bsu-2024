@@ -10,16 +10,17 @@ import java.util.Collection;
 import java.util.Random;
 import java.util.LinkedList;
 
-public class PoolTaskGenerator implements TaskGenerator {
+public class PoolTaskGenerator<T extends Task> implements TaskGenerator<T> {
     /**
      * Конструктор с переменным числом аргументов
      *
      * @param allowDuplicate разрешить повторения
      * @param tasks          задания, которые в конструктор передаются через запятую
      */
+    @SafeVarargs
     public PoolTaskGenerator(
             boolean allowDuplicate,
-            Task... tasks
+            T... tasks
     ) {
         this.tasks = new ArrayList<>(Arrays.asList(tasks));
         this.allowDuplicate = allowDuplicate;
@@ -33,7 +34,7 @@ public class PoolTaskGenerator implements TaskGenerator {
      */
     public PoolTaskGenerator(
             boolean allowDuplicate,
-            Collection<Task> tasks
+            Collection<T> tasks
     ) {
         this.tasks = new ArrayList<>(tasks);
         this.allowDuplicate = allowDuplicate;
@@ -43,19 +44,19 @@ public class PoolTaskGenerator implements TaskGenerator {
      * @return случайная задача из списка
      */
     @Override
-    public Task generate() {
+    public T generate() {
         if (tasks.isEmpty()) {
             throw new GeneratorException("No tasks to choose from");
         }
         Random random = new Random();
         int index = random.nextInt(tasks.size());
-        Task task = tasks.get(index);
+        T task = tasks.get(index);
         if (!allowDuplicate) {
             tasks.remove(index);
         }
         return task;
     }
 
-    final private ArrayList<Task> tasks;
+    final private ArrayList<T> tasks;
     final private boolean allowDuplicate;
 }

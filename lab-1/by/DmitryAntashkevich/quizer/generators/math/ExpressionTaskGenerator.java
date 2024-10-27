@@ -5,7 +5,7 @@ import by.DmitryAntashkevich.quizer.tasks.math.MathTask.Operation;
 
 import java.util.EnumSet;
 
-public class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
+public class ExpressionTaskGenerator extends AbstractMathTaskGenerator<ExpressionTask> {
     /**
      * @param minNumber         минимальное число
      * @param maxNumber         максимальное число

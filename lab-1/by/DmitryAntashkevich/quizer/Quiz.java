@@ -10,7 +10,7 @@ public class Quiz {
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
      */
-    Quiz(TaskGenerator generator, int taskCount) {
+    Quiz(TaskGenerator<? extends Task> generator, int taskCount) {
         this.generator = generator;
         this.taskCount = taskCount;
     }
@@ -86,7 +86,7 @@ public class Quiz {
         return (double) correctAnswerCount / (double) taskCount;
     }
 
-    private final TaskGenerator generator;
+    private final TaskGenerator<? extends Task> generator;
     private final int taskCount;
     private int completedTaskCount = 0;
     private int correctAnswerCount = 0;

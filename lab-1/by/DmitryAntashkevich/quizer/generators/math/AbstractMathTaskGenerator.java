@@ -1,12 +1,13 @@
 package by.DmitryAntashkevich.quizer.generators.math;
 
 import by.DmitryAntashkevich.quizer.exceptions.InvalidTaskException;
+import by.DmitryAntashkevich.quizer.tasks.math.MathTask;
 import by.DmitryAntashkevich.quizer.tasks.math.MathTask.Operation;
 
 import java.util.EnumSet;
 import java.util.Random;
 
-public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
+public abstract class AbstractMathTaskGenerator<T extends MathTask> implements MathTaskGenerator<T> {
     AbstractMathTaskGenerator(
             int minNumber,
             int maxNumber,

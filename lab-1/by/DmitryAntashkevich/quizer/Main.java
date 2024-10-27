@@ -13,16 +13,16 @@ public class Main {
     /**
      * @return тесты в {@link Map}, где
      * ключ - название теста {@link String}
-     * значение - сам тест       {@link Quiz}
+     * значение - сам тест {@link Quiz}
      */
     static Map<String, Quiz> getQuizMap() {
         Map<String, Quiz> quizMap = new HashMap<>();
 
         // Math generators
-        TaskGenerator simpleExpressionGenerator = new ExpressionTaskGenerator(0, 100, EnumSet.of(Operation.ADDITION, Operation.SUBTRACTION));
-        TaskGenerator advancedExpressionGenerator = new ExpressionTaskGenerator(-100, 100, EnumSet.of(Operation.MULTIPLICATION, Operation.DIVISION));
-        TaskGenerator simpleEquationGenerator = new EquationTaskGenerator(0, 100, EnumSet.of(Operation.ADDITION, Operation.SUBTRACTION));
-        TaskGenerator advancedEquationGenerator = new EquationTaskGenerator(-100, 100, EnumSet.of(Operation.MULTIPLICATION, Operation.DIVISION));
+        var simpleExpressionGenerator = new ExpressionTaskGenerator(0, 100, EnumSet.of(Operation.ADDITION, Operation.SUBTRACTION));
+        var advancedExpressionGenerator = new ExpressionTaskGenerator(-100, 100, EnumSet.of(Operation.MULTIPLICATION, Operation.DIVISION));
+        var simpleEquationGenerator = new EquationTaskGenerator(0, 100, EnumSet.of(Operation.ADDITION, Operation.SUBTRACTION));
+        var advancedEquationGenerator = new EquationTaskGenerator(-100, 100, EnumSet.of(Operation.MULTIPLICATION, Operation.DIVISION));
 
         quizMap.put("simple expr", new Quiz(simpleExpressionGenerator, 5));
         quizMap.put("advanced expr", new Quiz(advancedExpressionGenerator, 10));
@@ -34,15 +34,15 @@ public class Main {
         Task textTask2 = new TextTask("Кто создал язык программирования c++?", "Бьёрн Страуструп");
         Task textTask3 = new TextTask("Как совмещать уник, шад и личную жизнь?", "Никак");
 
-        TaskGenerator poolGenerator = new PoolTaskGenerator(true, textTask1, textTask2, textTask3);
+        var poolGenerator = new PoolTaskGenerator<>(true, textTask1, textTask2, textTask3);
 
-        quizMap.put("pool crush", new Quiz(new PoolTaskGenerator(false, textTask1, textTask2, textTask3), 5));
-        quizMap.put("pool no dup", new Quiz(new PoolTaskGenerator(false, textTask1, textTask2, textTask3), 3));
+        quizMap.put("pool crush", new Quiz(new PoolTaskGenerator<>(false, textTask1, textTask2, textTask3), 5));
+        quizMap.put("pool no dup", new Quiz(new PoolTaskGenerator<>(false, textTask1, textTask2, textTask3), 3));
         quizMap.put("pool with dup", new Quiz(poolGenerator, 5));
 
         // Group generators
-        TaskGenerator groupCrushGenerator = new GroupTaskGenerator(new PoolTaskGenerator(false, textTask1, textTask2, textTask3), new PoolTaskGenerator(false, textTask1, textTask2, textTask3));
-        TaskGenerator allInOneGenerator = new GroupTaskGenerator(simpleEquationGenerator, advancedEquationGenerator, simpleExpressionGenerator, advancedExpressionGenerator, poolGenerator);
+        var groupCrushGenerator = new GroupTaskGenerator<>(new PoolTaskGenerator<>(false, textTask1, textTask2, textTask3), new PoolTaskGenerator<>(false, textTask1, textTask2, textTask3));
+        var allInOneGenerator = new GroupTaskGenerator<>(simpleEquationGenerator, advancedEquationGenerator, simpleExpressionGenerator, advancedExpressionGenerator, poolGenerator);
 
         quizMap.put("group crush", new Quiz(groupCrushGenerator, 7));
         quizMap.put("all in one", new Quiz(allInOneGenerator, 9));
