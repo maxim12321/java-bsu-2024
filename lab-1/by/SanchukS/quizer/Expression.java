@@ -39,11 +39,12 @@ public class Expression {
     }
 
     @Override
-    public boolean equals(Expression obj) {
+    public boolean equals(Object obj) {
         if (obj == null) return false;
-        boolean result = operation.equals(obj.getOperation());
+        if (!(obj instanceof Expression e)) return false;
+        boolean result = operation.equals(e.getOperation());
         for (int i = 0; i < 3; ++i) {
-            result &= numbers[i] == obj.getNumber(i);
+            result &= numbers[i] == e.getNumber(i);
         }
         return result;
     }
