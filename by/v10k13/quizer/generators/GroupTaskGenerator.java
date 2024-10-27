@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GroupTaskGenerator implements TaskGenerator<Task> {
-    private final ArrayList<TaskGenerator<Task>> tasks;
+    private final ArrayList<TaskGenerator<?>> tasks;
     private final Random random = new Random();
 
     /**
@@ -19,7 +19,7 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
      * @param generators генераторы, которые в конструктор передаются через запятую
      */
     @SafeVarargs
-    public GroupTaskGenerator(TaskGenerator<Task>... generators) {
+    public GroupTaskGenerator(TaskGenerator<?>... generators) {
         tasks = new ArrayList<>(List.of(generators));
     }
 
@@ -28,7 +28,7 @@ public class GroupTaskGenerator implements TaskGenerator<Task> {
      *
      * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
      */
-    public GroupTaskGenerator(Collection<TaskGenerator<Task>> generators) {
+    public GroupTaskGenerator(Collection<TaskGenerator<?>> generators) {
         tasks = new ArrayList<>(generators);
     }
 

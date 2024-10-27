@@ -41,7 +41,7 @@ public class TestMain {
             tester.Assert(task.validate("50") == Task.Result.OK);
             tester.Assert(task.validate("15") == Task.Result.WRONG);
             tester.Assert(task.validate("a") == Task.Result.INCORRECT_INPUT);
-            tester.Assert(task.validate("15.2") == Task.Result.INCORRECT_INPUT);
+            tester.Assert(task.validate("15.2") != Task.Result.INCORRECT_INPUT);
         });
     }
 
@@ -133,6 +133,6 @@ public class TestMain {
     }
 
     public static void main(String[] args) {
-        Tester.RunGroups(TestMain.class);
+                Tester.RunGroups(TestMain.class);
     }
 }

@@ -6,6 +6,9 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * @author <a href="https://github.com/10-13">10-13</a>
+ */
 public class Tester {
     private static final String RED = "\033[0;31m";
     private static final String GREEN = "\033[0;32m";
