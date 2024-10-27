@@ -1,37 +1,43 @@
 package by.SanchukS.quizer.tasks;
 
+import by.SanchukS.quizer.Expression;
 import by.SanchukS.quizer.Result;
 import by.SanchukS.quizer.Task;
 
 public class EquationTask implements Task {
-    private final int firstNumber;
-    private final int secondNumber;
-    private final int thirdNumber;
-    private final int answer;
+    Expression expression;
+    private final boolean variableRight;
 
-    private final String operation;
-
-    /**
-     *
-     * @param firstNumber - если null, то это x
-     * @param operation - операция
-     * @param secondNumber - если null, то это x
-     * @param thirdNumber -
-     */
-    public EquationTask(int firstNumber, String operation, int secondNumber, int thirdNumber) {
-        this.firstNumber = firstNumber;
-        this.secondNumber = secondNumber;
-        this.thirdNumber = thirdNumber;
-        this.operation = operation;
+    public EquationTask(Expression expression, boolean variableRight) {
+        this.expression = expression;
+        this.variableRight = variableRight;
     }
 
     @Override
     public String getText() {
-        return "";
+        if (variableRight) {
+            return expression.getNumber(0)
+                    + expression.getOperation()
+                    + "x="
+                    + expression.getNumber(2);
+        } else {
+            return "x"
+                    + expression.getOperation()
+                    + expression.getNumber(1)
+                    + "="
+                    + expression.getNumber(2);
+        }
+
     }
 
     @Override
     public Result validate(String answer) {
-        return null;
+        int rightAnswer = variableRight ? expression.getNumber(1) : expression.getNumber(0);
+        try {
+            int userAnswer = Integer.parseInt(answer);
+            return userAnswer == rightAnswer ? Result.OK : Result.WRONG;
+        } catch (NumberFormatException e) {
+            return Result.INCORRECT_INPUT;
+        }
     }
 }
