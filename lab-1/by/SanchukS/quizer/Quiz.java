@@ -87,9 +87,6 @@ class Quiz {
      */
     double getMark() {
         if (!isFinished()) throw new IllegalStateException("Quiz is not finished.");
-        if (isFinished()) {
-            return (double) correctAnswers / taskCount;
-        }
-
+        return (double) correctAnswers / taskCount;
     }
 }
