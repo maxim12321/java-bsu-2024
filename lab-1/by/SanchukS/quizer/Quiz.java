@@ -19,9 +19,8 @@ public class Quiz {
      * @param taskCount количество заданий в тесте
      */
     Quiz(TaskGenerator generator, int taskCount) {
-        if (generator == null || taskCount <= 0) {
-            throw new IllegalArgumentException();
-        }
+        if (generator == null) throw new IllegalArgumentException("Null argument");
+        if (taskCount <= 0) throw new IllegalArgumentException("Invalid task count");
         this.generator = generator;
         this.taskCount = taskCount;
     }
