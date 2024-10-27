@@ -5,8 +5,8 @@ package by.SanchukS.quizer;
  * Хранит выражение вида "x op y = z", где op={+, -, *, /}.
  */
 public class Expression {
-    int[] numbers = new int[3];
-    String operation;
+    private final int[] numbers = new int[3];
+    private final String operation;
 
     public Expression(int number1, String operation, int number2) {
         if (operation == null) throw new IllegalArgumentException("Null operation");
@@ -36,5 +36,14 @@ public class Expression {
 
     public static Expression of(int number1, String operation, int number2) {
         return new Expression(number1, operation, number2);
+    }
+
+    @Override
+    public boolean equals(Expression obj) {
+        boolean result = operation.equals(obj.getOperation());
+        for (int i = 0; i < 3; ++i) {
+            result &= numbers[i] == obj.getNumber(i);
+        }
+        return result;
     }
 }
