@@ -28,7 +28,8 @@ class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
             boolean generateMultiplication,
             boolean generateDivision
     ) {
-        super(minNumber,
+        super(
+                minNumber,
                 maxNumber,
                 generateSum,
                 generateDifference,
