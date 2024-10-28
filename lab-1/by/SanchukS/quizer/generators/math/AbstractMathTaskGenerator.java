@@ -38,6 +38,6 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
     public abstract MathTask generate();
 
     protected Expression generateExpression() {
-        expressionGenerator.generateExpression();
+        return expressionGenerator.generateExpression();
     }
 }
