@@ -1,14 +1,15 @@
 package by.SanchukS.quizer.generators;
 
 import by.SanchukS.quizer.TaskGenerator;
+import by.SanchukS.quizer.generators.math.AbstractMathTaskGenerator;
 import by.SanchukS.quizer.tasks.EquationTask;
+import by.SanchukS.quizer.tasks.math.MathTask;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-class EquationTaskGenerator implements TaskGenerator {
-    private ExpressionGenerator expressionGenerator;
+class EquationTaskGenerator extends AbstractMathTaskGenerator {
     private Random random = new Random();
 
     /**
@@ -27,18 +28,20 @@ class EquationTaskGenerator implements TaskGenerator {
             boolean generateMultiplication,
             boolean generateDivision
     ) {
-        List<String> operations = new ArrayList<>();
-        if (generateSum) operations.add("+");
-        if (generateDifference) operations.add("-");
-        if (generateMultiplication) operations.add("*");
-        if (generateDivision) operations.add("/");
-        this.expressionGenerator = new ExpressionGenerator(minNumber, maxNumber, operations);
+        super(
+                minNumber,
+                maxNumber,
+                generateSum,
+                generateDifference,
+                generateMultiplication,
+                generateDivision
+        );
     }
 
     /**
      * return задание типа {@link EquationTask}
      */
-    public EquationTask generate() {
-        return new EquationTask(expressionGenerator.generateExpression(), random.nextBoolean());
+    public MathTask generate() {
+        return new EquationTask(generateExpression(), random.nextBoolean());
     }
 }
