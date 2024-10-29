@@ -24,7 +24,7 @@ public class ExpressionGenerator {
         this.operations = operations;
     }
 
-    public Expression generateExpression() {
+    public Expression generate() {
         final Random random = new Random();
         Operation operation = operations.stream()
                 .reduce((op1, op2) -> random.nextBoolean() ? op1 : op2)

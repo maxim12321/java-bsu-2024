@@ -26,7 +26,7 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
     public abstract MathTask generate();
 
     protected Expression generateExpression() {
-        return expressionGenerator.generateExpression();
+        return expressionGenerator.generate();
     }
 
     @Override
