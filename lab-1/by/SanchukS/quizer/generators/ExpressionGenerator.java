@@ -48,4 +48,7 @@ public class ExpressionGenerator {
         }
         return Expression.of(firstNumber, operation, secondNumber);
     }
+
+    protected int getMaxNumber() {return maxNumber;}
+    protected int getMinNumber() {return minNumber;}
 }
