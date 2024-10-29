@@ -1,11 +1,9 @@
 package by.SanchukS.quizer.generators;
 
 import by.SanchukS.quizer.Expression;
+import by.SanchukS.quizer.Operation;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Класс-генератор выражений вида "a op b = c", где op={+, -, *, /}
@@ -13,25 +11,27 @@ import java.util.Random;
 public class ExpressionGenerator {
     private final int minNumber;
     private final int maxNumber;
-    final List<String> operations;
+    private final EnumSet<Operation> operations;
     private final Random random = new Random();
 
     public ExpressionGenerator(
             int minNumber,
             int maxNumber,
-            List<String> operations)
+            EnumSet<Operation> operations)
     {
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;
-        this.operations = new ArrayList<>(operations);
+        this.operations = operations;
     }
 
     public Expression generateExpression() {
         final Random random = new Random();
-        String operation = operations.get(random.nextInt(operations.size()));
+        Operation operation = operations.stream()
+                .reduce((op1, op2) -> random.nextBoolean() ? op1 : op2)
+                .orElseThrow();
         int firstNumber;
         int secondNumber;
-        if (operation.equals("/")) {
+        if (operation.toString().equals("/")) {
             firstNumber = random.nextInt(maxNumber - minNumber) + minNumber;
             List<Integer> divisors = new ArrayList<>();
             divisors.add(firstNumber);

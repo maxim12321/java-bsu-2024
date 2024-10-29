@@ -1,40 +1,27 @@
 package by.SanchukS.quizer.generators;
 
-import by.SanchukS.quizer.Expression;
-import by.SanchukS.quizer.Task;
-import by.SanchukS.quizer.TaskGenerator;
+import by.SanchukS.quizer.Operation;
 import by.SanchukS.quizer.generators.math.AbstractMathTaskGenerator;
 import by.SanchukS.quizer.tasks.ExpressionTask;
 import by.SanchukS.quizer.tasks.math.MathTask;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.EnumSet;
 
 class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
     /**
      * @param minNumber              минимальное число
      * @param maxNumber              максимальное число
-     * @param generateSum            разрешить генерацию с оператором +
-     * @param generateDifference     разрешить генерацию с оператором -
-     * @param generateMultiplication разрешить генерацию с оператором *
-     * @param generateDivision       разрешить генерацию с оператором /
+     * @param operations             набор разрешённых операций
      */
     ExpressionTaskGenerator(
             int minNumber,
             int maxNumber,
-            boolean generateSum,
-            boolean generateDifference,
-            boolean generateMultiplication,
-            boolean generateDivision
+            EnumSet<Operation> operations
     ) {
         super(
                 minNumber,
                 maxNumber,
-                generateSum,
-                generateDifference,
-                generateMultiplication,
-                generateDivision
+                operations
         );
     }
 

@@ -6,14 +6,14 @@ package by.SanchukS.quizer;
  */
 public class Expression {
     private final int[] numbers = new int[3];
-    private final String operation;
+    private final Operation operation;
 
-    public Expression(int number1, String operation, int number2) {
+    public Expression(int number1, Operation operation, int number2) {
         if (operation == null) throw new IllegalArgumentException("Null operation");
         this.numbers[0] = number1;
         this.numbers[1] = number2;
         this.operation = operation;
-        this.numbers[2] = switch(operation) {
+        this.numbers[2] = switch(operation.toString()) {
             case "+" -> number1 + number2;
             case "-" -> number1 - number2;
             case "*" -> number1 * number2;
@@ -30,11 +30,11 @@ public class Expression {
         return numbers[i];
     }
 
-    public String getOperation() {
+    public Operation getOperation() {
         return operation;
     }
 
-    public static Expression of(int number1, String operation, int number2) {
+    public static Expression of(int number1, Operation operation, int number2) {
         return new Expression(number1, operation, number2);
     }
 

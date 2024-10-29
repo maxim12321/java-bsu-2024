@@ -6,7 +6,7 @@ import by.SanchukS.quizer.TaskGenerator;
 import java.util.*;
 
 class GroupTaskGenerator implements TaskGenerator {
-    private List<TaskGenerator> taskGeneratorList;
+    private final List<TaskGenerator> taskGeneratorList;
     private final Random random = new Random();
 
     /**

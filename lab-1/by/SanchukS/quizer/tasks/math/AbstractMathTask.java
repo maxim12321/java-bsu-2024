@@ -1,6 +1,5 @@
 package by.SanchukS.quizer.tasks.math;
 
-import by.SanchukS.quizer.Expression;
 import by.SanchukS.quizer.Result;
 
 public abstract class AbstractMathTask implements MathTask {
