@@ -40,4 +40,14 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
     protected Expression generateExpression() {
         return expressionGenerator.generateExpression();
     }
+
+    @Override
+    public int getMaxNumber() {
+        return expressionGenerator.getMaxNumber();
+    }
+
+    @Override
+    public int getMinNumber() {
+        return expressionGenerator.getMinNumber();
+    }
 }
