@@ -1,5 +1,7 @@
 package by.SanchukS.quizer;
 
+import java.util.EnumSet;
+
 public enum Operation {
     SUM,
     SUBTRACT,
@@ -14,5 +16,9 @@ public enum Operation {
             case MULTIPLY -> "*";
             case DIVIDE -> "/";
         };
+    }
+
+    EnumSet<Operation> all() {
+        return EnumSet.allOf(Operation.class);
     }
 }
