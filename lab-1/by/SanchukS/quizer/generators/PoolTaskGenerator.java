@@ -2,12 +2,15 @@ package by.SanchukS.quizer.generators;
 
 import by.SanchukS.quizer.Task;
 import by.SanchukS.quizer.TaskGenerator;
+import by.SanchukS.quizer.exceptions.GenerateException;
+import by.SanchukS.quizer.exceptions.NullArgumentException;
 
 import java.util.*;
 
 public class PoolTaskGenerator implements TaskGenerator {
     private final List<Task> tasks;
     private final boolean allowDuplicate;
+
     private final Random random = new Random();
 
     /**
@@ -20,6 +23,7 @@ public class PoolTaskGenerator implements TaskGenerator {
             boolean allowDuplicate,
             Task... tasks
     ) {
+        if (tasks == null) throw new NullArgumentException("tasks");
         this.allowDuplicate = allowDuplicate;
         this.tasks = Arrays.stream(tasks).toList();
     }
@@ -34,6 +38,7 @@ public class PoolTaskGenerator implements TaskGenerator {
             boolean allowDuplicate,
             Collection<Task> tasks
     ) {
+        if (tasks == null) throw new NullArgumentException("tasks");
         this.allowDuplicate = allowDuplicate;
         this.tasks = new ArrayList<>(tasks);
     }
@@ -42,6 +47,7 @@ public class PoolTaskGenerator implements TaskGenerator {
      * @return случайная задача из списка
      */
     public Task generate() {
+        if (tasks.isEmpty()) throw new GenerateException("No tasks to generate");
         int taskPos = random.nextInt(tasks.size());
         Task resultTask = tasks.get(taskPos);
         if (!allowDuplicate) {

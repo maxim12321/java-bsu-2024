@@ -9,7 +9,7 @@ import java.util.EnumSet;
 import java.util.Random;
 
 class EquationTaskGenerator extends AbstractMathTaskGenerator {
-    private Random random = new Random();
+    private final Random random = new Random();
 
     /**
      * @param minNumber              минимальное число

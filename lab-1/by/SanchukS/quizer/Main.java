@@ -1,10 +1,12 @@
 package by.SanchukS.quizer;
 
+import by.SanchukS.quizer.exceptions.NullArgumentException;
+
 import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+public static void main(String[] args) {
         Map<String, Quiz> quizMap = getQuizMap();
         Quiz quiz = quizMap.get(getQuizName());
         while (quiz == null) {
@@ -45,20 +47,20 @@ public class Main {
     }
 
     static String getQuizName() {
-        String quizName;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter quiz name: ");
-        quizName = scanner.nextLine();
-        return quizName;
+        return scanner.nextLine();
     }
 
     static void runQuiz(Quiz quiz) {
+        if (quiz == null) throw new NullArgumentException("quiz");
+
         Scanner scanner = new Scanner(System.in);
         while (!quiz.isFinished()) {
             Task currentTask = quiz.nextTask();
             System.out.println(currentTask.getText());
             String answer = scanner.nextLine();
-            System.out.println(quiz.provideAnswer(answer).name());
+            System.out.println(quiz.provideAnswer(answer).name() + "\n");
         }
     }
 }

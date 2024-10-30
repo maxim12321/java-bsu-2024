@@ -2,6 +2,7 @@ package by.SanchukS.quizer.generators.math;
 
 import by.SanchukS.quizer.Expression;
 import by.SanchukS.quizer.Operation;
+import by.SanchukS.quizer.exceptions.NullArgumentException;
 import by.SanchukS.quizer.generators.ExpressionGenerator;
 import by.SanchukS.quizer.tasks.math.MathTask;
 
@@ -20,6 +21,8 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
             int maxNumber,
             EnumSet<Operation> operations
     ) {
+        if (minNumber > maxNumber) throw new IllegalArgumentException("minNumber > maxNumber");
+        if (operations == null) throw new NullArgumentException("operations");
         this.expressionGenerator = new ExpressionGenerator(minNumber, maxNumber, operations);
     }
 

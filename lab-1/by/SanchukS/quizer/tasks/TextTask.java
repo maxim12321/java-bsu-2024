@@ -2,6 +2,7 @@ package by.SanchukS.quizer.tasks;
 
 import by.SanchukS.quizer.Result;
 import by.SanchukS.quizer.Task;
+import by.SanchukS.quizer.exceptions.NullArgumentException;
 import by.SanchukS.quizer.generators.PoolTaskGenerator;
 
 /**
@@ -20,6 +21,8 @@ class TextTask implements Task {
             String text,
             String answer
     ) {
+        if (text == null) throw new NullArgumentException("text");
+        if (answer == null) throw new NullArgumentException("answer");
         this.text = text;
         this.answer = answer;
     }

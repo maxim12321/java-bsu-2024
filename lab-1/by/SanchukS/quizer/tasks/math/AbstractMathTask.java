@@ -1,12 +1,14 @@
 package by.SanchukS.quizer.tasks.math;
 
 import by.SanchukS.quizer.Result;
+import by.SanchukS.quizer.exceptions.NullArgumentException;
 
 public abstract class AbstractMathTask implements MathTask {
     String taskText;
     int rightAnswer;
 
     public AbstractMathTask(String taskText, int rightAnswer) {
+        if (taskText == null) throw new NullArgumentException("taskText");
         this.taskText = taskText;
         this.rightAnswer = rightAnswer;
     }

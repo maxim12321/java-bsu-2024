@@ -2,6 +2,7 @@ package by.SanchukS.quizer.generators;
 
 import by.SanchukS.quizer.Expression;
 import by.SanchukS.quizer.Operation;
+import by.SanchukS.quizer.exceptions.NullArgumentException;
 
 import java.util.*;
 
@@ -12,6 +13,7 @@ public class ExpressionGenerator {
     private final int minNumber;
     private final int maxNumber;
     private final EnumSet<Operation> operations;
+
     private final Random random = new Random();
 
     public ExpressionGenerator(
@@ -19,13 +21,14 @@ public class ExpressionGenerator {
             int maxNumber,
             EnumSet<Operation> operations)
     {
+        if (minNumber > maxNumber) throw new IllegalArgumentException("minNumber > maxNumber");
+        if (operations == null) throw new NullArgumentException("operations");
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;
         this.operations = operations;
     }
 
     public Expression generate() {
-        final Random random = new Random();
         Operation operation = operations.stream()
                 .reduce((op1, op2) -> random.nextBoolean() ? op1 : op2)
                 .orElseThrow();
@@ -38,7 +41,8 @@ public class ExpressionGenerator {
 
             int buffer = firstNumber;
             for (int i = 1; i * 2 <= buffer; ++i) {
-                if (buffer % i == 0 && i > minNumber) divisors.add(i);
+                if (buffer % i == 0 && i > minNumber)
+                    divisors.add(i);
             }
 
             secondNumber = divisors.get(random.nextInt(divisors.size()));

@@ -1,5 +1,9 @@
 package by.SanchukS.quizer;
 
+import by.SanchukS.quizer.exceptions.NullArgumentException;
+import by.SanchukS.quizer.exceptions.QuizNotFinishedException;
+import by.SanchukS.quizer.exceptions.SeveralAnswersException;
+
 /**
  * Class, который описывает один тест
  */
@@ -7,9 +11,9 @@ public class Quiz {
     private final int taskCount;
     private final TaskGenerator generator;
 
-    private int correctAnswers = 0;
-    private int wrongAnswers = 0;
-    private int incorrectInput = 0;
+    private int correctAnswersNumber = 0;
+    private int wrongAnswersNumber = 0;
+    private int incorrectInputNumber = 0;
 
     private Task currentTask;
     private Result currentResult;
@@ -19,7 +23,7 @@ public class Quiz {
      * @param taskCount количество заданий в тесте
      */
     Quiz(TaskGenerator generator, int taskCount) {
-        if (generator == null) throw new IllegalArgumentException("Null argument");
+        if (generator == null) throw new NullArgumentException("generator");
         if (taskCount <= 0) throw new IllegalArgumentException("Invalid task count");
         this.generator = generator;
         this.taskCount = taskCount;
@@ -30,7 +34,7 @@ public class Quiz {
      * @see Task
      */
     Task nextTask() {
-        if (currentResult != Result.INCORRECT_INPUT) {
+        if (currentResult == Result.OK || currentResult == Result.WRONG) {
             currentTask = generator.generate();
             currentResult = null;
         }
@@ -43,15 +47,15 @@ public class Quiz {
      */
     Result provideAnswer(String answer) {
         if (currentResult == Result.OK || currentResult == Result.WRONG) {
-            throw new IllegalStateException("Several answers to a Task");
+            throw new SeveralAnswersException();
         }
 
         currentResult = currentTask.validate(answer);
         switch (currentResult) {
-            case OK -> correctAnswers++;
-            case WRONG -> wrongAnswers++;
-            case INCORRECT_INPUT -> incorrectInput++;
-            default -> throw new IllegalStateException("Unexpected value: " + currentResult);
+            case OK -> correctAnswersNumber++;
+            case WRONG -> wrongAnswersNumber++;
+            case INCORRECT_INPUT -> incorrectInputNumber++;
+            default -> throw new IllegalArgumentException("Unsupported value: " + currentResult);
         }
         return currentResult;
     }
@@ -60,28 +64,28 @@ public class Quiz {
      * @return завершен ли тест
      */
     boolean isFinished() {
-        return correctAnswers + wrongAnswers == taskCount;
+        return correctAnswersNumber + wrongAnswersNumber == taskCount;
     }
 
     /**
      * @return количество правильных ответов
      */
     int getCorrectAnswerNumber() {
-        return correctAnswers;
+        return correctAnswersNumber;
     }
 
     /**
      * @return количество неправильных ответов
      */
     int getWrongAnswerNumber() {
-        return wrongAnswers;
+        return wrongAnswersNumber;
     }
 
     /**
      * @return количество раз, когда был предоставлен неправильный ввод
      */
     int getIncorrectInputNumber() {
-        return incorrectInput;
+        return incorrectInputNumber;
     }
 
     /**
@@ -89,7 +93,7 @@ public class Quiz {
      *         Оценка выставляется только в конце!
      */
     double getMark() {
-        if (!isFinished()) throw new IllegalStateException("Quiz is not finished.");
-        return (double) correctAnswers / taskCount;
+        if (!isFinished()) throw new QuizNotFinishedException();
+        return (double) correctAnswersNumber / taskCount;
     }
 }
