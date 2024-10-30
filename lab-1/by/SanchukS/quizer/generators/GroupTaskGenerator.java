@@ -7,7 +7,7 @@ import by.SanchukS.quizer.exceptions.NullArgumentException;
 
 import java.util.*;
 
-class GroupTaskGenerator implements TaskGenerator {
+public class GroupTaskGenerator implements TaskGenerator {
     private final List<TaskGenerator> taskGeneratorList;
 
     private final Random random = new Random();
@@ -17,7 +17,7 @@ class GroupTaskGenerator implements TaskGenerator {
      *
      * @param generators генераторы, которые в конструктор передаются через запятую
      */
-    GroupTaskGenerator(TaskGenerator... generators) {
+    public GroupTaskGenerator(TaskGenerator... generators) {
         if (generators == null) throw new NullArgumentException("generators");
         taskGeneratorList = Arrays.stream(generators).toList();
     }

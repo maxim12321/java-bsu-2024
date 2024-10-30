@@ -7,13 +7,13 @@ import by.SanchukS.quizer.tasks.math.MathTask;
 
 import java.util.EnumSet;
 
-class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
+public class ExpressionTaskGenerator extends AbstractMathTaskGenerator {
     /**
      * @param minNumber              минимальное число
      * @param maxNumber              максимальное число
      * @param operations             набор разрешённых операций
      */
-    ExpressionTaskGenerator(
+    public ExpressionTaskGenerator(
             int minNumber,
             int maxNumber,
             EnumSet<Operation> operations

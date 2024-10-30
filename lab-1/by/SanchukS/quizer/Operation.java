@@ -18,7 +18,7 @@ public enum Operation {
         };
     }
 
-    EnumSet<Operation> all() {
+    public static EnumSet<Operation> all() {
         return EnumSet.allOf(Operation.class);
     }
 }

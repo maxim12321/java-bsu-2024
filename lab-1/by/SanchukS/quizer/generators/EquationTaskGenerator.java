@@ -8,7 +8,7 @@ import by.SanchukS.quizer.tasks.math.MathTask;
 import java.util.EnumSet;
 import java.util.Random;
 
-class EquationTaskGenerator extends AbstractMathTaskGenerator {
+public class EquationTaskGenerator extends AbstractMathTaskGenerator {
     private final Random random = new Random();
 
     /**
@@ -16,7 +16,7 @@ class EquationTaskGenerator extends AbstractMathTaskGenerator {
      * @param maxNumber              максимальное число
      * @param operations             набор разрешённых операций
      */
-    EquationTaskGenerator(
+    public EquationTaskGenerator(
             int minNumber,
             int maxNumber,
             EnumSet<Operation> operations
