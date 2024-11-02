@@ -32,21 +32,7 @@ public class EquationTask extends AbstractMathTask {
 
     @Override
     public double computeAnswer() {
-        if (isXLeft) {
-            return switch (operator) {
-                case ADD -> right - left; //x + a = b
-                case SUBTRACT -> left + right; //x - a = b
-                case MULTIPLY -> (double) right / left; //x * a = b
-                case DIVIDE -> left * right; // x / a = b
-            };
-        } else {
-            return switch (operator) {
-                case ADD -> right - left; //a + x = b
-                case SUBTRACT -> left - right; //a - x = b
-                case MULTIPLY -> (double) right / left; //a * x = b
-                case DIVIDE -> (double) left / right; // a / x = b
-            };
-        }
+        return isXLeft ? operator.applyLeftEquation(left, right) : operator.applyRightEquation(left, right);
     }
 
     private final boolean isXLeft;

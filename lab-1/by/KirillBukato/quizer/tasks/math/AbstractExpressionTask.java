@@ -18,12 +18,7 @@ public abstract class AbstractExpressionTask extends AbstractMathTask {
 
     @Override
     public double computeAnswer() {
-        return switch (operator) {
-            case ADD -> left + right;
-            case SUBTRACT -> left - right;
-            case MULTIPLY -> left * right;
-            case DIVIDE -> (double) left / right;
-        };
+        return operator.applyExpression(left, right);
     }
 
     public String getQuestion() {

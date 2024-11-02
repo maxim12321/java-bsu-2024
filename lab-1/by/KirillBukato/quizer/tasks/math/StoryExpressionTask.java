@@ -9,11 +9,10 @@ public class StoryExpressionTask extends AbstractExpressionTask {
 
     @Override
     public String getText() {
-        String text = switch (story) {
+        return switch (story) {
             case APPLES -> "У Олега было " + left + " яблок. ";
             case ORANGES -> "У Олега было " + left + " апельсинов. ";
-        };
-        text += switch (operator) {
+        } + switch (operator) {
             case ADD -> switch (story) {
                 case APPLES -> "Пришёл добрый Виктор и дал Олегу ещё " + right + " яблок. ";
                 case ORANGES -> "Пришёл добрый Виктор и дал Олегу ещё " + right + " апельсинов. ";
@@ -34,15 +33,10 @@ public class StoryExpressionTask extends AbstractExpressionTask {
                 case ORANGES ->
                         "Пришёл злой Виктор со своими друзьями. Теперь Олегу нужно разделить свои апельсины поровну (очень-очень поровну) между " + right + " людьми. ";
             };
-        };
-        text += switch (story) {
+        } + switch (story) {
             case APPLES -> "Сколько теперь яблок у Олега? ";
             case ORANGES -> "Сколько теперь апельсинов у Олега? ";
-        };
-        if (operator == MathOperation.DIVIDE) {
-            text += "(Ответ дайте в виде десятичной дроби)";
-        }
-        return text;
+        } + (operator == MathOperation.DIVIDE ? "(Ответ дайте в виде десятичной дроби)" : "");
     }
 
     private final MathStory story;
