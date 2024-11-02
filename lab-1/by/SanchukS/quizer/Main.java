@@ -79,7 +79,7 @@ public static void main(String[] args) {
             tasks.add(groupTaskGenerator.generate());
 
         PoolTaskGenerator randomPoolTaskGenerator = new PoolTaskGenerator(false, tasks);
-        groupTaskGenerator.addTaskGenerator(randomPoolTaskGenerator);
+        groupTaskGenerator.add(randomPoolTaskGenerator);
 
         // Quizes
         Quiz simpleMathQuiz = new Quiz(
