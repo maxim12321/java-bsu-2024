@@ -4,8 +4,8 @@ import by.SanchukS.quizer.Result;
 import by.SanchukS.quizer.exceptions.NullArgumentException;
 
 public abstract class AbstractMathTask implements MathTask {
-    String taskText;
-    int rightAnswer;
+    private final String taskText;
+    private final int rightAnswer;
 
     public AbstractMathTask(String taskText, int rightAnswer) {
         if (taskText == null) throw new NullArgumentException("taskText");

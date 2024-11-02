@@ -27,10 +27,12 @@ public class Quiz {
         if (taskCount <= 0) throw new IllegalArgumentException("Invalid task count");
         this.generator = generator;
         this.taskCount = taskCount;
+        this.currentTask = generator.generate();
+        this.currentResult = null;
     }
 
     /**
-     * @return задание, повторный вызов вернет слелующее
+     * @return задание, повторный вызов вернет следующее
      * @see Task
      */
     Task nextTask() {
@@ -94,6 +96,6 @@ public class Quiz {
      */
     double getMark() {
         if (!isFinished()) throw new QuizNotFinishedException();
-        return (double) correctAnswersNumber / taskCount;
+        return Math.round((double) correctAnswersNumber * 10 / taskCount);
     }
 }

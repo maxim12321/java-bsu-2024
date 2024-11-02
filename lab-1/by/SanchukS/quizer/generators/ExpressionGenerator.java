@@ -31,21 +31,22 @@ public class ExpressionGenerator {
     public Expression generate() {
         Operation operation = operations.stream()
                 .reduce((op1, op2) -> random.nextBoolean() ? op1 : op2)
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("Zero operations available"));
         int firstNumber;
         int secondNumber;
         if (operation.toString().equals("/")) {
             firstNumber = random.nextInt(maxNumber - minNumber) + minNumber;
             List<Integer> divisors = new ArrayList<>();
-            divisors.add(firstNumber);
 
-            int buffer = firstNumber;
-            for (int i = 1; i * 2 <= buffer; ++i) {
-                if (buffer % i == 0 && i > minNumber)
+            for (int i = minNumber; i < firstNumber; ++i) {
+                if (firstNumber % i == 0 && i != 1)
                     divisors.add(i);
             }
 
-            secondNumber = divisors.get(random.nextInt(divisors.size()));
+            if (divisors.isEmpty())
+                secondNumber = 1;
+            else
+                secondNumber = divisors.get(random.nextInt(divisors.size()));
         } else {
             firstNumber = random.nextInt(maxNumber - minNumber) + minNumber;
             secondNumber = random.nextInt(maxNumber - minNumber) + minNumber;

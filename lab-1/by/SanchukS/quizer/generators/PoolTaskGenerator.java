@@ -34,7 +34,7 @@ public class PoolTaskGenerator implements TaskGenerator {
      * @param allowDuplicate разрешить повторения
      * @param tasks          задания, которые передаются в конструктор в Collection (например, {@link LinkedList})
      */
-    PoolTaskGenerator(
+    public PoolTaskGenerator(
             boolean allowDuplicate,
             Collection<Task> tasks
     ) {

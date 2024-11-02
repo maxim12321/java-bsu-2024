@@ -8,7 +8,7 @@ import by.SanchukS.quizer.exceptions.NullArgumentException;
 import java.util.*;
 
 public class GroupTaskGenerator implements TaskGenerator {
-    private final List<TaskGenerator> taskGeneratorList;
+    private List<TaskGenerator> taskGeneratorList;
 
     private final Random random = new Random();
 
@@ -19,7 +19,7 @@ public class GroupTaskGenerator implements TaskGenerator {
      */
     public GroupTaskGenerator(TaskGenerator... generators) {
         if (generators == null) throw new NullArgumentException("generators");
-        taskGeneratorList = Arrays.stream(generators).toList();
+        taskGeneratorList = new ArrayList<>(Arrays.asList(generators));
     }
 
     /**
@@ -27,9 +27,13 @@ public class GroupTaskGenerator implements TaskGenerator {
      *
      * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
      */
-    GroupTaskGenerator(Collection<TaskGenerator> generators) {
+    public GroupTaskGenerator(Collection<TaskGenerator> generators) {
         if (generators == null) throw new NullArgumentException("generators");
         taskGeneratorList = new ArrayList<>(generators);
+    }
+
+    public boolean addTaskGenerator(TaskGenerator taskGenerator) {
+        return taskGeneratorList.add(taskGenerator);
     }
 
     /**
@@ -37,8 +41,16 @@ public class GroupTaskGenerator implements TaskGenerator {
      *         Если этот генератор выбросил исключение в методе generate(), выбирается другой.
      *         Если все генераторы выбрасывают исключение, то и тут выбрасывается исключение.
      */
+    @Override
     public Task generate() {
-        if (taskGeneratorList.isEmpty()) throw new GenerateException("No task generators found");
-        return taskGeneratorList.get(random.nextInt(taskGeneratorList.size())).generate();
+        if (taskGeneratorList.isEmpty()) throw new GenerateException("Zero task generators");
+        Collections.shuffle(taskGeneratorList);
+        for (var generator : taskGeneratorList) {
+            try {
+                return generator.generate();
+            }
+            catch (GenerateException ignored) {}
+        }
+        throw new GenerateException("Zero task generators available");
     }
 }

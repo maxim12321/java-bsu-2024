@@ -31,6 +31,7 @@ public class EquationTaskGenerator extends AbstractMathTaskGenerator {
     /**
      * return задание типа {@link EquationTask}
      */
+    @Override
     public MathTask generate() {
         return new EquationTask(generateExpression(), random.nextBoolean());
     }

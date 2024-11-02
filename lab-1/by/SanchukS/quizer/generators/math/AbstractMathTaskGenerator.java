@@ -26,6 +26,7 @@ public abstract class AbstractMathTaskGenerator implements MathTaskGenerator {
         this.expressionGenerator = new ExpressionGenerator(minNumber, maxNumber, operations);
     }
 
+    @Override
     public abstract MathTask generate();
 
     protected Expression generateExpression() {

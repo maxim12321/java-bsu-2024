@@ -24,7 +24,7 @@ public class Expression {
                 if (number1 % number2 != 0) throw new IllegalArgumentException("Not integer division");
                 yield number1 / number2;
             }
-            default -> throw new IllegalArgumentException("Invalid operation");
+            default -> throw new IllegalArgumentException("Unsupported operation");
         };
     }
 

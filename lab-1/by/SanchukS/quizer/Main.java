@@ -2,8 +2,8 @@ package by.SanchukS.quizer;
 
 import by.SanchukS.quizer.exceptions.NullArgumentException;
 import by.SanchukS.quizer.generators.*;
-import by.SanchukS.quizer.tasks.EquationTask;
 import by.SanchukS.quizer.tasks.TextTask;
+import by.SanchukS.quizer.tasks.VelocityTask;
 
 import java.util.*;
 
@@ -38,37 +38,72 @@ public static void main(String[] args) {
      * значение - сам тест       {@link Quiz}
      */
     static Map<String, Quiz> getQuizMap() {
-        ExpressionTaskGenerator simpleExpressions = new ExpressionTaskGenerator(
-                1, 100, Operation.all()
+        ExpressionTaskGenerator simpleExpressionsGenerator = new ExpressionTaskGenerator(
+                1, 100, EnumSet.of(Operation.SUM, Operation.SUBTRACT, Operation.DIVIDE)
         );
-        ExpressionTaskGenerator advancedExpressions = new ExpressionTaskGenerator(
-                -100, 100, EnumSet.of(Operation.MULTIPLY, Operation.DIVIDE)
+        ExpressionTaskGenerator advancedExpressionsGenerator = new ExpressionTaskGenerator(
+                -100, 100, EnumSet.of(Operation.MULTIPLY)
         );
-        EquationTaskGenerator simpleEquations = new EquationTaskGenerator(
-                1, 100, Operation.all()
+        EquationTaskGenerator simpleEquationsGenerator = new EquationTaskGenerator(
+                1, 100, EnumSet.of(Operation.SUM, Operation.SUBTRACT, Operation.DIVIDE)
         );
-        EquationTaskGenerator advancedEquations = new EquationTaskGenerator(
-                -100, 100, EnumSet.of(Operation.MULTIPLY, Operation.DIVIDE)
+        EquationTaskGenerator advancedEquationsGenerator = new EquationTaskGenerator(
+                -100, 100, EnumSet.of(Operation.MULTIPLY)
         );
-        GroupTaskGenerator groupGenerator = new GroupTaskGenerator(
-                simpleExpressions, advancedExpressions, simpleEquations
+        GroupTaskGenerator groupTaskGenerator = new GroupTaskGenerator(
+                simpleExpressionsGenerator, advancedExpressionsGenerator, simpleEquationsGenerator
         );
 
         List<Task> tasks = new ArrayList<>();
-        tasks.add(new TextTask("По небу летели верблюды: один синий, другой на север. " +
+        {
+            tasks.add(new TextTask(
+                    "По небу летели верблюды: один синий, другой на север.\n" +
                     "Вопрос: сколько стоит килограмм асфальта, если ёжику 24 года?",
-            "Пятнадцать"));
-        tasks.add(new TextTask(
-                "Из пункта А в направление пункта Б выехал велосипедист со скоростью 15км/ч. " +
-                "Из пункта Б выехал грузовик со скоростью в 3 раза большей скорости велосипедиста. " +
-                        "А через час за грузовиком выехал автомобиль со скоростью 60км/ч. " +
-                        "Вопрос: сколько всего транспортных средств было упомянуто в задаче?",
-                "3"));
-        for(int i = 0; i < 10; ++i)
-            tasks.add(groupGenerator.generate());
+                    "Пятнадцать"));
+            tasks.add(new TextTask(
+                    "Из пункта А в направление пункта Б выехал велосипедист со скоростью 15км/ч.\n" +
+                            "Из пункта Б выехал грузовик со скоростью в 3 раза большей скорости велосипедиста.\n" +
+                            "А через час за грузовиком выехал автомобиль со скоростью 60км/ч.n" +
+                            "Вопрос: сколько всего транспортных средств было упомянуто в задаче?",
+                    "3"));
+        }
 
         PoolTaskGenerator poolTaskGenerator = new PoolTaskGenerator(true, tasks);
+        VelocityTaskGenerator velocityTaskGenerator = new VelocityTaskGenerator(10, 200);
 
+
+        GroupTaskGenerator textTaskGenerator = new GroupTaskGenerator(poolTaskGenerator, velocityTaskGenerator);
+
+        for(int i = 0; i < 10; ++i)
+            tasks.add(groupTaskGenerator.generate());
+
+        PoolTaskGenerator randomPoolTaskGenerator = new PoolTaskGenerator(false, tasks);
+        groupTaskGenerator.addTaskGenerator(randomPoolTaskGenerator);
+
+        // Quizes
+        Quiz simpleMathQuiz = new Quiz(
+                new GroupTaskGenerator(simpleExpressionsGenerator, simpleEquationsGenerator),
+                10
+        );
+
+        Quiz advancedEquationsQuiz = new Quiz(
+                advancedEquationsGenerator,
+                10
+        );
+
+        Quiz textQuiz = new Quiz(textTaskGenerator, 3);
+
+        Quiz randomTaskQuiz = new Quiz(randomPoolTaskGenerator, 10);
+
+        Quiz allTasksQuiz = new Quiz(groupTaskGenerator, 10);
+
+        return Map.of(
+                "Simple Math Quiz", simpleMathQuiz,
+                "Advanced Math Quiz", advancedEquationsQuiz,
+                "Text Quiz", textQuiz,
+                "Random Task Quiz", randomTaskQuiz,
+                "All Tasks", allTasksQuiz
+        );
     }
 
     static String getQuizName() {
