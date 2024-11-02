@@ -10,8 +10,6 @@ import java.util.*;
 public class GroupTaskGenerator implements TaskGenerator {
     private List<TaskGenerator> taskGeneratorList;
 
-    private final Random random = new Random();
-
     /**
      * Конструктор с переменным числом аргументов
      *
@@ -32,7 +30,7 @@ public class GroupTaskGenerator implements TaskGenerator {
         taskGeneratorList = new ArrayList<>(generators);
     }
 
-    public boolean addTaskGenerator(TaskGenerator taskGenerator) {
+    public boolean add(TaskGenerator taskGenerator) {
         return taskGeneratorList.add(taskGenerator);
     }
 
