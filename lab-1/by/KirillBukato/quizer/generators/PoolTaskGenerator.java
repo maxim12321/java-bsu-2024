@@ -42,7 +42,7 @@ public class PoolTaskGenerator<T extends Task> implements TaskGenerator<T> {
     @Override
     public T generate() throws PoolGeneratorRanOutException {
         if (tasks.isEmpty()) {
-            throw new PoolGeneratorRanOutException("Pool Task Generator has no tasks left.");
+            throw new PoolGeneratorRanOutException();
         }
         Random random = new Random();
         int index = random.nextInt(tasks.size());

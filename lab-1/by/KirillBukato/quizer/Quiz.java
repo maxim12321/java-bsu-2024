@@ -24,7 +24,7 @@ class Quiz {
      */
     Task nextTask() {
         if (isFinished()) {
-            throw new QuizFinishedException("Quiz finished. You can't ask for next task.");
+            throw new QuizFinishedException("You can't ask for next task.");
         }
         if (isLastAnswerValid) {
             isLastAnswerValid = false;
@@ -39,7 +39,7 @@ class Quiz {
      */
     Result provideAnswer(String answer) {
         if (isFinished()) {
-            throw new QuizFinishedException("Quiz is finished. You can't provide answer.");
+            throw new QuizFinishedException("You can't provide answer.");
         }
         Result result = currentTask.validate(answer);
         isLastAnswerValid = (result != Result.INCORRECT_INPUT);
@@ -82,7 +82,7 @@ class Quiz {
      */
     double getMark() {
         if (!isFinished()) {
-            throw new QuizNotFinishedException("Quiz is not finished, you can't get the result yet.");
+            throw new QuizNotFinishedException();
         }
         if (getCorrectAnswerNumber() + getWrongAnswerNumber() == 0) return 1;
         return ((double) getCorrectAnswerNumber()) / (getCorrectAnswerNumber() + getWrongAnswerNumber());
