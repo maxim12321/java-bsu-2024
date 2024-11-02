@@ -9,7 +9,7 @@ import by.SanchukS.quizer.exceptions.SeveralAnswersException;
  */
 public class Quiz {
     private final int taskCount;
-    private final TaskGenerator generator;
+    private final TaskGenerator<? extends Task> generator;
 
     private int correctAnswersNumber = 0;
     private int wrongAnswersNumber = 0;
@@ -22,7 +22,7 @@ public class Quiz {
      * @param generator генератор заданий
      * @param taskCount количество заданий в тесте
      */
-    Quiz(TaskGenerator generator, int taskCount) {
+    Quiz(TaskGenerator<? extends Task> generator, int taskCount) {
         if (generator == null) throw new NullArgumentException("generator");
         if (taskCount <= 0) throw new IllegalArgumentException("Invalid task count");
         this.generator = generator;

@@ -7,7 +7,7 @@ import by.SanchukS.quizer.exceptions.NullArgumentException;
 
 import java.util.*;
 
-public class PoolTaskGenerator implements TaskGenerator {
+public class PoolTaskGenerator implements TaskGenerator<Task> {
     private final List<Task> tasks;
     private final boolean allowDuplicate;
 

@@ -7,15 +7,16 @@ import by.SanchukS.quizer.exceptions.NullArgumentException;
 
 import java.util.*;
 
-public class GroupTaskGenerator implements TaskGenerator {
-    private List<TaskGenerator> taskGeneratorList;
+public class GroupTaskGenerator implements TaskGenerator<Task> {
+    private List<TaskGenerator<? extends Task>> taskGeneratorList;
 
     /**
      * Конструктор с переменным числом аргументов
      *
      * @param generators генераторы, которые в конструктор передаются через запятую
      */
-    public GroupTaskGenerator(TaskGenerator... generators) {
+    @SafeVarargs
+    public GroupTaskGenerator(TaskGenerator<? extends Task>... generators) {
         if (generators == null) throw new NullArgumentException("generators");
         taskGeneratorList = new ArrayList<>(Arrays.asList(generators));
     }
@@ -25,12 +26,12 @@ public class GroupTaskGenerator implements TaskGenerator {
      *
      * @param generators генераторы, которые передаются в конструктор в Collection (например, {@link ArrayList})
      */
-    public GroupTaskGenerator(Collection<TaskGenerator> generators) {
+    public GroupTaskGenerator(Collection<TaskGenerator<? extends Task>> generators) {
         if (generators == null) throw new NullArgumentException("generators");
         taskGeneratorList = new ArrayList<>(generators);
     }
 
-    public boolean add(TaskGenerator taskGenerator) {
+    public boolean add(TaskGenerator<? extends Task> taskGenerator) {
         return taskGeneratorList.add(taskGenerator);
     }
 
