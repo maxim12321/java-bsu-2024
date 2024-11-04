@@ -1,5 +1,7 @@
 package by.bsu.dependency.context;
 
+import by.bsu.dependency.exceptions.*;
+
 public interface ApplicationContext {
 
     /**
@@ -66,4 +68,5 @@ public interface ApplicationContext {
      * @return {@code true}, если бин имеет скоуп {@code PROTOTYPE}, иначе {@code false}.
      */
     boolean isPrototype(String name);
+
 }
