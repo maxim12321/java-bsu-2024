@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/merinovvvv/FAMCS/Programming/java/java-bsu-2024/lab-1</OriginalElement>
+  <nodes>
+    <node x="937.5" y="1786.5">by.merinovvvv.quizer.generators.GroupTaskGenerator</node>
+    <node x="162.0" y="1466.5">by.merinovvvv.quizer.generators.PoolTaskGenerator</node>
+    <node x="646.5" y="1481.5">by.merinovvvv.quizer.generators.TextTaskGenerator</node>
+    <node x="1400.0" y="1391.5">by.merinovvvv.quizer.generators.GroupTaskGeneratorTest</node>
+    <node x="1666.0" y="2516.5">by.merinovvvv.quizer.generators.EquationTaskGeneratorTest</node>
+    <node x="1662.0" y="2266.5">by.merinovvvv.quizer.generators.AppleTaskGeneratorTest</node>
+    <node x="1372.0" y="2805.5">by.merinovvvv.quizer.tasks.EquationTask</node>
+    <node x="470.0" y="1801.5">by.merinovvvv.quizer.generators.AppleTaskGenerator</node>
+    <node x="1176.5" y="231.5">by.merinovvvv.quizer.tasks.EquationTaskTest</node>
+    <node x="100.5" y="1125.5">by.merinovvvv.quizer.tasks.AppleTask</node>
+    <node x="791.5" y="-18.5">by.merinovvvv.quizer.tasks.AppleTaskTest</node>
+    <node x="1811.0" y="1710.5">by.merinovvvv.quizer.Quiz</node>
+    <node x="1722.5" y="1110.5">by.merinovvvv.quizer.Main</node>
+    <node x="248.5" y="909.5">by.merinovvvv.quizer.tasks.TextTask</node>
+    <node x="1228.0" y="2117.5">by.merinovvvv.quizer.exceptions.QuizNotFinishedException</node>
+    <node x="723.0" y="957.5">by.merinovvvv.quizer.exceptions.QuizFinishedException</node>
+    <node x="2141.0" y="1519.0">by.merinovvvv.quizer.tasks.math.MathTask</node>
+    <node x="798.5" y="2086.5">by.merinovvvv.quizer.MainTest</node>
+    <node x="591.5" y="321.5">by.merinovvvv.quizer.tasks.TextTaskTest</node>
+    <node x="623.5" y="2266.5">by.merinovvvv.quizer.tasks.math.MathTask.Operation</node>
+    <node x="1440.0" y="1126.5">by.merinovvvv.quizer.Result</node>
+    <node x="329.5" y="2499.5">by.merinovvvv.quizer.generators.EquationTaskGenerator</node>
+    <node x="-185.5" y="1771.5">by.merinovvvv.quizer.generators.math.MathTaskGenerator</node>
+    <node x="1087.0" y="1126.5">by.merinovvvv.quizer.generators.TextTaskGeneratorTest</node>
+    <node x="570.5" y="1157.5">by.merinovvvv.quizer.TaskGenerator</node>
+    <node x="-200.0" y="2759.5">by.merinovvvv.quizer.generators.ExpressionTaskGenerator</node>
+    <node x="304.0" y="-18.5">by.merinovvvv.quizer.generators.PoolTaskGeneratorTest</node>
+    <node x="567.5" y="2776.5">by.merinovvvv.quizer.generators.ExpressionTaskGeneratorTest</node>
+    <node x="-205.5" y="2266.5">by.merinovvvv.quizer.generators.math.AbstractMathTaskGenerator</node>
+    <node x="1074.5" y="2265.5">by.merinovvvv.quizer.tasks.math.AbstractMathTask</node>
+    <node x="1099.0" y="2545.5">by.merinovvvv.quizer.tasks.ExpressionTask</node>
+    <node x="1240.5" y="701.5">by.merinovvvv.quizer.Task</node>
+    <node x="158.0" y="2086.5">by.merinovvvv.quizer.generators.math.AbstractMathTaskGeneratorTest</node>
+    <node x="-183.5" y="231.5">by.merinovvvv.quizer.tasks.ExpressionTaskTest</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="by.merinovvvv.quizer.tasks.math.MathTask" target="by.merinovvvv.quizer.Task" relationship="INTERFACE_GENERALIZATION">
+      <point x="15.0" y="-19.0" />
+      <point x="2240.0" y="743.0" />
+      <point x="124.5" y="-15.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.GroupTaskGenerator" target="by.merinovvvv.quizer.TaskGenerator" relationship="TO_MANY">
+      <point x="267.5" y="0.0" />
+      <point x="1791.0" y="1858.0" />
+      <point x="1791.0" y="1374.0" />
+      <point x="690.0" y="1374.0" />
+      <point x="-15.0" y="40.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.tasks.ExpressionTask" target="by.merinovvvv.quizer.tasks.math.MathTask" relationship="REALIZATION">
+      <point x="0.0" y="72.5" />
+      <point x="1265.0" y="2748.0" />
+      <point x="1644.5" y="2748.0" />
+      <point x="1644.5" y="2155.0" />
+      <point x="2225.0" y="2155.0" />
+      <point x="0.0" y="19.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.Quiz" target="by.merinovvvv.quizer.TaskGenerator" relationship="TO_ONE">
+      <point x="-174.0" y="0.0" />
+      <point x="1791.0" y="1858.0" />
+      <point x="1791.0" y="1374.0" />
+      <point x="690.0" y="1374.0" />
+      <point x="-15.0" y="40.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.EquationTaskGenerator" target="by.merinovvvv.quizer.generators.math.AbstractMathTaskGenerator" relationship="GENERALIZATION">
+      <point x="-215.5" y="-15.0" />
+      <point x="273.0" y="2603.0" />
+      <point x="273.0" y="2713.5" />
+      <point x="80.0" y="2713.5" />
+      <point x="15.0" y="71.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.math.MathTaskGenerator" target="by.merinovvvv.quizer.TaskGenerator" relationship="INTERFACE_GENERALIZATION">
+      <point x="-2.0" y="-86.5" />
+      <point x="83.0" y="1303.0" />
+      <point x="600.5" y="1303.0" />
+      <point x="-104.5" y="40.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.GroupTaskGeneratorTest" target="by.merinovvvv.quizer.TaskGenerator" relationship="TO_ONE">
+      <point x="185.0" y="0.0" />
+      <point x="1791.0" y="1538.0" />
+      <point x="1791.0" y="1374.0" />
+      <point x="690.0" y="1374.0" />
+      <point x="-15.0" y="40.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.tasks.EquationTask" target="by.merinovvvv.quizer.tasks.math.AbstractMathTask" relationship="GENERALIZATION">
+      <point x="-173.0" y="0.0" />
+      <point x="1316.0" y="2878.0" />
+      <point x="1316.0" y="2712.0" />
+      <point x="1448.5" y="2712.0" />
+      <point x="1448.5" y="2338.0" />
+      <point x="130.5" y="0.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.tasks.AppleTask" target="by.merinovvvv.quizer.Task" relationship="REALIZATION">
+      <point x="0.0" y="-72.5" />
+      <point x="225.0" y="862.0" />
+      <point x="1365.0" y="862.0" />
+      <point x="0.0" y="56.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.GroupTaskGenerator" target="by.merinovvvv.quizer.TaskGenerator" relationship="REALIZATION">
+      <point x="0.0" y="-71.5" />
+      <point x="1205.0" y="1759.0" />
+      <point x="755.5" y="1759.0" />
+      <point x="755.5" y="1667.0" />
+      <point x="629.0" y="1667.0" />
+      <point x="-76.0" y="40.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.EquationTaskGenerator" target="by.merinovvvv.quizer.generators.math.MathTaskGenerator" relationship="REALIZATION">
+      <point x="-215.5" y="0.0" />
+      <point x="290.0" y="2618.0" />
+      <point x="290.0" y="2728.5" />
+      <point x="-223.0" y="2728.5" />
+      <point x="-223.0" y="1858.0" />
+      <point x="-270.5" y="0.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.TextTaskGenerator" target="by.merinovvvv.quizer.TaskGenerator" relationship="REALIZATION">
+      <point x="0.0" y="56.5" />
+      <point x="825.0" y="1667.0" />
+      <point x="629.0" y="1667.0" />
+      <point x="-76.0" y="40.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.ExpressionTaskGenerator" target="by.merinovvvv.quizer.tasks.math.MathTask.Operation" relationship="TO_ONE">
+      <point x="225.0" y="15.0" />
+      <point x="308.0" y="2893.0" />
+      <point x="308.0" y="2482.0" />
+      <point x="753.0" y="2482.0" />
+      <point x="-12.0" y="71.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.ExpressionTaskGenerator" target="by.merinovvvv.quizer.generators.math.AbstractMathTaskGenerator" relationship="GENERALIZATION">
+      <point x="225.0" y="-15.0" />
+      <point x="273.0" y="2863.0" />
+      <point x="273.0" y="2713.5" />
+      <point x="80.0" y="2713.5" />
+      <point x="15.0" y="71.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.tasks.EquationTask" target="by.merinovvvv.quizer.tasks.math.MathTask" relationship="REALIZATION">
+      <point x="0.0" y="-72.5" />
+      <point x="1545.0" y="2748.0" />
+      <point x="1644.5" y="2748.0" />
+      <point x="1644.5" y="2155.0" />
+      <point x="2225.0" y="2155.0" />
+      <point x="0.0" y="19.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.tasks.TextTask" target="by.merinovvvv.quizer.Task" relationship="REALIZATION">
+      <point x="0.0" y="-88.5" />
+      <point x="385.0" y="862.0" />
+      <point x="1365.0" y="862.0" />
+      <point x="0.0" y="56.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.Quiz" target="by.merinovvvv.quizer.Task" relationship="TO_ONE">
+      <point x="-174.0" y="-15.0" />
+      <point x="1500.5" y="1843.0" />
+      <point x="1500.5" y="1725.0" />
+      <point x="1382.5" y="1725.0" />
+      <point x="1382.5" y="1346.0" />
+      <point x="2225.0" y="1346.0" />
+      <point x="2225.0" y="758.0" />
+      <point x="124.5" y="0.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.AppleTaskGenerator" target="by.merinovvvv.quizer.TaskGenerator" relationship="REALIZATION">
+      <point x="0.0" y="-56.5" />
+      <point x="625.0" y="1759.0" />
+      <point x="755.5" y="1759.0" />
+      <point x="755.5" y="1667.0" />
+      <point x="629.0" y="1667.0" />
+      <point x="-76.0" y="40.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.tasks.math.MathTask.Operation" target="by.merinovvvv.quizer.tasks.math.MathTask" relationship="INNER_CLASS">
+      <point x="0.0" y="-71.5" />
+      <point x="765.0" y="2053.0" />
+      <point x="2210.0" y="2053.0" />
+      <point x="-15.0" y="19.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.math.AbstractMathTaskGenerator" target="by.merinovvvv.quizer.generators.math.MathTaskGenerator" relationship="REALIZATION">
+      <point x="0.0" y="71.5" />
+      <point x="65.0" y="2728.5" />
+      <point x="-223.0" y="2728.5" />
+      <point x="-223.0" y="1858.0" />
+      <point x="-270.5" y="0.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.PoolTaskGenerator" target="by.merinovvvv.quizer.Task" relationship="DEPENDENCY">
+      <point x="-15.0" y="71.5" />
+      <point x="370.0" y="1641.0" />
+      <point x="144.5" y="1641.0" />
+      <point x="144.5" y="1331.0" />
+      <point x="1420.5" y="1331.0" />
+      <point x="55.5" y="56.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.GroupTaskGenerator" target="by.merinovvvv.quizer.Task" relationship="DEPENDENCY">
+      <point x="15.0" y="-71.5" />
+      <point x="1220.0" y="1641.0" />
+      <point x="144.5" y="1641.0" />
+      <point x="144.5" y="1331.0" />
+      <point x="1420.5" y="1331.0" />
+      <point x="55.5" y="56.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.EquationTaskGenerator" target="by.merinovvvv.quizer.tasks.math.MathTask.Operation" relationship="TO_ONE">
+      <point x="-215.5" y="110.5" />
+      <point x="308.0" y="2728.5" />
+      <point x="308.0" y="2482.0" />
+      <point x="753.0" y="2482.0" />
+      <point x="-12.0" y="71.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.ExpressionTaskGenerator" target="by.merinovvvv.quizer.generators.math.MathTaskGenerator" relationship="REALIZATION">
+      <point x="225.0" y="0.0" />
+      <point x="290.0" y="2878.0" />
+      <point x="290.0" y="2728.5" />
+      <point x="-223.0" y="2728.5" />
+      <point x="-223.0" y="1858.0" />
+      <point x="-270.5" y="0.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.tasks.ExpressionTask" target="by.merinovvvv.quizer.tasks.math.AbstractMathTask" relationship="GENERALIZATION">
+      <point x="15.0" y="72.5" />
+      <point x="1280.0" y="2729.0" />
+      <point x="1316.0" y="2729.0" />
+      <point x="1316.0" y="2712.0" />
+      <point x="1448.5" y="2712.0" />
+      <point x="1448.5" y="2338.0" />
+      <point x="130.5" y="0.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.tasks.math.AbstractMathTask" target="by.merinovvvv.quizer.tasks.math.MathTask" relationship="REALIZATION">
+      <point x="-123.5" y="72.5" />
+      <point x="1081.5" y="2748.0" />
+      <point x="1644.5" y="2748.0" />
+      <point x="1644.5" y="2155.0" />
+      <point x="2225.0" y="2155.0" />
+      <point x="0.0" y="19.0" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.TaskGenerator" target="by.merinovvvv.quizer.Task" relationship="DEPENDENCY">
+      <point x="0.0" y="40.5" />
+      <point x="705.0" y="1331.0" />
+      <point x="1420.5" y="1331.0" />
+      <point x="55.5" y="56.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.PoolTaskGenerator" target="by.merinovvvv.quizer.TaskGenerator" relationship="REALIZATION">
+      <point x="0.0" y="71.5" />
+      <point x="385.0" y="1667.0" />
+      <point x="629.0" y="1667.0" />
+      <point x="-76.0" y="40.5" />
+    </edge>
+    <edge source="by.merinovvvv.quizer.generators.GroupTaskGeneratorTest" target="by.merinovvvv.quizer.Task" relationship="TO_ONE">
+      <point x="0.0" y="146.5" />
+      <point x="1585.0" y="1725.0" />
+      <point x="1382.5" y="1725.0" />
+      <point x="1382.5" y="1346.0" />
+      <point x="2225.0" y="1346.0" />
+      <point x="2225.0" y="758.0" />
+      <point x="124.5" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.35573122529644274" showDependencies="true" x="1344.8263888888891" y="1358.4444444444446" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
