@@ -1,0 +1,49 @@
+@startuml
+
+!theme plain
+left to right direction
+skinparam linetype ortho
+
+class AbstractMathTask
+class AbstractMathTaskGenerator<T>
+class EndOfPoolException
+class EquationTask
+class EquationTaskGenerator
+class ExpressionTask
+class ExpressionTaskGenerator
+class GeneratorCreator
+class GroupTaskGenerator
+class Main
+interface MathTask << interface >>
+interface MathTaskGenerator<T> << interface >>
+class NoSufficientGeneratorsException
+class NumberGenerationException
+enum Operation << enumeration >>
+entity Pair<K, V> << record >>
+class PoolTaskGenerator
+class Quiz
+class QuizFinishedException
+class QuizNotFinishedException
+enum Result << enumeration >>
+interface Task << interface >>
+interface TaskGenerator<T> << interface >>
+class TextTask
+
+AbstractMathTask                 -[#008200,dashed]-^  MathTask                        
+AbstractMathTaskGenerator        -[#595959,dashed]->  MathTask                        
+AbstractMathTaskGenerator        -[#008200,dashed]-^  MathTaskGenerator               
+EquationTask                     -[#000082,plain]-^  AbstractMathTask                
+EquationTaskGenerator            -[#000082,plain]-^  AbstractMathTaskGenerator       
+ExpressionTask                   -[#000082,plain]-^  AbstractMathTask                
+ExpressionTaskGenerator          -[#000082,plain]-^  AbstractMathTaskGenerator       
+GroupTaskGenerator               -[#000082,plain]-^  GeneratorCreator                
+GroupTaskGenerator               -[#008200,dashed]-^  TaskGenerator                   
+MathTask                         -[#008200,plain]-^  Task                            
+MathTaskGenerator                -[#595959,dashed]->  MathTask                        
+MathTaskGenerator                -[#008200,plain]-^  TaskGenerator                   
+Operation                        +-[#820000,plain]-  MathTask                        
+PoolTaskGenerator                -[#008200,dashed]-^  TaskGenerator                   
+Quiz                             -[#000082,plain]-^  GeneratorCreator                
+TaskGenerator                    -[#595959,dashed]->  Task                            
+TextTask                         -[#008200,dashed]-^  Task                            
+@enduml

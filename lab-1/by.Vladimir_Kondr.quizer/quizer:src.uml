@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/vladimirkondratyonok/IdeaProjects/java-bsu-2024/lab-1/by.Vladimir_Kondr.quizer/src</OriginalElement>
+  <nodes>
+    <node x="60.072769544828134" y="-75.0">exceptions.QuizFinishedException</node>
+    <node x="129.57276954482813" y="-395.0">Main</node>
+    <node x="794.0" y="-489.63244466642385">tasks.ExpressionTask</node>
+    <node x="1174.0" y="-56.026084899902344">generators.GroupTaskGenerator</node>
+    <node x="1121.536384772414" y="-265.83350551394307">generators.math.MathTaskGenerator</node>
+    <node x="1849.9734065974587" y="48.09694350570123">core.GeneratorCreator</node>
+    <node x="729.5" y="-142.433349609375">generators.math.AbstractMathTaskGenerator</node>
+    <node x="802.0" y="-339.353534007985">tasks.EquationTask</node>
+    <node x="387.7567194354508" y="-67.62388009409153">generators.EquationTaskGenerator</node>
+    <node x="125.07276954482813" y="-315.0">core.Pair</node>
+    <node x="1189.9724796950998" y="133.28350187956653">Quiz</node>
+    <node x="60.072769544828134" y="5.0">exceptions.NoSufficientGeneratorsException</node>
+    <node x="1375.6189456871148" y="-410.23366141851113">tasks.math.AbstractMathTask</node>
+    <node x="1930.6198725894737" y="-202.45382385771313">core.TaskGenerator</node>
+    <node x="60.072769544828134" y="165.0">exceptions.NumberGenerationException</node>
+    <node x="1722.4486669996356" y="-77.17844017600595">generators.PoolTaskGenerator</node>
+    <node x="1999.0" y="-494.9566045647904">tasks.TextTask</node>
+    <node x="398.96325453244077" y="-275.0">generators.ExpressionTaskGenerator</node>
+    <node x="1768.647797450451" y="-587.5969867963689">tasks.math.MathTask.Operation</node>
+    <node x="60.072769544828134" y="85.0">exceptions.QuizNotFinishedException</node>
+    <node x="125.07276954482813" y="-235.0">core.Result</node>
+    <node x="68.57276954482813" y="-155.0">exceptions.EndOfPoolException</node>
+    <node x="2256.0" y="-275.0">core.Task</node>
+    <node x="1776.5" y="-430.46546903230416">tasks.math.MathTask</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="generators.PoolTaskGenerator" target="core.TaskGenerator" relationship="REALIZATION">
+      <point x="98.5" y="-0.0" />
+      <point x="1939.0" y="-63.17844017600595" />
+      <point x="1939.0" y="-181.45382385771313" />
+      <point x="-97.5" y="7.0" />
+    </edge>
+    <edge source="generators.math.AbstractMathTaskGenerator" target="generators.math.MathTaskGenerator" relationship="REALIZATION">
+      <point x="149.5" y="-7.0" />
+      <point x="1059.0" y="-135.433349609375" />
+      <point x="1059.0" y="-251.83350551394307" />
+      <point x="-117.0" y="-0.0" />
+    </edge>
+    <edge source="core.TaskGenerator" target="core.Task" relationship="DEPENDENCY">
+      <point x="97.5" y="-0.0" />
+      <point x="2179.0" y="-188.45382385771313" />
+      <point x="2179.0" y="-251.66666666666666" />
+      <point x="-43.0" y="9.333333333333332" />
+    </edge>
+    <edge source="tasks.ExpressionTask" target="tasks.math.AbstractMathTask" relationship="GENERALIZATION">
+      <point x="85.0" y="-0.0" />
+      <point x="1039.0" y="-475.63244466642385" />
+      <point x="1039.0" y="-396.23366141851113" />
+      <point x="-95.0" y="-0.0" />
+    </edge>
+    <edge source="generators.math.MathTaskGenerator" target="core.TaskGenerator" relationship="INTERFACE_GENERALIZATION">
+      <point x="117.0" y="7.0" />
+      <point x="1517.929957132851" y="-244.83350551394307" />
+      <point x="1517.929957132851" y="-195.45382385771313" />
+      <point x="-97.5" y="-7.0" />
+    </edge>
+    <edge source="tasks.EquationTask" target="tasks.math.AbstractMathTask" relationship="GENERALIZATION">
+      <point x="77.0" y="-0.0" />
+      <point x="1039.0" y="-325.353534007985" />
+      <point x="1039.0" y="-396.23366141851113" />
+      <point x="-95.0" y="-0.0" />
+    </edge>
+    <edge source="generators.math.AbstractMathTaskGenerator" target="tasks.math.MathTask" relationship="DEPENDENCY">
+      <point x="149.5" y="7.0" />
+      <point x="1079.0" y="-121.433349609375" />
+      <point x="1079.0" y="-147.9812774658203" />
+      <point x="1679.0" y="-147.9812774658203" />
+      <point x="1679.0" y="-261.0" />
+      <point x="1739.0" y="-261.0" />
+      <point x="1739.0" y="-407.13213569897084" />
+      <point x="-62.5" y="9.333333333333332" />
+    </edge>
+    <edge source="tasks.math.MathTask.Operation" target="tasks.math.MathTask" relationship="INNER_CLASS">
+      <point x="63.0" y="-0.0" />
+      <point x="1679.0" y="-573.5969867963689" />
+      <point x="1679.0" y="-425.79880236563747" />
+      <point x="-62.5" y="-9.333333333333332" />
+    </edge>
+    <edge source="tasks.TextTask" target="core.Task" relationship="REALIZATION">
+      <point x="60.0" y="-0.0" />
+      <point x="2139.0" y="-480.9566045647904" />
+      <point x="2139.0" y="-270.3333333333333" />
+      <point x="-43.0" y="-9.333333333333332" />
+    </edge>
+    <edge source="tasks.math.AbstractMathTask" target="tasks.math.MathTask" relationship="REALIZATION">
+      <point x="95.0" y="-0.0" />
+      <point x="1715.25" y="-396.23366141851113" />
+      <point x="1715.25" y="-416.46546903230416" />
+      <point x="-62.5" y="-0.0" />
+    </edge>
+    <edge source="generators.GroupTaskGenerator" target="core.TaskGenerator" relationship="REALIZATION">
+      <point x="105.0" y="-7.0" />
+      <point x="1689.2434853850614" y="-49.026084899902344" />
+      <point x="1689.2434853850614" y="-128.433349609375" />
+      <point x="1939.0" y="-128.433349609375" />
+      <point x="1939.0" y="-181.45382385771313" />
+      <point x="-97.5" y="7.0" />
+    </edge>
+    <edge source="generators.math.MathTaskGenerator" target="tasks.math.MathTask" relationship="DEPENDENCY">
+      <point x="117.0" y="-7.0" />
+      <point x="1679.0" y="-258.83350551394307" />
+      <point x="1679.0" y="-261.0" />
+      <point x="1739.0" y="-261.0" />
+      <point x="1739.0" y="-407.13213569897084" />
+      <point x="-62.5" y="9.333333333333332" />
+    </edge>
+    <edge source="generators.EquationTaskGenerator" target="generators.math.AbstractMathTaskGenerator" relationship="GENERALIZATION">
+      <point x="115.5" y="-0.0" />
+      <point x="700.389353956298" y="-53.62388009409153" />
+      <point x="700.389353956298" y="-128.433349609375" />
+      <point x="-149.5" y="-0.0" />
+    </edge>
+    <edge source="tasks.math.MathTask" target="core.Task" relationship="INTERFACE_GENERALIZATION">
+      <point x="62.5" y="-0.0" />
+      <point x="2078.75" y="-416.46546903230416" />
+      <point x="2078.75" y="-261.0" />
+      <point x="-43.0" y="-0.0" />
+    </edge>
+    <edge source="generators.GroupTaskGenerator" target="core.GeneratorCreator" relationship="GENERALIZATION">
+      <point x="105.0" y="7.0" />
+      <point x="1619.0" y="-35.026084899902344" />
+      <point x="1619.0" y="62.09694350570123" />
+      <point x="-92.5" y="-0.0" />
+    </edge>
+    <edge source="Quiz" target="core.GeneratorCreator" relationship="GENERALIZATION">
+      <point x="42.0" y="-0.0" />
+      <point x="1553.9867032987295" y="147.28350187956653" />
+      <point x="1553.9867032987295" y="62.09694350570123" />
+      <point x="-92.5" y="-0.0" />
+    </edge>
+    <edge source="generators.ExpressionTaskGenerator" target="generators.math.AbstractMathTaskGenerator" relationship="GENERALIZATION">
+      <point x="123.5" y="-0.0" />
+      <point x="699.1089182831654" y="-261.0" />
+      <point x="699.1089182831654" y="-128.433349609375" />
+      <point x="-149.5" y="-0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.78098417670092" showDependencies="false" x="1278.107770237931" y="-248.0915209644943" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
